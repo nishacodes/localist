@@ -1,7 +1,9 @@
 Myfavplaces::Application.routes.draw do
   resources :places
+  # devise_for :users 
+  devise_for :admins, :controllers => { :sessions => "admins/sessions" }
 
-  root :to => "home#index"
+  root :to => "places#index"
 
 
   # The priority is based upon order of creation:
