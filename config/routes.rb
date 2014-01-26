@@ -1,7 +1,8 @@
 Myfavplaces::Application.routes.draw do
-  devise_for :users
+  resources :lists
   resources :places
-
+  devise_for :users
+  
   root :to => "places#index"
 
 
