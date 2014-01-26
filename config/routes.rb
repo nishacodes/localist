@@ -1,7 +1,6 @@
 Myfavplaces::Application.routes.draw do
+  devise_for :users
   resources :places
-  # devise_for :users 
-  devise_for :admins, :controllers => { :sessions => "admins/sessions" }
 
   root :to => "places#index"
 

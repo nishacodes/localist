@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.0'
+gem 'rails', '3.2.16'
 gem 'jquery-rails'
-gem 'devise-encryptable'
+gem 'devise', '3.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
