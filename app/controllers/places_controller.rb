@@ -1,9 +1,19 @@
 class PlacesController < ApplicationController
-  before_filter :get_list
+  before_filter :get_list, except: [:list_all]
+
 
   def get_list
     @list = List.find(params[:list_id])
   end
+
+  # GET /places
+  # def list_all
+  #   if user_signed_in?
+  #     @lists = List.where(user_id: current_user.id)
+  #     @places = @lists.map {|list| list.places}
+  #   end
+  # end
+
   # GET /lists/:list_id/places
   # GET /lists/:list_id/places.json
   def index
@@ -19,7 +29,6 @@ class PlacesController < ApplicationController
   # GET /lists/:list_id/places/1.json
   def show
     @place = Place.find(params[:id])
-    # @list = List.find(params[:list_id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -30,10 +39,8 @@ class PlacesController < ApplicationController
   # GET /lists/:list_id/places/new
   # GET /lists/:list_id/places/new.json
   def new
-    # debugger
     @place = @list.places.build
-    # @list = List.find(params[:list_id])
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @place }
@@ -42,7 +49,6 @@ class PlacesController < ApplicationController
 
   # GET /lists/:list_id/places/1/edit
   def edit
-    # @place = @list.places.find(params[:id])
     @place = Place.find(params[:id])
   end
 

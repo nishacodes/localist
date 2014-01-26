@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%#= link_to 'Show', @place %> |
-<%#= link_to 'Back', places_path %>
+<%= link_to 'Show', list_place_path(:list_id => @list.id, :id => @place.id) %> |
+<%= link_to 'Back', list_places_path %>

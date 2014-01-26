@@ -15,7 +15,7 @@
   <%= link_to 'Add a place', new_list_place_path(@list) %> <br>
   <b>Places</b>
   <% @places.each do |place| %>
-    <li><%= place %></li>
+    <li><%= place.name %></li>
   <% end %>
 </p>
 

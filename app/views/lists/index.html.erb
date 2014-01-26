@@ -1,25 +1,37 @@
-<h1>Listing lists</h1>
+<h1>Welcome to My Favorite Places</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<% if user_signed_in? %>
+  <h2> Lists </h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<% @lists.each do |list| %>
-  <tr>
-    <td><%= list.name %></td>
-    <td><%= list.user_id %></td>
-    <td><%= link_to 'Show', list %></td>
-    <td><%= link_to 'Edit', edit_list_path(list) %></td>
-    <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <% @lists.each do |list| %>
+    <tr>
+      <td><%= list.name %></td>
+      <td><%= list.user_id %></td>
+      <td><%= link_to 'Show', list_places_path(:list_id => list.id) %></td>
+      <td><%= link_to 'Edit', edit_list_path(list) %></td>
+      <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
+  <%= link_to 'New List', new_list_path %>
+  <br />
+
+  <h2> Places </h2>
+  <% @places.each do |placearray| %>
+    <% placearray.each do |place| %>
+      <li> <%= place.name %> </li>
+    <% end %>
+  <% end %>
+
+  
+<% else %>
+  <%= link_to 'Start adding some places', new_list_path %>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New List', new_list_path %>

@@ -1,8 +1,13 @@
 class ListsController < ApplicationController
+  before_filter :authenticate_user!, except: [:index]
+
   # GET /lists
   # GET /lists.json
   def index
-    @lists = List.all
+    if user_signed_in?
+      @lists = List.where(user_id: current_user.id)
+      @places = @lists.map {|list| list.places}
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -36,11 +41,11 @@ class ListsController < ApplicationController
   # GET /lists/1/edit
   def edit
     @list = List.find(params[:id])
-
-    #if session[:user_id] != @list.user_id
-    #  flash[:notice] = "Sorry, you cannot edit this list."
-    #  redirect_to(lists_path)
-    #end
+    
+    if current_user.id != @list.user_id
+     flash[:notice] = "Sorry, you cannot edit this list."
+     redirect_to(lists_path)
+    end
   end
 
   # POST /lists
