@@ -11,5 +11,13 @@
 </p>
 
 
+<p>
+  <%= link_to 'Add a place', new_list_place_path(@list) %> <br>
+  <b>Places</b>
+  <% @places.each do |place| %>
+    <li><%= place %></li>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_list_path(@list) %> |
 <%= link_to 'Back', lists_path %>

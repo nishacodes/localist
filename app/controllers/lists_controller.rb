@@ -14,6 +14,7 @@ class ListsController < ApplicationController
   # GET /lists/1.json
   def show
     @list = List.find(params[:id])
+    @places = @list.places
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,12 +36,21 @@ class ListsController < ApplicationController
   # GET /lists/1/edit
   def edit
     @list = List.find(params[:id])
+
+    #if session[:user_id] != @list.user_id
+    #  flash[:notice] = "Sorry, you cannot edit this list."
+    #  redirect_to(lists_path)
+    #end
   end
 
   # POST /lists
   # POST /lists.json
   def create
     @list = List.new(params[:list])
+
+    if user_signed_in? 
+      @list.user_id = current_user.id
+    end
 
     respond_to do |format|
       if @list.save

@@ -1,8 +1,13 @@
 class PlacesController < ApplicationController
-  # GET /places
-  # GET /places.json
+  before_filter :get_list
+
+  def get_list
+    @list = List.find(params[:list_id])
+  end
+  # GET /lists/:list_id/places
+  # GET /lists/:list_id/places.json
   def index
-    @places = Place.all
+    @places = @list.places
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,21 +15,24 @@ class PlacesController < ApplicationController
     end
   end
 
-  # GET /places/1
-  # GET /places/1.json
+  # GET /lists/:list_id/places/1
+  # GET /lists/:list_id/places/1.json
   def show
     @place = Place.find(params[:id])
+    # @list = List.find(params[:list_id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @place }
+      format.json { render json: [@list,@place] }
     end
   end
 
-  # GET /places/new
-  # GET /places/new.json
+  # GET /lists/:list_id/places/new
+  # GET /lists/:list_id/places/new.json
   def new
-    @place = Place.new
+    # debugger
+    @place = @list.places.build
+    # @list = List.find(params[:list_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -32,25 +40,23 @@ class PlacesController < ApplicationController
     end
   end
 
-  # GET /places/1/edit
+  # GET /lists/:list_id/places/1/edit
   def edit
+    # @place = @list.places.find(params[:id])
     @place = Place.find(params[:id])
   end
 
-  # POST /places
-  # POST /places.json
+  # POST /lists/:list_id/places
+  # POST /lists/:list_id/places.json
   def create
-    @place = Place.new(params[:place])
+    @place = @list.places.new(params[:place])
+    @list.save
 
-    if user_signed_in? 
-      @place.user_id = current_user.id
-    end
-    
-    
     respond_to do |format|
       if @place.save
-        format.html { redirect_to @place, notice: 'Place was successfully created.' }
-        format.json { render json: @place, status: :created, location: @place }
+        
+        format.html { redirect_to :action => :show, :id => @place.id, notice: 'Place was successfully created.' }
+        format.json { render json: [@list,@place], status: :created, location: [@list,@place] }
       else
         format.html { render action: "new" }
         format.json { render json: @place.errors, status: :unprocessable_entity }
@@ -58,14 +64,14 @@ class PlacesController < ApplicationController
     end
   end
 
-  # PUT /places/1
-  # PUT /places/1.json
+  # PUT /lists/:list_id/places/1
+  # PUT /lists/:list_id/places/1.json
   def update
     @place = Place.find(params[:id])
 
     respond_to do |format|
       if @place.update_attributes(params[:place])
-        format.html { redirect_to @place, notice: 'Place was successfully updated.' }
+        format.html { redirect_to :action => :show, :id => @place.id, notice: 'Place was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -74,14 +80,14 @@ class PlacesController < ApplicationController
     end
   end
 
-  # DELETE /places/1
-  # DELETE /places/1.json
+  # DELETE /lists/:list_id/places/1
+  # DELETE /lists/:list_id/places/1.json
   def destroy
     @place = Place.find(params[:id])
     @place.destroy
 
     respond_to do |format|
-      format.html { redirect_to places_url }
+      format.html { redirect_to list_places_url }
       format.json { head :no_content }
     end
   end

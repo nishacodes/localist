@@ -1,10 +1,10 @@
 Myfavplaces::Application.routes.draw do
-  resources :lists
-  resources :places
+  resources :lists do
+    resources :places
+  end
   devise_for :users
   
-  root :to => "places#index"
-
+  root :to => "lists#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
