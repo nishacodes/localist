@@ -3,7 +3,7 @@
   <head>
     <title>Myfavplaces</title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
+    
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -12,5 +12,8 @@
       <%= content_tag(:div, msg, class: "alert alert-#{name}") %>
     <% end %>
     <%= yield %>
+     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+    <%= javascript_include_tag "application" %>
+
   </body>
 </html>

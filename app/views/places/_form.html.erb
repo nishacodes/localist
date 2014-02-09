@@ -13,9 +13,27 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class=>"controls", :type=>"text", :id=>"pac-input", :placeholder=>"Enter a location" %>
+
+    <%= f.fields_for :places do |place| %>
+          <%= place.text_field :latitude, class: "lat", id:"latitude" %>
+          <%= place.text_field :longitude, class: "long", id:"longitude" %>
+          <%= place.text_field :address, class: "address", id:"address" %> 
+          <%= place.text_field :name, class: "name" %>
+      <% end %>
+
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<!--  <input id="pac-input" class="controls" type="text"
+        placeholder="Enter a location"> -->
+    <div id="type-selector" class="controls">
+     
+      <input type="radio" name="type" id="changetype-establishment" checked="checked">
+      <label for="changetype-establishment">Establishments</label>
+
+    </div>
+    <div id="map-canvas"></div>
