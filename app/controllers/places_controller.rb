@@ -55,7 +55,7 @@ class PlacesController < ApplicationController
   # POST /lists/:list_id/places
   # POST /lists/:list_id/places.json
   def create
-    debugger
+    debugger  
     @place = @list.places.new(params[:place])
     @list.save
 

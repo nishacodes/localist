@@ -62,8 +62,18 @@ function initialize() {
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
     infowindow.open(map, marker);
 
+    console.log(place);
+    $("#placeid").val(place.id);
+    $("#name").val(place.name);
+    $("#latitude").val(place.geometry.location.d);
+    $("#longitude").val(place.geometry.location.e);
+    $("#phone").val(place.formatted_phone_number);
+    $("#address").val(place.formatted_address);
+    $("#city").val(place.address_components[5].short_name); // inaccurate
+    $("#state").val(place.address_components[7].short_name); // inaccurate
+    $("#postal").val(place.address_components[6].short_name); // inaccurate
+    $("#country").val(place.address_components[6].short_name); // inaccurate
     
-
   });
 
   // Sets a listener on a radio button to change the filter type on Places
@@ -78,34 +88,6 @@ function initialize() {
   setupClickListener('changetype-all', []);
   setupClickListener('changetype-establishment', ['establishment']);
   setupClickListener('changetype-geocode', ['geocode']);
-
-
-  // The START and END in square brackets define a snippet for our documentation:
-  function fillInAddress() {
-    // Get the place details from the autocomplete object.
-    var place = autocomplete.getPlace();
-    var componentForm = {
-      address: 'short_name',
-      latitude: 'short_name',
-      longitude: 'short_name'
-    };
-    // 
-    for (var component in componentForm) {
-      document.getElementById(component).value = '';
-      document.getElementById(component).disabled = false;
-    }
-    alert('test');
-    // Get each component of the address from the place details
-    // and fill the corresponding field on the form.
-    for (var i = 0; i < place.address_components.length; i++) {
-      var addressType = place.address_components[i].types[0];
-      if (componentForm[addressType]) {
-        var val = place.address_components[i][componentForm[addressType]];
-        document.getElementById(addressType).value = val;
-      }
-
-    }
-  }
 
 }
 
