@@ -18,7 +18,6 @@ class PlacesController < ApplicationController
   # GET /lists/:list_id/places.json
   def index
     @places = @list.places
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @places }
@@ -29,7 +28,7 @@ class PlacesController < ApplicationController
   # GET /lists/:list_id/places/1.json
   def show
     @place = Place.find(params[:id])
-
+    @list = List.find(params[:list_id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: [@list,@place] }
@@ -55,7 +54,6 @@ class PlacesController < ApplicationController
   # POST /lists/:list_id/places
   # POST /lists/:list_id/places.json
   def create
-    debugger  
     @place = @list.places.new(params[:place])
     @list.save
 

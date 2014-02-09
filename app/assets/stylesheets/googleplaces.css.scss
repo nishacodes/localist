@@ -17,18 +17,20 @@ html, body, #map-canvas {
 #pac-input {
   background-color: #fff;
   padding: 0 11px 0 13px;
-  width: 400px;
+  width: 75%; // EDITED
   font-family: Roboto;
   font-size: 15px;
   font-weight: 300;
   text-overflow: ellipsis;
+  height: 40px;
+  margin-left: 5%;
 }
 
 #pac-input:focus {
-  border-color: #4d90fe;
+  border-color: #3887BE; // EDITED
   margin-left: -1px;
   padding-left: 14px;  /* Regular padding-left + 1. */
-  width: 401px;
+  // width: 401px; 
 }
 
 .pac-container {
@@ -37,13 +39,36 @@ html, body, #map-canvas {
 
 #type-selector {
   color: #fff;
-  background-color: #4d90fe;
+  background-color: #519EB5;
   padding: 5px 11px 0px 11px;
-  display: none;
+  display: none; // EDITED
 }
 
 #type-selector label {
   font-family: Roboto;
   font-size: 13px;
   font-weight: 300;
+}
+
+// MY STYLES
+.gm-style-mtc { // The map/satellite options in the upper right corner
+  display: none;
+}
+
+#place-submit {
+  position: relative;
+  left: 85%;
+  width: 80px;
+  height: 40px;
+  margin: 16px 16px 0px 16px;
+  background-color: #518A9C;
+  border: none;
+  color: white;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(81,138,156,0.8);
+  }
 }

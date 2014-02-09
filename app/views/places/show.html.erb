@@ -15,5 +15,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_list_place_path(@place) %> |
+<%= link_to 'Edit', edit_list_place_path(:list_id => @list.id, :id => @place.id) %> |
 <%= link_to 'Back', list_places_path %>

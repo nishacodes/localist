@@ -1,6 +1,31 @@
 
 
 function initialize() {
+  
+  // SET CUSTOM STYLES TO MAP
+  var styles = [
+    {
+      stylers: [
+        { hue: "#2397BA" },
+        { saturation: -20 }
+      ]
+    },{
+      featureType: "road",
+      elementType: "geometry",
+      stylers: [
+        { lightness: 100 },
+        { visibility: "simplified" }
+      ]
+    },{
+      featureType: "road",
+      elementType: "labels",
+      stylers: [
+        { visibility: "off" }
+      ]
+    }
+  ];
+
+  // SET INITIAL MAP STATE
   var mapOptions = {
     center: new google.maps.LatLng(40.769081, -73.977126),
     zoom: 13
@@ -23,6 +48,9 @@ function initialize() {
   var marker = new google.maps.Marker({
     map: map
   });
+
+  // INCORPORATE STYLES
+  map.setOptions({styles: styles});
 
 
   google.maps.event.addListener(autocomplete, 'place_changed', function() {
@@ -62,18 +90,17 @@ function initialize() {
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
     infowindow.open(map, marker);
 
-    console.log(place);
+    // POPULATE HIDDEN FORM FIELDS
     $("#placeid").val(place.id);
     $("#name").val(place.name);
     $("#latitude").val(place.geometry.location.d);
     $("#longitude").val(place.geometry.location.e);
     $("#phone").val(place.formatted_phone_number);
     $("#address").val(place.formatted_address);
-    $("#city").val(place.address_components[5].short_name); // inaccurate
-    $("#state").val(place.address_components[7].short_name); // inaccurate
-    $("#postal").val(place.address_components[6].short_name); // inaccurate
-    $("#country").val(place.address_components[6].short_name); // inaccurate
-    
+    // $("#city").val(place.address_components[5].short_name); // inaccurate
+    // $("#state").val(place.address_components[7].short_name); // inaccurate
+    // $("#postal").val(place.address_components[6].short_name); // inaccurate
+    // $("#country").val(place.address_components[6].short_name); // inaccurate
   });
 
   // Sets a listener on a radio button to change the filter type on Places
