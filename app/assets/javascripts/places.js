@@ -24,7 +24,7 @@ var styles = [
     featureType: "road",
     elementType: "labels",
     stylers: [
-      { visibility: "off" }
+      { visibility: "on" }
     ]
   }
 ];
@@ -61,12 +61,14 @@ function initialize() {
     
   for (i = 0; i < markers.length; i++) {  
       marker = new google.maps.Marker({
-          position: new google.maps.LatLng(markers[i][1], markers[i][2]),
-          map: map
+          position: new google.maps.LatLng(markers[i][1], markers[i][2]), // lat/long coordinates
+          map: map,
+          icon: "dot.png"
       });
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+
+      google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
           return function() {
-              infowindow.setContent(markers[i][0]);
+              infowindow.setContent(markers[i][0]); // name of place
               infowindow.open(map, marker);
           }
       })(marker, i));
