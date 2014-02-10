@@ -37,21 +37,26 @@ var mapOptions = {
 
 var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-
-
-var markers = [
-      ['Bondi Beach', 40.724075, -73.996509],
-      ['Coogee Beach', 40.77203, -73.96074199999998],
-      ['Cronulla Beach', 40.772152,-73.955558]
-    ];
+var markers = [];
 
 // MAIN FUNCTION
 function initialize() {
-
+  
   // Incorporate styles
   map.setOptions({styles: styles}); 
 
-  // Add markers
+  // Add places to the markers array
+  for(i=0; i < gon.places_array.length; i++){
+    for(x=0; x < gon.places_array[i].length; x++){
+      var name = gon.places_array[i][x].name; 
+      var lat = gon.places_array[i][x].lat;
+      var long = gon.places_array[i][x].long;
+      var marker = [name,lat,long];
+      markers.push(marker);
+    }
+  }
+
+  // Place markers on map
   var infowindow = new google.maps.InfoWindow(), marker, i;
     
   for (i = 0; i < markers.length; i++) {  

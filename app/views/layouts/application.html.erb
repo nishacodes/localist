@@ -2,10 +2,11 @@
 <html>
   <head>
     <title>Myfavplaces</title>
+    <%= include_gon %>
     <%= stylesheet_link_tag    "application", :media => "all" %>
-    <%= csrf_meta_tags %>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
   </head>
   <body>
     <%= render 'layouts/header' %>

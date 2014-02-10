@@ -7,6 +7,8 @@ class ListsController < ApplicationController
     if user_signed_in?
       @lists = List.where(user_id: current_user.id)
       @places = @lists.map {|list| list.places}
+      gon.lists = List.where(user_id: current_user.id)
+      gon.places_array = @lists.map {|list| list.places}
     end
 
     respond_to do |format|
