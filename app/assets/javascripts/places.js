@@ -74,3 +74,15 @@ function initialize() {
       })(marker, i));
   }
 }
+
+
+$("#view").on('click', function(){
+  $(".listview").toggleClass("hidden");
+  if ($(".listview").hasClass("hidden")){
+    $("#map-canvas").removeClass("hidden");
+    $(this).text("View lists");
+  } else {
+    $("#map-canvas").addClass("hidden");
+    $(this).text("View map");
+  }
+})
