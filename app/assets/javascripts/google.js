@@ -1,57 +1,63 @@
+// VARIABLES
+
+// Custom styles for map
+var styles = [
+  {
+    stylers: [
+      { hue: "#2397BA" },
+      { saturation: -20 }
+    ]
+  },{
+    featureType: "road",
+    elementType: "geometry",
+    stylers: [
+      { lightness: 100 },
+      { visibility: "simplified" }
+    ]
+  },{
+    featureType: "road",
+    elementType: "labels",
+    stylers: [
+      { visibility: "off" }
+    ]
+  }
+];
+
+// Initial map state
+var mapOptions = {
+  center: new google.maps.LatLng(40.769081, -73.977126),
+  zoom: 13
+};
+
+var map = new google.maps.Map(document.getElementById('map-canvas'),
+  mapOptions);
+
+var input = /** @type {HTMLInputElement} */(
+    document.getElementById('pac-input'));
+
+var types = document.getElementById('type-selector');
+map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+
+var autocomplete = new google.maps.places.Autocomplete(input);
+autocomplete.bindTo('bounds', map);
+
+var infowindow = new google.maps.InfoWindow();
+var marker = new google.maps.Marker({
+  map: map
+});
+
+// CALL FUNCTIONS
+$(document).ready(function(){
+  initialize();
+});
 
 
+// DEFINE FUNTIONS
 function initialize() {
-  
-  // SET CUSTOM STYLES TO MAP
-  var styles = [
-    {
-      stylers: [
-        { hue: "#2397BA" },
-        { saturation: -20 }
-      ]
-    },{
-      featureType: "road",
-      elementType: "geometry",
-      stylers: [
-        { lightness: 100 },
-        { visibility: "simplified" }
-      ]
-    },{
-      featureType: "road",
-      elementType: "labels",
-      stylers: [
-        { visibility: "off" }
-      ]
-    }
-  ];
-
-  // SET INITIAL MAP STATE
-  var mapOptions = {
-    center: new google.maps.LatLng(40.769081, -73.977126),
-    zoom: 13
-  };
-
-  var map = new google.maps.Map(document.getElementById('map-canvas'),
-    mapOptions);
-
-  var input = /** @type {HTMLInputElement} */(
-      document.getElementById('pac-input'));
-
-  var types = document.getElementById('type-selector');
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
-
-  var autocomplete = new google.maps.places.Autocomplete(input);
-  autocomplete.bindTo('bounds', map);
-
-  var infowindow = new google.maps.InfoWindow();
-  var marker = new google.maps.Marker({
-    map: map
-  });
 
   // INCORPORATE STYLES
   map.setOptions({styles: styles});
-
 
   google.maps.event.addListener(autocomplete, 'place_changed', function() {
     infowindow.close();
@@ -90,6 +96,8 @@ function initialize() {
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
     infowindow.open(map, marker);
 
+
+    console.log(place.photos);
     // POPULATE HIDDEN FORM FIELDS
     $("#placeid").val(place.id);
     $("#name").val(place.name);
@@ -101,6 +109,8 @@ function initialize() {
     // $("#state").val(place.address_components[7].short_name); // inaccurate
     // $("#postal").val(place.address_components[6].short_name); // inaccurate
     // $("#country").val(place.address_components[6].short_name); // inaccurate
+    $("#website").val(place.website);
+
   });
 
   // Sets a listener on a radio button to change the filter type on Places
@@ -117,6 +127,5 @@ function initialize() {
   setupClickListener('changetype-geocode', ['geocode']);
 
 }
+    
 
-
-google.maps.event.addDomListener(window, 'load', initialize);

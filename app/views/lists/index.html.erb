@@ -35,3 +35,7 @@
 <% else %>
   <%= link_to 'Start adding some places', new_list_path %>
 <% end %>
+
+<div id="map-canvas"></div>
+<%= javascript_include_tag "places" %>
+

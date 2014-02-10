@@ -26,6 +26,9 @@
     <%= f.hidden_field :state, id:"state" %> 
     <%= f.hidden_field :postal, id:"postal" %> 
     <%= f.hidden_field :country, id:"country" %> 
+    <%#= f.hidden_field :website, id:"website" %> 
+
+
   </div>
   <div class="actions">
     <%= f.submit "Add Place", :class=>"pac-container", :id=>"place-submit"%>
@@ -37,3 +40,5 @@
   <input type="radio" name="type" id="changetype-establishment" checked="checked">
 </div> -->
 <div id="map-canvas"></div>
+
+<%= javascript_include_tag "google" %>
