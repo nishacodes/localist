@@ -46132,3 +46132,144 @@ Served asset /places.js - 200 OK (2ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-09 19:10:01 -0500
 Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-09 20:49:56 -0500
+Processing by ListsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."user_id" = 1
+  [1m[36mPlace Load (0.2ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 3[0m
+  [1m[35mPlace Load (0.2ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 4
+  [1m[36mPlace Load (0.2ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 5[0m
+  [1m[35mPlace Load (0.3ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 8
+Compiled places.js  (0ms)  (pid 539)
+  Rendered lists/index.html.erb within layouts/application (53.3ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 148.8ms (Views: 60.0ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/lists.css?body=1" for 127.0.0.1 at 2014-02-09 20:49:57 -0500
+Served asset /lists.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-09 20:49:57 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/googleplaces.css?body=1" for 127.0.0.1 at 2014-02-09 20:49:57 -0500
+Served asset /googleplaces.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/places.css?body=1" for 127.0.0.1 at 2014-02-09 20:49:57 -0500
+Served asset /places.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-09 20:49:57 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-02-09 20:49:57 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-09 20:49:57 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-09 20:49:57 -0500
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/places.js?body=1" for 127.0.0.1 at 2014-02-09 20:49:57 -0500
+Served asset /places.js - 200 OK (1ms)
+
+
+Started GET "/lists/8/places" for 127.0.0.1 at 2014-02-09 20:50:07 -0500
+Processing by PlacesController#index as HTML
+  Parameters: {"list_id"=>"8"}
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = ? LIMIT 1[0m  [["id", "8"]]
+  [1m[35mPlace Load (0.2ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 8
+  Rendered places/index.html.erb within layouts/application (4.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered layouts/_header.html.erb (1.2ms)
+Completed 200 OK in 11.9ms (Views: 10.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-09 20:50:07 -0500
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/lists.css?body=1" for 127.0.0.1 at 2014-02-09 20:50:07 -0500
+Served asset /lists.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-02-09 20:50:07 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/googleplaces.css?body=1" for 127.0.0.1 at 2014-02-09 20:50:07 -0500
+Served asset /googleplaces.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-09 20:50:07 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/places.css?body=1" for 127.0.0.1 at 2014-02-09 20:50:07 -0500
+Served asset /places.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-09 20:50:07 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-09 20:50:07 -0500
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/lists/8/places/new" for 127.0.0.1 at 2014-02-09 20:50:10 -0500
+Processing by PlacesController#new as HTML
+  Parameters: {"list_id"=>"8"}
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = ? LIMIT 1  [["id", "8"]]
+Compiled google.js  (0ms)  (pid 539)
+  Rendered places/_form.html.erb (62.7ms)
+  Rendered places/new.html.erb within layouts/application (63.9ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered layouts/_header.html.erb (2.3ms)
+Completed 200 OK in 76.3ms (Views: 73.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-09 20:50:10 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/googleplaces.css?body=1" for 127.0.0.1 at 2014-02-09 20:50:10 -0500
+Served asset /googleplaces.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/places.css?body=1" for 127.0.0.1 at 2014-02-09 20:50:10 -0500
+Served asset /places.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lists.css?body=1" for 127.0.0.1 at 2014-02-09 20:50:10 -0500
+Served asset /lists.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-02-09 20:50:10 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-09 20:50:10 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-09 20:50:10 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-09 20:50:10 -0500
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/google.js?body=1" for 127.0.0.1 at 2014-02-09 20:50:10 -0500
+Served asset /google.js - 200 OK (2ms)
