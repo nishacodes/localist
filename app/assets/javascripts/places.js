@@ -51,8 +51,6 @@ function initialize() {
   // Incorporate styles
   map.setOptions({styles: styles}); 
 
-  
-  
   // Add markers
   var infowindow = new google.maps.InfoWindow(), marker, i;
     
