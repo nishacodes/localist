@@ -56325,3 +56325,198 @@ Served asset /application.js - 304 Not Modified (0ms)
 
 Started GET "/assets/places.js?body=1" for 127.0.0.1 at 2014-02-09 22:13:32 -0500
 Served asset /places.js - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-10 11:17:05 -0500
+Processing by ListsController#index as HTML
+  Rendered lists/index.html.erb within layouts/application (68.4ms)
+  Rendered layouts/_header.html.erb (1.7ms)
+Completed 200 OK in 743.5ms (Views: 742.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:06 -0500
+Served asset /application.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/googleplaces.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:06 -0500
+Served asset /googleplaces.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/places.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:07 -0500
+Served asset /places.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-10 11:17:07 -0500
+Served asset /jquery.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/lists.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:07 -0500
+Served asset /lists.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:07 -0500
+Served asset /scaffolds.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-10 11:17:07 -0500
+Served asset /application.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/places.js?body=1" for 127.0.0.1 at 2014-02-10 11:17:07 -0500
+Served asset /places.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-10 11:17:07 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (2ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-02-10 11:17:12 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (2.7ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (34.4ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 92.1ms (Views: 46.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:12 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/googleplaces.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:12 -0500
+Served asset /googleplaces.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:12 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/places.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:12 -0500
+Served asset /places.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-10 11:17:12 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lists.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:12 -0500
+Served asset /lists.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-10 11:17:12 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-10 11:17:12 -0500
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-02-10 11:17:17 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VWVLK9TCcoF12ZdRCK25x2r32Xzt98Rk7of0QXLvGx0=", "user"=>{"email"=>"nishabatra27@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (6.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'nishabatra27@gmail.com' LIMIT 1[0m
+Completed 401 Unauthorized in 102.3ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VWVLK9TCcoF12ZdRCK25x2r32Xzt98Rk7of0QXLvGx0=", "user"=>{"email"=>"nishabatra27@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  Rendered devise/shared/_links.erb (0.4ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (3.2ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 91.4ms (Views: 8.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:18 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/googleplaces.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:18 -0500
+Served asset /googleplaces.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/lists.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:18 -0500
+Served asset /lists.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-10 11:17:18 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/places.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:18 -0500
+Served asset /places.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:18 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-10 11:17:18 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-10 11:17:18 -0500
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-02-10 11:17:25 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VWVLK9TCcoF12ZdRCK25x2r32Xzt98Rk7of0QXLvGx0=", "user"=>{"email"=>"nishabatra27@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'nishabatra27@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  UPDATE "users" SET "last_sign_in_at" = '2014-02-09 19:49:47.990631', "current_sign_in_at" = '2014-02-10 16:17:25.715754', "sign_in_count" = 8, "updated_at" = '2014-02-10 16:17:25.740794' WHERE "users"."id" = 1
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 120.6ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-10 11:17:25 -0500
+Processing by ListsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mList Load (0.5ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."user_id" = 1[0m
+  [1m[35mPlace Load (15.6ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 5
+  [1m[36mPlace Load (0.8ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 8[0m
+  [1m[35mPlace Load (0.4ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 9
+  [1m[36mPlace Load (0.3ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 10[0m
+  [1m[35mPlace Load (0.2ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 11
+  [1m[36mPlace Load (0.3ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 12[0m
+  [1m[35mPlace Load (0.2ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 14
+  [1m[36mPlace Load (0.2ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 15[0m
+  [1m[35mPlace Load (0.3ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 16
+  Rendered lists/index.html.erb within layouts/application (94.5ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."user_id" = 1[0m
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 209.7ms (Views: 113.9ms | ActiveRecord: 19.7ms)
+
+
+Started GET "/assets/lists.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:26 -0500
+Served asset /lists.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-10 11:17:26 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:26 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/googleplaces.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:26 -0500
+Served asset /googleplaces.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/places.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:26 -0500
+Served asset /places.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-02-10 11:17:26 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-10 11:17:26 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-10 11:17:26 -0500
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/places.js?body=1" for 127.0.0.1 at 2014-02-10 11:17:26 -0500
+Served asset /places.js - 304 Not Modified (0ms)
