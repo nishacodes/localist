@@ -9,6 +9,18 @@
     <h2> Lists </h2>
     <%= link_to 'New List', new_list_path %>
     <br />
+    <h3> Recommendations </h3>
+    <% @recommendations.each do |basis, lists_hash|  %>
+      <% lists_hash.each do |list, recs| %>
+        <% recs.each do |place| %>
+          <!-- move some logic to the model -->
+          <!-- add a link to the place to show it on the map -->
+         <li><%= link_to "#{place.name} (based on #{basis})", "#" %></li> 
+        <% end %>
+      <% end %>
+    <% end %>
+
+
     <% @lists.each do |list| %>
         <h3> 
           <%= link_to list.name, list_places_path(:list_id => list.id) %>
@@ -44,5 +56,6 @@
  
 
 <div id="map-canvas" ></div>
+
 <%= javascript_include_tag "places" %>
 

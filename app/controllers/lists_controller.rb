@@ -5,6 +5,8 @@ class ListsController < ApplicationController
   # GET /lists.json
   def index
     if user_signed_in?
+      User.get_users(current_user)
+      @recommendations = current_user.recommend
       @lists = List.where(user_id: current_user.id)
       @places = @lists.map {|list| list.places}
       gon.lists = List.where(user_id: current_user.id)
