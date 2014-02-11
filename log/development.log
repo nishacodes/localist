@@ -68863,3 +68863,72 @@ Served asset /application.js - 304 Not Modified (0ms)
 
 Started GET "/assets/places.js?body=1" for 127.0.0.1 at 2014-02-11 00:02:00 -0500
 Served asset /places.js - 200 OK (2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-11 00:08:41 -0500
+Processing by ListsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."user_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."user_id" = 1[0m
+  [1m[35mPlace Load (0.2ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 5
+  [1m[36mPlace Load (0.2ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 8[0m
+  [1m[35mPlace Load (0.2ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 9
+  [1m[36mPlace Load (0.3ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 10[0m
+  [1m[35mPlace Load (0.2ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 11
+  [1m[36mPlace Load (0.2ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 12[0m
+  [1m[35mPlace Load (0.2ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 14
+  [1m[36mPlace Load (0.3ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 15[0m
+  [1m[35mPlace Load (0.2ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 16
+Compiled places.js  (0ms)  (pid 2951)
+  Rendered lists/index.html.erb within layouts/application (84.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 8
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 9[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 10
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 11[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 12
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 14[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 15
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "places".* FROM "places" INNER JOIN "list_places" ON "places"."id" = "list_places"."place_id" WHERE "list_places"."list_id" = 16[0m
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 163.3ms (Views: 158.7ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/assets/googleplaces.css?body=1" for 127.0.0.1 at 2014-02-11 00:08:41 -0500
+Served asset /googleplaces.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-11 00:08:41 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-02-11 00:08:41 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/places.css?body=1" for 127.0.0.1 at 2014-02-11 00:08:41 -0500
+Served asset /places.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/styles.css?body=1" for 127.0.0.1 at 2014-02-11 00:08:41 -0500
+Served asset /styles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lists.css?body=1" for 127.0.0.1 at 2014-02-11 00:08:41 -0500
+Served asset /lists.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-11 00:08:41 -0500
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-11 00:08:41 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-11 00:08:41 -0500
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/places.js?body=1" for 127.0.0.1 at 2014-02-11 00:08:41 -0500
+Served asset /places.js - 200 OK (1ms)
