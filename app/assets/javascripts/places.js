@@ -30,7 +30,7 @@ var styles = [
 
 var myLatlng = new google.maps.LatLng(40.757975,-73.9752290);
 var mapOptions = {
-  zoom: 13,
+  zoom: 13  ,
   center: myLatlng
 }
 
@@ -38,16 +38,28 @@ var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions)
 var markers = [];
 var permanentMarkers = [];
 
+
 // MAIN FUNCTION
 function initialize() {
   
   // Incorporate styles
   map.setOptions({styles: styles}); 
-  
-  // remove markers example: https://developers.google.com/maps/documentation/javascript/examples/marker-remove
-  // another example: http://jsfiddle.net/TwMVj/3/
-  
-  // Toggle 'selected' class for filters
+  addSelected();
+
+  // Toggle 'all' to control other selectors
+  $("#filters li").first().on('click',function(){
+    console.log(this);
+    $(this).toggleClass("");
+    if($(this).hasClass("selected")){
+      $(this).nextAll().removeClass("selected");
+      addSelected();
+    } else {
+      $(this).nextAll().addClass("selected");
+      addSelected();
+    }
+  })
+
+  // Toggle 'selected' class for each filter
   $("#filters li").on('click',function(){
     $(this).toggleClass("selected");
     addSelected();
@@ -55,9 +67,9 @@ function initialize() {
 
   // Add all the lists (of objects) into the selected_lists array to start 
   function addSelected(){
-    clearMarkers();
-    var selected_lists=[];
+    clearMarkers(); 
     markers = [];
+    var selected_lists=[];
 
     $("#filters li.selected").each(function(){  
       list_name = $(this).text();
@@ -82,6 +94,7 @@ function initialize() {
     }
   }
 
+  // clears array of permanentMarkers
   function clearMarkers(){
     for (var i=0; i<permanentMarkers.length; i++){
       permanentMarkers[i].setMap(null);
