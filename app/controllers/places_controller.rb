@@ -39,6 +39,8 @@ class PlacesController < ApplicationController
   # GET /lists/:list_id/places/new.json
   def new
     @place = @list.places.build
+    @list = List.find(params[:list_id])
+    @places = @list.places
     
     respond_to do |format|
       format.html # new.html.erb

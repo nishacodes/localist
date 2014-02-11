@@ -1,12 +1,9 @@
-<h1>Welcome to My Favorite Places</h1>
-
 <% if user_signed_in? %>
   
   <ul>
     <li id="view">View List</li>
   </ul>
 
-  
   
   <div class="listview hidden">
     <h2> Lists </h2>
@@ -29,9 +26,7 @@
       </ul>
     <% end %>
   </div>
-<% else %>
-  <%= link_to 'Start adding some places', new_list_path %>
-<% end %>
+
 
   <div id="filters">
     <ul>
@@ -39,7 +34,11 @@
       <li><%= list.name %></li>
     <% end %>
     </ul>
-  </div>  
+  </div> 
+<% else %>
+  <%= link_to 'Start adding some places', new_list_path %>
+<% end %>
+ 
 
 <div id="map-canvas" ></div>
 <%= javascript_include_tag "places" %>

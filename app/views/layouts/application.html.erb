@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Myfavplaces</title>
+    <title>Manhattan Maps</title>
     <%= include_gon %>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
@@ -10,6 +10,7 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
+    
     <% flash.each do |name, msg| %>
       <%= content_tag(:div, msg, class: "alert alert-#{name}") %>
     <% end %>

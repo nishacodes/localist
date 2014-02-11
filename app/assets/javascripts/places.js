@@ -28,14 +28,15 @@ var styles = [
   }
 ];
 
-var myLatlng = new google.maps.LatLng(40.772152,-73.955558);
+var myLatlng = new google.maps.LatLng(40.757975,-73.9752290);
 var mapOptions = {
-  zoom: 14,
+  zoom: 13,
   center: myLatlng
 }
 
 var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 var markers = [];
+var permanentMarkers = [];
 
 // MAIN FUNCTION
 function initialize() {
@@ -44,7 +45,8 @@ function initialize() {
   map.setOptions({styles: styles}); 
   
   // remove markers example: https://developers.google.com/maps/documentation/javascript/examples/marker-remove
-
+  // another example: http://jsfiddle.net/TwMVj/3/
+  
   // Toggle 'selected' class for filters
   $("#filters li").on('click',function(){
     $(this).toggleClass("selected");
@@ -53,7 +55,9 @@ function initialize() {
 
   // Add all the lists (of objects) into the selected_lists array to start 
   function addSelected(){
+    clearMarkers();
     var selected_lists=[];
+    markers = [];
 
     $("#filters li.selected").each(function(){  
       list_name = $(this).text();
@@ -73,20 +77,29 @@ function initialize() {
         var marker = [name,lat,long];
         markers.push(marker);
         placeMarkers();
+        
       }
+    }
+  }
+
+  function clearMarkers(){
+    for (var i=0; i<permanentMarkers.length; i++){
+      permanentMarkers[i].setMap(null);
     }
   }
 
   // Place markers on map
   function placeMarkers(){
-    var infowindow = new google.maps.InfoWindow(), marker, i;
-      
+    var infowindow = new google.maps.InfoWindow(), i;
+    
     for (i = 0; i < markers.length; i++) {  
-        marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
             position: new google.maps.LatLng(markers[i][1], markers[i][2]), // lat/long coordinates
             map: map,
             icon: "dot.png"
         });
+
+        permanentMarkers.push(marker); // keep track of google objects
 
         google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
             return function() {

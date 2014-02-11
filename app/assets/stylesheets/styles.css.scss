@@ -1,17 +1,79 @@
-.listview {
+$darkTeal: #518A9C;
+$lightTeal: #A9CED9;
+$grayButton: #EDEDED;
 
-}
-
-.mapview {
-
-}
+// GENERAL STYLES
 
 .hidden {
   display:none;
 }
 
-#filters li {
-  list-style: none;
+body {
+  margin-top: 70px;
+}
+// TEXT STYLES
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  &.logo {
+    font-size: 14pt;
+    font-weight: 300;
+  }
+}
+
+// SCAFFOLDING
+
+nav {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 0px 10px;
+
+}
+.pull-left{
+  float: left;
   display: inline-block;
 }
 
+.pull-right{
+  float: right;
+  display: inline-block;
+}
+
+.sidebar {
+  position: absolute;
+  float: left;
+  display: inline-block;
+  top: 80px;
+}
+
+// FILTERS
+#filters li {
+  list-style: none;
+  display: inline-block;
+  margin: 0px 5px;
+  padding: 8px 10px 8px 10px;
+  background-color: $grayButton;
+  color: white;
+  cursor: pointer;
+  &.selected{
+    background-color: $lightTeal;
+  }
+}
+
+// LIST STYLES
+
+ul.places li {
+  list-style: none;
+}
+
+.nav li {
+  list-style: none;
+  display: inline-block;
+  padding: 3px 8px 3px 8px;
+}

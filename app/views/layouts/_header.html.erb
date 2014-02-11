@@ -1,5 +1,18 @@
-<% if user_signed_in? %>
-  <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
-<% else %>
-  <%= link_to 'Sign in', new_user_session_path %>
-<% end %>
+<nav>
+  <div class="pull-left">
+    <h1 class="logo"><%= link_to "Manhattan Maps", :root %> </h1>
+  </div>
+  
+  <div class="pull-right">
+    <ul class="nav">
+    <% if user_signed_in? %>
+      <li><%= link_to 'New Place', "#" %></li>
+      <li><%= link_to 'New List', destroy_user_session_path, :method => :delete %></li>
+      <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+
+    <% else %>
+      <li><%= link_to 'Sign in', new_user_session_path %></li>  
+    <% end %>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,10 @@
+
+<div class="sidebar">
+  <ul class="places"> 
+    <% @places.each do |place| %>
+      <li>  <%= place.name %> </li>
+        <%= link_to 'Edit', edit_list_place_path(:list_id => @list.id, :id => place.id) %>
+        <%= link_to 'Destroy', list_place_path(:list_id => @list.id, :id => place.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %> 
+  </ul>
+</div>

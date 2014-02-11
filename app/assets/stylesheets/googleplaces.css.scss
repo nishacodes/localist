@@ -1,8 +1,11 @@
+$darkTeal: #518A9C;
+
 html, body, #map-canvas {
   height: 100%;
   margin: 0px;
   padding: 0px
 }
+
 .controls {
   margin-top: 16px;
   border: 1px solid transparent;
@@ -39,7 +42,7 @@ html, body, #map-canvas {
 
 #type-selector {
   color: #fff;
-  background-color: #519EB5;
+  background-color: $darkTeal;
   padding: 5px 11px 0px 11px;
   display: none; // EDITED
 }
@@ -57,11 +60,11 @@ html, body, #map-canvas {
 
 #place-submit {
   position: relative;
-  left: 80%;
+  right: 8%;
   width: 80px;
   height: 40px;
-  margin: 16px 16px 0px 16px;
-  background-color: #518A9C;
+  margin: 22px 16px 0px 16px;
+  background-color: $darkTeal;
   border: none;
   color: white;
   font-family: Roboto;
@@ -71,5 +74,13 @@ html, body, #map-canvas {
   border-radius: 0;
   &:hover {
     background-color: rgba(81,138,156,0.8);
+  }
+}
+
+#map-canvas {
+  border: 6px solid rgba(81,138,156,0.4);
+  margin: 10px;
+  &.addPlaces{
+    margin-left: 25%;
   }
 }
