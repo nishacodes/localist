@@ -13,7 +13,6 @@
     <%= link_to 'New List', new_list_path %>
     <br />
     <% @lists.each do |list| %>
-       
         <h3> 
           <%= link_to list.name, list_places_path(:list_id => list.id) %>
         </h3> 
@@ -28,17 +27,19 @@
           </li>
         <% end %>
       </ul>
-      
-
     <% end %>
-
-    
-
-
   </div>
 <% else %>
   <%= link_to 'Start adding some places', new_list_path %>
 <% end %>
+
+  <div id="filters">
+    <ul>
+    <% @lists.each do |list| %>
+      <li><%= list.name %></li>
+    <% end %>
+    </ul>
+  </div>  
 
 <div id="map-canvas" ></div>
 <%= javascript_include_tag "places" %>

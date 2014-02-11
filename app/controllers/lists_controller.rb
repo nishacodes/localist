@@ -9,6 +9,10 @@ class ListsController < ApplicationController
       @places = @lists.map {|list| list.places}
       gon.lists = List.where(user_id: current_user.id)
       gon.places_array = @lists.map {|list| list.places}
+      gon.places_hash= {}
+      gon.lists.each do |list|
+        gon.places_hash[list.name] = list.places
+      end
     end
 
     respond_to do |format|
