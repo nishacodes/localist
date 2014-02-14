@@ -116,7 +116,7 @@ nav {
 
 .sidenav { // holds all lists
   padding: 10px;
-  position: relative;
+  position: hidden;
   overflow: auto;
   box-sizing: border-box;
   background-color: #F5F5F5;
@@ -176,6 +176,7 @@ ul.filters {
   padding: 10px;
 }
 // LIST STYLES
+
 
 ul.places li {
   list-style: none;

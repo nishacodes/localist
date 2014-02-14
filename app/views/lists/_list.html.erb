@@ -1,6 +1,6 @@
 <div class="listcontainer">
   <p class="list-title">
-    <%= link_to list.name, new_list_place_path(:list_id => list.id), :class =>'list_name', id: '#{list.id}' %>   
+    <%= link_to list.name, 'new_list_place_path(:list_id => list.id)', :class =>'list_name', id: '#{list.id}' %>   
     <%= render 'buttons', :list => list %>
   </p>
   <div class="placecontainer">

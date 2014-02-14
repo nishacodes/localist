@@ -130,16 +130,24 @@ $("li.place a").on('mouseover', function(){
   // need to show the infowindow on the map for the marker at these coordinates
 })
 
-// Toggle btw list and map view
+// Toggle sidenav
 $("#view").on('click', function(){
-  $(".listview").toggleClass("hidden");
-  if ($(".listview").hasClass("hidden")){
-    $("#map-canvas").removeClass("hidden");
-    
-    $(this).text("View lists");
-  } else {
-    // $("#map-canvas").addClass("hidden");
-    
-    $(this).text("View map");
+  if ($(this).hasClass('hide')) {
+    $('.sidenav').animate({width:'300px', padding:'20px'},500);
+    $(this).removeClass('hide');
+  } else { 
+    $('.sidenav').animate({width:'0px', padding:'0px'},500);
+    $(this).addClass('hide');
+  }
+})
+
+// Toggle lists
+$(".list-title").on('click', function(){
+  if ($(this).hasClass('hide')) {
+    // display the li
+    $(this).removeClass('hide');
+  } else { 
+    // hide the li
+    $(this).addClass('hide');
   }
 })
