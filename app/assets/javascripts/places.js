@@ -124,16 +124,22 @@ function initialize() {
   }
 }
 
+// Hover effects
+$("li.place a").on('mouseover', function(){
+  var coordinates = $(this).data('url');
+  // need to show the infowindow on the map for the marker at these coordinates
+})
+
 // Toggle btw list and map view
 $("#view").on('click', function(){
   $(".listview").toggleClass("hidden");
   if ($(".listview").hasClass("hidden")){
     $("#map-canvas").removeClass("hidden");
-    $("#filters").removeClass("hidden");
+    
     $(this).text("View lists");
   } else {
-    $("#map-canvas").addClass("hidden");
-    $("#filters").addClass("hidden");
+    // $("#map-canvas").addClass("hidden");
+    
     $(this).text("View map");
   }
 })

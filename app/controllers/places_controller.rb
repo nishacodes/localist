@@ -43,6 +43,7 @@ class PlacesController < ApplicationController
     @places = @list.places
     
     respond_to do |format|
+      format.js
       format.html # new.html.erb
       format.json { render json: @place }
     end
@@ -61,7 +62,7 @@ class PlacesController < ApplicationController
 
     respond_to do |format|
       if @place.save
-        
+        format.js
         format.html { redirect_to :action => :show, :id => @place.id, notice: 'Place was successfully created.' }
         format.json { render json: [@list,@place], status: :created, location: [@list,@place] }
       else
@@ -94,6 +95,7 @@ class PlacesController < ApplicationController
     @place.destroy
 
     respond_to do |format|
+      format.js
       format.html { redirect_to list_places_url }
       format.json { head :no_content }
     end

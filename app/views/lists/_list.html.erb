@@ -1,17 +1,14 @@
-<div class="box"> 
+<div class="listcontainer">
   <p class="list-title">
-    <%= link_to list.name, new_list_place_path(:list_id => list.id)%>   
-    <%= link_to ' x ', list, method: :delete, data: { confirm: 'Are you sure?'},:class => 'pull-right'  %>
-    <%= link_to ' / ', edit_list_path(list) , :class => 'pull-right'  %>
-    <%= link_to ' + ', new_list_place_path(:list_id => list.id), :class => 'pull-right'  %>
+    <%= link_to list.name, new_list_place_path(:list_id => list.id), :class =>'list_name', id: '#{list.id}' %>   
+    <%= render 'buttons', :list => list %>
   </p>
   <div class="placecontainer">
     <ul class="places">
       <% list.places.each do |place|  %>
-        <li> 
-          <%= link_to place.name, list_place_path(:list_id => list.id, :id => place.id) %>
-          <%= link_to 'Edit', edit_list_place_path(:list_id => list.id, :id => place.id) %>
-          <%= link_to 'Destroy', list_place_path(:list_id => list.id, :id => place.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <li class="place"> 
+          <%= link_to place.name, list_place_path(:list_id => list.id, :id => place.id),  data: {url: "(#{place.lat},#{place.long})"} %>
+          <%= render 'places/buttons', :place => place, :list => list %>
         </li>
       <% end %>  
     </ul>

@@ -9,11 +9,9 @@ $titleFont: 'Roboto Slab', serif;
 // $titleFont: 'Glegoo', serif; 
 
 // GENERAL STYLES
-
 .hidden {
   display:none;
 }
-
 
 body {
   margin-top: 70px;
@@ -21,17 +19,22 @@ body {
   font-size: 11pt;
 }
 
-
 // TEXT STYLES
-
 ul {
   font-family: $mainFont;
   font-size: 11pt;
-  padding: 10px;
+  padding: 0px;
 }
 
-li {
-  padding: 5px;
+li { 
+  padding: 5px 15px;
+  &.place {
+    border-bottom: 1px solid #eee;
+    &:hover {
+      background-color: $darkTeal;
+      color: white; // how to get text to turn white on hover?
+    }
+  }
 }
 
 a {
@@ -53,8 +56,6 @@ h3 {
 }
 
 
-
-
 .list-title {
   font-family: $titleFont;
   font-size: 12pt;
@@ -66,7 +67,7 @@ h3 {
 a, a:visited {
   color: black;
   &:hover {
-    color: $darkTeal;
+    // color: $darkTeal;
     background: none;
   }
 }
@@ -86,8 +87,6 @@ button.command {
   
 }
 
-
-
 // SCAFFOLDING
 
 nav {
@@ -95,7 +94,8 @@ nav {
   top: 0;
   width: 100%;
   padding: 0px 10px;
-
+  z-index: 101;
+  background-color: white;
 }
 .pull-left{
   float: left;
@@ -114,23 +114,37 @@ nav {
   top: 80px;
 }
 
-.listcontainer { // holds all lists
-  padding: 10px 30px;
+.sidenav { // holds all lists
+  padding: 10px;
   position: relative;
   overflow: auto;
   box-sizing: border-box;
   background-color: #F5F5F5;
+  margin-left: 0px;
+  width: 300px;
+  float: left;
+  display: inline-block;
 }
 
-.box { // each list box
-  display: inline-block;
-  width: 23%;
-  min-width: 200px;
-  box-sizing: border-box;
-  float: left;
-  margin: 1%;
-  padding: 5px;
+// SLIDING SIDEBAR
+.listcontainer {
+  width: 230px;
+  position: relative;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 100;
 }
+
+// .box { // each list box
+//   display: inline-block;
+//   width: 23%;
+//   min-width: 200px;
+//   box-sizing: border-box;
+//   float: left;
+//   margin: 1%;
+//   padding: 5px;
+// }
 
 .placecontainer {
   background-color: white; 
@@ -140,6 +154,8 @@ nav {
 .container {
   padding: 0px 30px;
 }
+
+
 
 // FILTERS
 #filters li {
@@ -156,6 +172,9 @@ nav {
   }
 }
 
+ul.filters {
+  padding: 10px;
+}
 // LIST STYLES
 
 ul.places li {
@@ -167,3 +186,4 @@ ul.places li {
   display: inline-block;
   padding: 3px 8px 3px 8px;
 }
+

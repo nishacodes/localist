@@ -1,14 +1,15 @@
+
+
 <% if user_signed_in? %>
   
   <li id="view">View List</li>
-  
-
-  <div class="listview hidden">
-    
-    <div class="container">
+  <div class="container">
       <h3> Recommendations </h3>
+      
       <% @recommendations.each do |basis, lists_hash|  %>
+
         <% lists_hash.each do |list, recs| %>
+
           <% recs.each do |place| %>
             <!-- move some logic to the model -->
             <!-- add a link to the place to show it on the map -->
@@ -16,26 +17,30 @@
           <% end %>
         <% end %>
       <% end %>
+      
     </div>
-
-    <div class="listcontainer">
-      <p>
-      <button class="command"><%= link_to '+ Create New List',new_list_path %> </button>
-      </p>
-      <%= render @lists %>
-    </div>
-
-  </div>
 
 
   <div id="filters">
-    <ul>
+    
+    <ul class="filters">
+      <h3> FILTERS: </h3>
       <li class="selected">All</li>
       <% @lists.each do |list| %>
         <li class="selected"><%= list.name %></li>
       <% end %>
     </ul>
   </div> 
+    
+  <div class="listview hidden">
+    <div class="sidenav">
+      <p>
+        <button class="command"><%= link_to '+ Create New List',new_list_path, id: 'new_link', remote: true  %> </button>
+      </p>
+      <%= render @lists %>
+    </div>
+  </div>
+
 
 <% else %>
   <%= link_to 'Start adding some places', new_list_path %>
@@ -44,3 +49,7 @@
 
 <div id="map-canvas" ></div>
 <%= javascript_include_tag "places" %>
+
+
+
+ 

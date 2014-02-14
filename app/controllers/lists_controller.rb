@@ -10,7 +10,6 @@ class ListsController < ApplicationController
       @lists = List.where(user_id: current_user.id)
       @places = @lists.map {|list| list.places}
       gon.lists = List.where(user_id: current_user.id)
-      gon.places_array = @lists.map {|list| list.places}
       gon.places_hash= {}
       gon.lists.each do |list|
         gon.places_hash[list.name] = list.places
@@ -39,11 +38,6 @@ class ListsController < ApplicationController
   # GET /lists/new.json
   def new
     @list = List.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @list }
-    end
   end
 
   # GET /lists/1/edit
@@ -67,6 +61,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       if @list.save
+        format.js
         format.html { redirect_to "/"} # , notice: 'List was successfully created.' 
         format.json { render json: @list, status: :created, location: @list }
       else
@@ -83,6 +78,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       if @list.update_attributes(params[:list])
+        format.js
         format.html { redirect_to @list, notice: 'List was successfully updated.' }
         format.json { head :no_content }
       else
@@ -99,6 +95,7 @@ class ListsController < ApplicationController
     @list.destroy
 
     respond_to do |format|
+      format.js
       format.html { redirect_to lists_url }
       format.json { head :no_content }
     end

@@ -1,0 +1,2 @@
+<%= link_to ' x ',  list_place_path(:list_id => list.id, :id => place.id), method: :delete, data: { confirm: 'Are you sure?'},:class => 'pull-right', remote: true  %>
+<%= link_to ' / ', edit_list_place_path(:list_id => list.id, :id => place.id), :class => 'pull-right'  %>

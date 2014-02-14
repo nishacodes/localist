@@ -6,8 +6,8 @@
   <div class="pull-right">
     <ul class="nav">
     <% if user_signed_in? %>
-      <li><%= link_to 'New Place', "#" %></li>
-      <li><%= link_to 'New List', new_list_path %></li>
+      <li><%#= link_to 'New Place', "#" %></li>
+      <li><%#= link_to 'New List', new_list_path %></li>
       <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
 
     <% else %>
