@@ -41,7 +41,7 @@ var permanentMarkers = [];
 
 // MAIN FUNCTION
 function initialize() {
-  
+
   // Incorporate styles
   map.setOptions({styles: styles}); 
   addSelected();

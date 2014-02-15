@@ -42,6 +42,7 @@ class ListsController < ApplicationController
 
   # GET /lists/1/edit
   def edit
+    
     @list = List.find(params[:id])
     
     if current_user.id != @list.user_id
@@ -91,11 +92,11 @@ class ListsController < ApplicationController
   # DELETE /lists/1
   # DELETE /lists/1.json
   def destroy
+    @list_id = params[:id]
     @list = List.find(params[:id])
     @list.destroy
-
     respond_to do |format|
-      format.js
+      # format.js
       format.html { redirect_to lists_url }
       format.json { head :no_content }
     end

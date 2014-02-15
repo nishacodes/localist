@@ -1,3 +1,43 @@
-<%= link_to ' x ', list, method: :delete, data: { confirm: 'Are you sure?'},:class => 'pull-right', remote: true  %>
-<%= link_to ' / ', edit_list_path(list), :class => 'pull-right edit_link',remote: true  %>
-<%= link_to ' + ', new_list_place_path(:list_id => list.id), :class => 'pull-right new_placelink', id: 'new_placelink', remote: true %>
+<!-- DELETE LIST-->
+<%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, '#', :class => 'pull-right', id: "delete_list_#{list.id}" %>
+
+<!-- EDIT LIST -->
+<%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_list_path(list), :class => 'pull-right edit_link', id: "edit_list_#{list.id}", remote: true %>
+
+<!-- ADD PLACE -->
+<%= link_to '<i class="fa fa-plus"></i>'.html_safe, new_list_place_path(:list_id => list.id), :class => 'pull-right new_placelink', id: 'new_placelink' %>
+
+<!-- AJAX -->
+<script type="text/javascript">
+  $('#delete_list_<%= list.id %>').click(function(e) {
+    e.preventDefault();
+    var answer = confirm ("Are you sure you want to this list and all of its places?");
+    var that = $(this);
+    if (answer) {
+      $.ajax({
+        type: "delete", // method
+        url: "/lists/" + <%= list.id %>,
+        type: "post",
+        dataType: "json",
+        data: {"_method":"delete"},
+        success: function(response){
+          that.parent().parent().hide().remove();
+        }
+      })
+    }
+  });
+
+  // $('#create_place_<%=list.id %>').click(function(e) {
+  //   e.preventDefault();
+  //   var that = $(this);
+
+  //   $.ajax({
+  //     type: "post",
+  //     url: "/lists/<%=list.id %>",
+  //     data: that.serialize(), // this should be a form not an element?
+  //     success: function(response) {
+  //       that.remove();
+  //     }
+  //   })
+  // });
+</script>

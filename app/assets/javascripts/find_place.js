@@ -19,7 +19,7 @@ var styles = [
     elementType: "labels",
     stylers: [
       { visibility: "on" }
-    ]
+    ]s
   }
 ];
 
@@ -55,10 +55,9 @@ $(document).ready(function(){
 
 // DEFINE FUNTIONS
 function initialize() {
-
   // INCORPORATE STYLES
   map.setOptions({styles: styles});
-
+  alert("hi");
   google.maps.event.addListener(autocomplete, 'place_changed', function() {
     infowindow.close();
     marker.setVisible(false);
