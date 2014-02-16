@@ -7,6 +7,8 @@
 <!-- ADD PLACE -->
 <%= link_to '<i class="fa fa-plus"></i>'.html_safe, new_list_place_path(:list_id => list.id), :class => 'pull-right new_placelink', id: 'new_placelink' %>
 
+<%#= link_to '<i class="fa fa-plus"></i>'.html_safe, new_list_place_path(:list_id => list.id), :class => 'pull-right new_placelink', id: 'new_placelink', remote: true %>
+
 <!-- AJAX -->
 <script type="text/javascript">
   $('#delete_list_<%= list.id %>').click(function(e) {

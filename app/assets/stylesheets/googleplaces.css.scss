@@ -27,6 +27,7 @@ html, body, #map-canvas {
   text-overflow: ellipsis;
   height: 40px;
   margin-left: 5%;
+  position: absolute;
 }
 
 #pac-input:focus {

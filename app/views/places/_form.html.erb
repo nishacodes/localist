@@ -1,4 +1,4 @@
-<%= form_for([@list, @place], remote: true) do |f| %>
+<%= form_for([@list, @place]) do |f| %>
   <% if @place.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
@@ -26,8 +26,9 @@
     <%= f.hidden_field :state, id:"state" %> 
     <%= f.hidden_field :postal, id:"postal" %> 
     <%= f.hidden_field :country, id:"country" %> 
-    <%#= f.hidden_field :website, id:"website" %> 
-
+    <%= f.hidden_field :website, id:"website" %> 
+    <%= f.hidden_field :photos, id:"photos" %> 
+    
 
   </div>
   <div class="actions">
@@ -36,11 +37,6 @@
 <% end %>
 
 <!-- GOOGLE MAP -->
-<!-- <div id="type-selector" class="controls">
-  <input type="radio" name="type" id="changetype-establishment" checked="checked">
-</div> -->
-
-<div id="map-canvas" class="addPlaces">
-</div>
+<div id="map-canvas"></div>
 
 <%= javascript_include_tag "find_place" %>

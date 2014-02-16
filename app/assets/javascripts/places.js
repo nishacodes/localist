@@ -1,6 +1,7 @@
 // CALL FUNCTION
 $(document).ready(function(){
   initialize();
+  // autoComplete();
 });
 
 // VARIABLES
@@ -37,7 +38,6 @@ var mapOptions = {
 var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 var markers = [];
 var permanentMarkers = [];
-
 
 // MAIN FUNCTION
 function initialize() {
@@ -122,6 +122,90 @@ function initialize() {
         })(marker, i));
     }
   }
+  function autoComplete(){
+    var input = /** @type {HTMLInputElement} */(
+    document.getElementById('pac-input'));
+    
+    var types = document.getElementById('type-selector');
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
+
+    var new_marker = new google.maps.Marker({
+      map: map
+    });
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      infowindow.close();
+      new_marker.setVisible(false);
+      var place = autocomplete.getPlace();
+      if (!place.geometry) {
+        return;
+      }
+
+      // If the place has a geometry, then present it on a map.
+      if (place.geometry.viewport) {
+        map.fitBounds(place.geometry.viewport);
+      } else {
+        map.setCenter(place.geometry.location);
+        map.setZoom(17);  // Why 17? Because it looks good.
+      }
+      new_marker.setIcon(/** @type {google.maps.Icon} */({
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(35, 35)
+      }));
+      new_marker.setPosition(place.geometry.location);
+      new_marker.setVisible(true);
+
+      var address = '';
+      if (place.address_components) {
+        address = [
+          (place.address_components[0] && place.address_components[0].short_name || ''),
+          (place.address_components[1] && place.address_components[1].short_name || ''),
+          (place.address_components[2] && place.address_components[2].short_name || '')
+        ].join(' ');
+      }
+
+      infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+      infowindow.open(map, new_marker);
+
+      console.log(place.photos);
+      // POPULATE HIDDEN FORM FIELDS
+      $("#placeid").val(place.id);
+      $("#name").val(place.name);
+      $("#latitude").val(place.geometry.location.d);
+      $("#longitude").val(place.geometry.location.e);
+      $("#phone").val(place.formatted_phone_number);
+      $("#address").val(place.formatted_address);
+      // $("#city").val(place.address_components[5].short_name); // inaccurate
+      // $("#state").val(place.address_components[7].short_name); // inaccurate
+      // $("#postal").val(place.address_components[6].short_name); // inaccurate
+      // $("#country").val(place.address_components[6].short_name); // inaccurate
+      $("#website").val(place.website);
+
+    });
+
+    // Sets a listener on a radio button to change the filter type on Places
+    // Autocomplete.
+    function setupClickListener(id, types) {
+      var radioButton = document.getElementById(id);
+      google.maps.event.addDomListener(radioButton, 'click', function() {
+        autocomplete.setTypes(types);
+      });
+    }
+
+    setupClickListener('changetype-all', []);
+    setupClickListener('changetype-establishment', ['establishment']);
+    setupClickListener('changetype-geocode', ['geocode']);
+
+
+  }
+
 }
 
 // Hover effects

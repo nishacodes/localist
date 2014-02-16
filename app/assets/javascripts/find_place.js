@@ -19,7 +19,7 @@ var styles = [
     elementType: "labels",
     stylers: [
       { visibility: "on" }
-    ]s
+    ]
   }
 ];
 
@@ -55,9 +55,10 @@ $(document).ready(function(){
 
 // DEFINE FUNTIONS
 function initialize() {
+
   // INCORPORATE STYLES
   map.setOptions({styles: styles});
-  alert("hi");
+
   google.maps.event.addListener(autocomplete, 'place_changed', function() {
     infowindow.close();
     marker.setVisible(false);
@@ -95,8 +96,15 @@ function initialize() {
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
     infowindow.open(map, marker);
 
+    var photos_array = place.photos
+    var photos = []
+    for (i=0; i < photos_array.length; i++){
+      var url = photos_array[i].getUrl({ 'maxWidth': 800, 'maxHeight': 800 });
+      photos.push(url);
+    }
 
-    console.log(place.photos);
+    console.log(photos);
+    
     // POPULATE HIDDEN FORM FIELDS
     $("#placeid").val(place.id);
     $("#name").val(place.name);
@@ -109,8 +117,11 @@ function initialize() {
     // $("#postal").val(place.address_components[6].short_name); // inaccurate
     // $("#country").val(place.address_components[6].short_name); // inaccurate
     $("#website").val(place.website);
+    $("#photos").val(photos);
 
   });
+
+  
 
   // Sets a listener on a radio button to change the filter type on Places
   // Autocomplete.
@@ -127,4 +138,3 @@ function initialize() {
 
 }
     
-

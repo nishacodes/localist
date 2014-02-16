@@ -38,6 +38,7 @@ class PlacesController < ApplicationController
   # GET /lists/:list_id/places/new
   # GET /lists/:list_id/places/new.json
   def new
+    
     @place = @list.places.build
     @list = List.find(params[:list_id])
     @places = @list.places
@@ -57,13 +58,17 @@ class PlacesController < ApplicationController
   # POST /lists/:list_id/places
   # POST /lists/:list_id/places.json
   def create
-    @place = @list.places.new(params[:place])
+    @place = @list.places.new(params[:place].except(:photos))
     @list.save
+    @place.save
+    params[:place][:photos].split(",").each do |url|
+      @place.photos << Photo.create(url: url, place_id: @place.id)
+    end
 
     respond_to do |format|
       if @place.save
         format.js
-        format.html { redirect_to :action => :show, :id => @place.id, notice: 'Place was successfully created.' }
+        format.html { redirect_to '/' } # :action => :show, :id => @place.id, notice: 'Place was successfully created.' }
         format.json { render json: [@list,@place], status: :created, location: [@list,@place] }
       else
         format.html { render action: "new" }
