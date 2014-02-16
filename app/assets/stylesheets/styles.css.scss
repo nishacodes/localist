@@ -30,10 +30,7 @@ li {
   padding: 5px 15px;
   &.place {
     border-bottom: 1px solid #eee;
-    &:hover {
-      background-color: $darkTeal;
-      color: white; // how to get text to turn white on hover?
-    }
+    
   }
 }
 

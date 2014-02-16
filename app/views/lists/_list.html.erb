@@ -14,8 +14,10 @@
           <!-- DELETE -->
           <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe,  list_place_path(:list_id => list.id, :id => place.id), method: :delete, :class => 'pull-right', id: "delete_place_#{place.id}", remote: true  %>
         </li>
+        
         <!-- AJAX -->
           <script type="text/javascript">
+            // DELETE PLACE
             $('#delete_place_<%= place.id %>').click(function(e) {
               e.preventDefault();
               var answer = confirm ("Are you sure you want to this place?");
@@ -31,6 +33,17 @@
                     that.parent().hide().remove();
                   }
                 })
+              }
+            });
+
+            // SHOW ACTIONS ON HOVER
+            $('.pull-right').hide();
+            $('.place, .list-title').on({
+              'mouseenter': function(){
+                $(this).find('.pull-right').show();
+              },
+              'mouseleave' : function(){
+                $(this).find('.pull-right').hide();  
               }
             });
           </script>
