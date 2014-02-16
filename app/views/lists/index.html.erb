@@ -57,15 +57,24 @@
   <div class="hidden">
     <% @lists.each do |list| %>
       <% list.places.each do |place| %>
-        <div id="tooltip_<%= place.id %>">
+        <div id="tooltip_<%= place.id %>" class="infowindow">
           <div class="pull-left"> 
-            <li> <%= place.name %> </li>
-            <li> <%= place.lat %> </li>
+            <p class="listing-title"><%= place.name %> &nbsp (
+              <% place.price_level.to_i.times do |i| %>
+                <%= "<i class='fa fa-usd inline'></i>".html_safe %>
+              <% end %>
+              )
+            </p>
+            <div class="listing-detail">
+              <p> <%= place.rating %> </p>
+              <p> <%= place.address %> </p>
+              <p><i class="fa fa-phone"></i> &nbsp <%= place.phone %> </p>
+              <a href=<%= place.website%> target="_blank"><p> <i class="fa fa-external-link"></i> <%= place.website %> </p></a>
+            </div>
           </div>
           <div class="pull-right">
-            <%# debugger %>
-            <% if place.photos.length > 1 %>
-            <img src=<%= place.photos[0].url %> class="thumb">
+            <% if place.photos.length > 0 %>
+              <img src=<%= place.photos[0].url %> class="thumb">
             <% end %>
           </div>
 
