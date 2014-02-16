@@ -96,6 +96,8 @@ function initialize() {
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
     infowindow.open(map, marker);
 
+
+    // STORE PHOTO URLS IN AN ARRAY
     var photos_array = place.photos
     var photos = []
     for (i=0; i < photos_array.length; i++){
@@ -103,8 +105,6 @@ function initialize() {
       photos.push(url);
     }
 
-    console.log(photos);
-    
     // POPULATE HIDDEN FORM FIELDS
     $("#placeid").val(place.id);
     $("#name").val(place.name);
@@ -117,8 +117,10 @@ function initialize() {
     // $("#postal").val(place.address_components[6].short_name); // inaccurate
     // $("#country").val(place.address_components[6].short_name); // inaccurate
     $("#website").val(place.website);
+    $("#rating").val(place.rating);
+    $("#rating_url").val(place.url);
+    $("#price_level").val(place.price_level);
     $("#photos").val(photos);
-
   });
 
   

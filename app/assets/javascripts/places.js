@@ -83,10 +83,11 @@ function initialize() {
     // Create markers for all places in selected_lists
     for (i=0; i < selected_lists.length; i++){
       for (x=0; x < selected_lists[i].length; x++){
-        var name = selected_lists[i][x].name; 
-        var lat = selected_lists[i][x].lat;
-        var long = selected_lists[i][x].long;
-        var marker = [name,lat,long];
+        var name = selected_lists[i][x].name;    // index 0
+        var lat = selected_lists[i][x].lat;      // index 1
+        var long = selected_lists[i][x].long;    // index 2
+        var id = selected_lists[i][x].id;        // index 3
+        var marker = [name,lat,long, id];
         markers.push(marker);
         placeMarkers();
         
@@ -100,7 +101,7 @@ function initialize() {
       permanentMarkers[i].setMap(null);
     }
   }
-
+  // console.log($("#tooltip_"+markers[0][3]));
   // Place markers on map
   function placeMarkers(){
     var infowindow = new google.maps.InfoWindow(), i;
@@ -116,7 +117,8 @@ function initialize() {
 
         google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
             return function() {
-                infowindow.setContent(markers[i][0]); // name of place
+                // infowindow.setContent(markers[i][0], markers[i][1]); // default infowindow
+                infowindow.setContent($("#tooltip_"+markers[i][3]).clone()[0]); // set info window to div
                 infowindow.open(map, marker);
             }
         })(marker, i));

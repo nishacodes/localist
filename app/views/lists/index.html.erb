@@ -42,6 +42,7 @@
   </div>
 
 
+
 <% else %>
   <%= link_to 'Start adding some places', new_list_path %>
 <% end %>
@@ -53,3 +54,22 @@
 
 
  
+  <div class="hidden">
+    <% @lists.each do |list| %>
+      <% list.places.each do |place| %>
+        <div id="tooltip_<%= place.id %>">
+          <div class="pull-left"> 
+            <li> <%= place.name %> </li>
+            <li> <%= place.lat %> </li>
+          </div>
+          <div class="pull-right">
+            <%# debugger %>
+            <% if place.photos.length > 1 %>
+            <img src=<%= place.photos[0].url %> class="thumb">
+            <% end %>
+          </div>
+
+        </div>
+      <% end %>
+    <% end %>
+  </div>

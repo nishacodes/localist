@@ -60,11 +60,10 @@ class PlacesController < ApplicationController
   def create
     @place = @list.places.new(params[:place].except(:photos))
     @list.save
-    @place.save
+    @place.save # need to save before adding photos
     params[:place][:photos].split(",").each do |url|
       @place.photos << Photo.create(url: url, place_id: @place.id)
     end
-
     respond_to do |format|
       if @place.save
         format.js
