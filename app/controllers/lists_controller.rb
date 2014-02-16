@@ -79,7 +79,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       if @list.update_attributes(params[:list])
-        format.js
+        format.js {@list}
         format.html { redirect_to @list, notice: 'List was successfully updated.' }
         format.json { head :no_content }
       else

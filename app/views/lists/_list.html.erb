@@ -10,9 +10,31 @@
     <ul class="places">
       <% list.places.each do |place|  %>
         <li class="place"> 
-          <%= link_to place.name, list_place_path(:list_id => list.id, :id => place.id),  data: {url: "(#{place.lat},#{place.long})"} %>
-          <%= render 'places/buttons', :place => place, :list => list %>
+          <%= link_to place.name, list_place_path(:list_id => list.id, :id => place.id),  data: {url: "(#{place.lat},#{place.long})"}, id: "place_#{place.id}" %>
+          <!-- DELETE -->
+          <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe,  list_place_path(:list_id => list.id, :id => place.id), method: :delete, :class => 'pull-right', id: "delete_place_#{place.id}", remote: true  %>
         </li>
+        <!-- AJAX -->
+          <script type="text/javascript">
+            $('#delete_place_<%= place.id %>').click(function(e) {
+              e.preventDefault();
+              var answer = confirm ("Are you sure you want to this place?");
+              var that = $(this);
+              if (answer) {
+                $.ajax({
+                  type: "delete", // method
+                  url: "/lists/" + <%= list.id %> + "/places/" + <%= place.id %>,
+                  type: "post",
+                  dataType: "json",
+                  data: {"_method":"delete"},
+                  success: function(response){  
+                    that.parent().hide().remove();
+                  }
+                })
+              }
+            });
+          </script>
+
       <% end %>  
     </ul>
   </div>

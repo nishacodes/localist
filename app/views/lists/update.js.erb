@@ -1,1 +1,2 @@
-$('#edit_list_<%= @list.id %>').hide().after('<%= j render("form") %>');
+$('form').hide();
+$('#list_<%= @list.id %>').show();
