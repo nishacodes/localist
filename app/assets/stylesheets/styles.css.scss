@@ -5,7 +5,6 @@ $mainFont:  'Open Sans', sans-serif;
 $titleFont: 'Roboto Slab', serif;
 // $titleFont: 'Alegreya Sans SC', sans-serif;
 // $titleFont: 'PT Serif Caption', serif;
-
 // $titleFont: 'Glegoo', serif; 
 
 // GENERAL STYLES
@@ -14,7 +13,7 @@ $titleFont: 'Roboto Slab', serif;
 }
 
 body {
-  margin-top: -70px; // ??
+  margin-top: 0px; // ??
   font-family: $mainFont;
   font-size: 11pt;
   min-height: 800px;
@@ -289,12 +288,6 @@ h4 {
   padding-bottom: 20px;
 }
 
-.signin-container, .signup-container {
-  background-color: rgba(255,255,255,0.3);
-  width: 480px;
-  padding: 30px;
-  margin-top: 40px;
-}
 
 #splash {
   width: 100%;
@@ -309,4 +302,39 @@ h4 {
   z-index: 200;
   width: 100%;
   height: 100%;
+}
+
+/// Flip effect
+
+.flip {
+  -webkit-perspective: 800;
+  width: 480px;
+  position: relative;
+}
+
+.flip .card.flipped {
+  -webkit-transform: rotatey(-180deg);
+}
+.flip .card {
+  width: 100%;
+  height: 100%;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: 0.5s;
+  background-color: rgba(255,255,255,0.3);
+  padding: 30px;
+  margin-top: 40px;
+}
+.flip .card .form {
+  width: 92%;
+  height: 92%;
+  -webkit-backface-visibility: hidden ;
+  z-index: 2;
+}
+.flip .card .signin-container {
+  position: absolute;
+  z-index: 1;
+    
+}
+.flip .card .signup-container {
+  -webkit-transform: rotatey(-180deg);
 }

@@ -2,27 +2,38 @@
   <div id="splash-cover">
     <h1 id="main" class="white">LOCALIST</h1>
     <h2 id="tagline" class="white"> tagline goes here </h2>
+    
+      <div class="center flip">
+        <div class="card">
+        <div class="center signin-container form">
+          <%= render 'devise/sessions/new' %>
+        </div>
 
-    <div class="center signin-container">
-      <%= render 'devise/sessions/new' %>
-    </div>
-
-    <div class="center signup-container hidden">
-      <%= render 'devise/registrations/new' %>
-    </div>
+        <div class="center signup-container form">
+          <%= render 'devise/registrations/new' %>
+        </div>
+        </div>
+      </div>
+   
   </div>  
 </div>
 
+<!-- FLIP EFFECT -->
 <script type="text/javascript">
-  $('#signup').click(function(e) {
-    e.preventDefault();  
-    $('.signin-container').addClass("hidden");
-    $('.signup-container').removeClass("hidden");
+  $('#signup').click(function(e){
+    e.preventDefault(); 
+    $('.flip').find('.card').addClass('flipped').mouseleave(function(){
+      $('.flip').removeClass('flipped');
+    });
+    return false;
   });
 
-  $('#signin').click(function(e) {
-    e.preventDefault();  
-    $('.signin-container').removeClass("hidden");
-    $('.signup-container').addClass("hidden");
+  $('#signin').click(function(e){
+    e.preventDefault(); 
+    $('.flip').find('.card').removeClass('flipped').mouseleave(function(){
+    $('.flip').addClass('flipped');
   });
+  return false;
+});
+
 </script>
