@@ -1,24 +1,28 @@
-
-
 <% if user_signed_in? %>
   
   <li id="view">View List</li>
+  
   <div class="container">
-      <h3> Recommendations </h3>
-      
+    <h3> Recommendations </h3>
+    <div class="recommendations">  
       <% @recommendations.each do |basis, lists_hash|  %>
-
         <% lists_hash.each do |list, recs| %>
-
-          <% recs.each do |place| %>
-            <!-- move some logic to the model -->
-            <!-- add a link to the place to show it on the map -->
-           <li><%= link_to "#{place.name} (based on #{basis})", "#" %></li> 
-          <% end %>
+            <ul>
+              <% recs.each do |place| %>
+                <li class="rec-container">
+                  <!-- move some logic to the model -->
+                  <!-- add a link to the place to show it on the map -->
+                  <img src=<%= place.photos[0].url %> class="rec">
+                  <p class="listing-title"><%= place.name %> </p>
+                  <p class="listing-detail">(based on <%= basis %>)</p>
+                </li> 
+              <% end %>  
+            </ul>
         <% end %>
       <% end %>
       
-    </div>
+    </div>   
+  </div>
 
 
   <div id="filters">
@@ -41,20 +45,7 @@
     </div>
   </div>
 
-
-
-<% else %>
-  <%= link_to 'Start adding some places', new_list_path %>
-<% end %>
- 
-
-<div id="map-canvas" ></div>
-<%= javascript_include_tag "places" %>
-
-
-
- 
-  <div class="hidden">
+    <div class="hidden">
     <% @lists.each do |list| %>
       <% list.places.each do |place| %>
         <div id="tooltip_<%= place.id %>" class="infowindow">
@@ -66,7 +57,7 @@
               )
             </p>
             <div class="listing-detail">
-              <p> <%= place.rating %> </p>
+              <p> <%= place.rating %> stars</p>
               <p> <%= place.address %> </p>
               <p><i class="fa fa-phone"></i> &nbsp <%= place.phone %> </p>
               <a href=<%= place.website%> target="_blank"><p> <i class="fa fa-external-link"></i> <%= place.website %> </p></a>
@@ -82,3 +73,18 @@
       <% end %>
     <% end %>
   </div>
+<div id="map-canvas" ></div>
+<%= javascript_include_tag "places" %>
+
+
+
+ 
+
+
+
+<% else %>
+  <%= render 'welcome' %>
+  <%#= link_to 'Start adding some places', new_list_path %>
+<% end %>
+ 
+

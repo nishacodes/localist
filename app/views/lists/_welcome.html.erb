@@ -1,0 +1,28 @@
+<div id="splash">
+  <div id="splash-cover">
+    <h1 id="main" class="white">LOCALIST</h1>
+    <h2 id="tagline" class="white"> tagline goes here </h2>
+
+    <div class="center signin-container">
+      <%= render 'devise/sessions/new' %>
+    </div>
+
+    <div class="center signup-container hidden">
+      <%= render 'devise/registrations/new' %>
+    </div>
+  </div>  
+</div>
+
+<script type="text/javascript">
+  $('#signup').click(function(e) {
+    e.preventDefault();  
+    $('.signin-container').addClass("hidden");
+    $('.signup-container').removeClass("hidden");
+  });
+
+  $('#signin').click(function(e) {
+    e.preventDefault();  
+    $('.signin-container').removeClass("hidden");
+    $('.signup-container').addClass("hidden");
+  });
+</script>
