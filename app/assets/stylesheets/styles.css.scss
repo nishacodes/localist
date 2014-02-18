@@ -113,7 +113,7 @@ button.command {
   text-transform: uppercase;
   display: inline-block;
   padding: 2px 5px;
-  margin: 0px 5px;
+  margin-bottom: 0px;
 }
 
 // SCAFFOLDING
@@ -126,6 +126,16 @@ nav {
   z-index: 101;
   background-color: black;
   color: white;
+}
+
+footer {
+  // position: absolute;
+  // bottom: 0px;
+  // height: 120px;
+  // width: 100%;
+  // margin-top: 100px;
+  // padding: 20px;
+  // background-color: black;
 }
 
 nav a, nav a:visited {
@@ -141,13 +151,14 @@ nav a, nav a:visited {
   display: inline-block;
 }
 
-.sidebar {
-  position: absolute;
-  // float: left;
-  // display: inline-block;
-  top: 80px;
-  z-index: 1;
-}
+// .sidebar {
+//   position: absolute;
+//   // float: left;
+//   // display: inline-block;
+//   top: 80px;
+//   z-index: 1;
+
+// }
 
 .sidenav { // holds all lists
   padding: 10px 0px 10px 10px;
@@ -159,16 +170,19 @@ nav a, nav a:visited {
   float: left;
   display: inline-block;
   z-index: 1;
+  height: 800px;
+  // margin-bottom: 100px;
 }
 
 // SLIDING SIDEBAR
 .listcontainer {
   width: 280px;
   position: relative;
-  height: 100%;
+  // height: 100%;
   left: 0;
   top: 0;
   z-index: 100;
+
 }
 
 // .box { // each list box
@@ -187,12 +201,16 @@ nav a, nav a:visited {
 }
 
 .container {
-  padding: 130px 30px 0px 30px;
+  padding: 150px 30px 0px 30px;
 }
 
 
 
 // FILTERS
+.margin-after {
+  margin-right: 175px;
+}
+
 #filters li {
   list-style: none;
   display: inline-block;
@@ -214,8 +232,9 @@ nav a, nav a:visited {
 }
 
 ul.filters {
-  padding: 40px 0px 20px 0px;
+  padding: 80px 0px 0px 0px;
   margin-left: 0px;
+  margin-bottom: 0px;
 }
 // LIST STYLES
 

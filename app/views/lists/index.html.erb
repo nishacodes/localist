@@ -3,17 +3,17 @@
     <%= render 'recommendations' %>
   
   
+
   <div id="filters">
-    <ul class="filters">
-      <h3 class="inline-block"> FILTERS: </h3>
-      <li class="selected">All</li>
-      <% @lists.each do |list| %>
-        <li class="selected"><%= list.name %></li>
-      <% end %>
-    </ul>
+    <h3 class="inline-block"> LISTS </h3>  <p class="tiny selected margin-after" id="view"> Hide</p>
+      <ul class="filters inline-block">
+        <h3 class="inline-block">  </h3>
+        <li class="selected">All</li>
+        <% @lists.each do |list| %>
+          <li class="selected"><%= list.name %></li>
+        <% end %>
+      </ul>
   </div> 
-    
-  <h3 class="inline-block"> LISTS: </h3>  <p class="tiny selected" id="view"> Hide</p>
   </div>
   <div class="listview">
     <div class="sidenav">
