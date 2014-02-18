@@ -185,16 +185,6 @@ nav a, nav a:visited {
 
 }
 
-// .box { // each list box
-//   display: inline-block;
-//   width: 23%;
-//   min-width: 200px;
-//   box-sizing: border-box;
-//   float: left;
-//   margin: 1%;
-//   padding: 5px;
-// }
-
 .placecontainer {
   background-color: white; 
   min-width: 100px;
@@ -392,6 +382,12 @@ img.rec {
 .block {
   display: block;
   margin: 0 auto;
+}
+
+#add_to_list { // modal
+  margin-top: 100px;
+  padding: 50px;
+  text-align: center;
 }
 
 // SPLASH PAGE

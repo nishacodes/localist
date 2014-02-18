@@ -17,21 +17,35 @@
                   <div class="white icon"> x </div>
                   <div class="button-group">
                     <a href="#" class="button tiny outline-button block"> View details </a>
-                    <a href="#" class="button tiny outline-button block" data-reveal-id="myModal" data-reveal> Add to list </a>
+                    <a href="#" class="button tiny outline-button block" data-reveal-id="add_to_list"  > Add to list </a>
                   </div>
                 </div>
               </div>
               <p class="listing-title center"><%= place.name %> </p>
               <p class="listing-detail center">(based on <%= basis %>)</p>
             </li> 
+
+            <!-- THIS MODAL SHOWS WHEN U CLICK ADD TO LIST -->
+            <div id="add_to_list" class="reveal-modal tiny" data-reveal>
+              <h3>Add '<%= place.name %>' to:</h3>
+              
+                <div class="row">
+                  <div class="large-12 columns">
+                      <select>
+                         <% @lists.each do |list| %>
+                          <option value="husker"> <%= list.name %></option>
+                        <% end %>
+                        
+                      </select>
+                    </label>
+                  </div>
+                </div>
+              
+              <a class="close-reveal-modal">&#215;</a>
+            </div>  
           <% end %>  
         </ul>
     <% end %>
   <% end %>
 </div>  
 
-<!-- THIS SHOULD SHOW WHEN U CLICK ADD TO LIST -->
-<div id="myModal" class="reveal-modal" data-reveal>
-  <h2>ADD TO LIST</h2>
-  <a class="close-reveal-modal">&#215;</a>
-</div>

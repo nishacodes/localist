@@ -15,7 +15,7 @@
           <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe,  list_place_path(:list_id => list.id, :id => place.id), method: :delete, :class => 'pull-right', id: "delete_place_#{place.id}", remote: true  %>
         </li>
         
-        <!-- AJAX -->
+        <!-- AJAX for block -->
           <script type="text/javascript">
             // DELETE PLACE
             $('#delete_place_<%= place.id %>').click(function(e) {

@@ -20,11 +20,13 @@
       <%= content_tag(:div, msg, class: "alert alert-#{name}") %>
     <% end %>
     <%= yield %>
-     
+    
     <% if user_signed_in? %>
       <%= render 'layouts/footer' %>
     <% end %>
-
+    <script>
+      $(document).foundation();
+    </script>
 
   </body>
 </html>
