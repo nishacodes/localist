@@ -1,0 +1,37 @@
+<h3 class="inline-block"> Recommendations </h3> <p class="tiny"> Hide</p>
+<div class="recommendations">  
+  <% @recommendations.each do |basis, lists_hash|  %>
+    <% lists_hash.each do |list, recs| %>
+        <ul>
+          <% recs.each do |place| %>
+            <li class="rec-container">
+              
+              <!-- move some logic to the model -->
+              <!-- add a link to the place to show it on the map? -->
+
+              <div class="square-container">
+                <% if place.photos.length > 0 %>
+                  <img src=<%= place.photos[0].url %> class="rec">
+                <% end %>
+                <div class="hover-actions">
+                  <div class="white icon"> x </div>
+                  <div class="button-group">
+                    <a href="#" class="button tiny outline-button block"> View details </a>
+                    <a href="#" class="button tiny outline-button block" data-reveal-id="myModal" data-reveal> Add to list </a>
+                  </div>
+                </div>
+              </div>
+              <p class="listing-title center"><%= place.name %> </p>
+              <p class="listing-detail center">(based on <%= basis %>)</p>
+            </li> 
+          <% end %>  
+        </ul>
+    <% end %>
+  <% end %>
+</div>  
+
+<!-- THIS SHOULD SHOW WHEN U CLICK ADD TO LIST -->
+<div id="myModal" class="reveal-modal" data-reveal>
+  <h2>ADD TO LIST</h2>
+  <a class="close-reveal-modal">&#215;</a>
+</div>

@@ -79,10 +79,11 @@ html, body, #map-canvas {
 }
 
 #map-canvas {
-  border: 6px solid rgba(81,138,156,0.4);
+  border: 20px solid white;
   margin: 10px 30px;
   &.addPlaces{
     margin-left: 25%;
   }
   overflow: auto;
+  z-index: 10;
 }

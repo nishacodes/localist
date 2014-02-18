@@ -1,34 +1,11 @@
 <% if user_signed_in? %>
-  
-  <li id="view">View List</li>
-  
   <div class="container">
-    <h3> Recommendations </h3>
-    <div class="recommendations">  
-      <% @recommendations.each do |basis, lists_hash|  %>
-        <% lists_hash.each do |list, recs| %>
-            <ul>
-              <% recs.each do |place| %>
-                <li class="rec-container">
-                  <!-- move some logic to the model -->
-                  <!-- add a link to the place to show it on the map -->
-                  <img src=<%= place.photos[0].url %> class="rec">
-                  <p class="listing-title"><%= place.name %> </p>
-                  <p class="listing-detail">(based on <%= basis %>)</p>
-                </li> 
-              <% end %>  
-            </ul>
-        <% end %>
-      <% end %>
-      
-    </div>   
-  </div>
-
-
+    <%= render 'recommendations' %>
+  
+  
   <div id="filters">
-    
     <ul class="filters">
-      <h3> FILTERS: </h3>
+      <h3 class="inline-block"> FILTERS: </h3>
       <li class="selected">All</li>
       <% @lists.each do |list| %>
         <li class="selected"><%= list.name %></li>
@@ -36,6 +13,8 @@
     </ul>
   </div> 
     
+  <h3 class="inline-block"> LISTS: </h3>  <p class="tiny selected" id="view"> Hide</p>
+  </div>
   <div class="listview">
     <div class="sidenav">
       <p>
@@ -45,6 +24,7 @@
     </div>
   </div>
 
+<!-- INFOWINDOW -->
     <div class="hidden">
     <% @lists.each do |list| %>
       <% list.places.each do |place| %>
@@ -65,7 +45,9 @@
           </div>
           <div class="pull-right">
             <% if place.photos.length > 0 %>
-              <img src=<%= place.photos[0].url %> class="thumb">
+              <div class="thumb-container">
+                <img src=<%= place.photos[0].url %> class="thumb">
+              </div>
             <% end %>
           </div>
 
@@ -75,12 +57,6 @@
   </div>
 <div id="map-canvas" ></div>
 <%= javascript_include_tag "places" %>
-
-
-
- 
-
-
 
 <% else %>
   <%= render 'welcome' %>

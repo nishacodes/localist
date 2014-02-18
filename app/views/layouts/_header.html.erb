@@ -1,18 +1,16 @@
 <nav>
-  <div class="pull-left">
+  <div class="center">
     <h1 class="logo"><%= link_to "The Localist", :root %> </h1>
-  </div>
-  
-  <div class="pull-left">
     <ul class="nav">
     <% if user_signed_in? %>
-      <li><%#= link_to 'New Place', "#" %></li>
-      <li><%#= link_to 'New List', new_list_path %></li>
       <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
-
     <% else %>
       <li><%= link_to 'Sign in', new_user_session_path %></li>  
     <% end %>
     </ul>
+  </div>
+
+  <div class="pull-right">
+    
   </div>
 </nav>
