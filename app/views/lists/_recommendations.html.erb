@@ -15,7 +15,7 @@
                   <img src=<%= place.photos[0].url %> class="rec">
                 <% end %>
                 <div class="hover-actions">
-                  <div class="white icon"> x </div>
+                  <div class="white icon" data-reveal-id="remove_<%= place.id %>" data-place="<%= place.id %> "> x </div>
                   <div class="button-group">
                     <a href="#" class="button tiny outline-button block"> View details </a>
                     <a href="#" class="button tiny outline-button block" data-reveal-id="add_<%= place.id %>" data-place="<%= place.id %> " > Add to list </a>
@@ -46,6 +46,21 @@
               </form>
               <a class="close-reveal-modal">&#215;</a>
             </div> 
+
+            <!-- THIS MODAL SHOWS WHEN U CLICK THE 'X' -->
+            <div id="remove_<%= place.id %>" class="reveal-modal tiny" data-reveal>
+              <!-- <form action="/removeplace" method="post" class="new_place" id="new_place"> -->
+                <h3>What should I do?</h3>
+                <div class="row">
+                  <div class="large-12 columns">
+                      <input type="hidden" name="place" value="<%= place.id %>">
+                      <!-- insert logic to give 2 options, one to blacklist, and the other to graylist? Maybe the graylist gets cleared every couple of weeks --> 
+                  </div>
+                </div>
+              <!-- </form> -->
+              <a class="close-reveal-modal">&#215;</a>
+            </div> 
+
 
           <% end %>  
         </ul>
