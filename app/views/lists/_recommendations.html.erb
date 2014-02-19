@@ -4,11 +4,12 @@
     <% lists_hash.each do |list, recs| %>
         <ul>
           <% recs.each do |place| %>
+          <!-- move some logic to the model -->
+          <!-- add a link to the place to show it on the map? -->
+          <% if @blacklist.include?(place) %>
+            <% next %>
+          <% else %>
             <li class="rec-container">
-              
-              <!-- move some logic to the model -->
-              <!-- add a link to the place to show it on the map? -->
-
               <div class="square-container">
                 <% if place.photos.length > 0 %>
                   <img src=<%= place.photos[0].url %> class="rec">
@@ -17,32 +18,35 @@
                   <div class="white icon"> x </div>
                   <div class="button-group">
                     <a href="#" class="button tiny outline-button block"> View details </a>
-                    <a href="#" class="button tiny outline-button block" data-reveal-id="add_to_list"  > Add to list </a>
+                    <a href="#" class="button tiny outline-button block" data-reveal-id="add_<%= place.id %>" data-place="<%= place.id %> " > Add to list </a>
                   </div>
                 </div>
               </div>
               <p class="listing-title center"><%= place.name %> </p>
               <p class="listing-detail center">(based on <%= basis %>)</p>
             </li> 
-
+          <% end %>
             <!-- THIS MODAL SHOWS WHEN U CLICK ADD TO LIST -->
-            <div id="add_to_list" class="reveal-modal tiny" data-reveal>
-              <h3>Add '<%= place.name %>' to:</h3>
-              
+            <div id="add_<%= place.id %>" class="reveal-modal tiny" data-reveal>
+              <form action="/addplace" method="post" class="new_place" id="new_place">
+                <h3>Add '<%= place.name %>' to:</h3>
                 <div class="row">
                   <div class="large-12 columns">
-                      <select>
-                         <% @lists.each do |list| %>
-                          <option value="husker"> <%= list.name %></option>
+                      <input type="hidden" name="place" value="<%= place.id %>">
+                      <select name="list">
+                        <% @lists.each do |list| %>
+                          <option value="<%=list.id %>" name="list"> <%= list.name %></option>
                         <% end %>
-                        
                       </select>
-                    </label>
+                      <div class=actions>
+                        <button type="submit" name="commit" id="place-submit" value="Add Place">Add</button>
+                      </div>
                   </div>
                 </div>
-              
+              </form>
               <a class="close-reveal-modal">&#215;</a>
-            </div>  
+            </div> 
+
           <% end %>  
         </ul>
     <% end %>

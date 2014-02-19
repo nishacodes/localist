@@ -1,18 +1,24 @@
 <% if user_signed_in? %>
   <div class="container">
     <%= render 'recommendations' %>
-
-  <div id="filters">
-    <h3 class="inline-block"> LISTS </h3>  <p class="tiny selected margin-after" id="view"> Hide</p>
-      <ul class="filters inline-block">
-        <h3 class="inline-block">  </h3>
-        <li class="selected">All</li>
-        <% @lists.each do |list| %>
-          <li class="selected"><%= list.name %></li>
-        <% end %>
-      </ul>
-  </div> 
+  
+    <!-- STICKY NAV OF FILTERS -->
+    <!-- <div data-magellan-expedition="fixed" class="stickynav"> -->
+        <div id="filters">
+          <h3 class="inline-block"> LISTS </h3>  <p class="tiny selected margin-after" id="view"> Hide</p>
+            <ul class="filters inline-block">
+              <h3 class="inline-block">  </h3>
+              <li class="selected">All</li>
+                <% @lists.each do |list| %>
+                  <li class="selected"><%= list.name %></li>
+                <% end %>
+            </ul>
+        </div> 
+    <!-- </div> -->
+    
   </div>
+  
+  <!-- SIDENAV -->
   <div class="listview">
     <div class="sidenav">
       <p>
@@ -22,7 +28,7 @@
     </div>
   </div>
 
-<!-- INFOWINDOW -->
+  <!-- INFOWINDOW -->
     <div class="hidden">
     <% @lists.each do |list| %>
       <% list.places.each do |place| %>
@@ -53,12 +59,13 @@
       <% end %>
     <% end %>
   </div>
+
+<!-- MAP -->
 <div id="map-canvas" ></div>
 <%= javascript_include_tag "places" %>
 
 <% else %>
   <%= render 'welcome' %>
-  <%#= link_to 'Start adding some places', new_list_path %>
 <% end %>
  
 

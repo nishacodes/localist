@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   cattr_accessor :recommendations
   cattr_accessor :other_users
+  cattr_accessor :blacklist
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -11,8 +12,10 @@ class User < ActiveRecord::Base
   has_many :lists
   has_many :places, :through => :lists
 
-
-  # recommendations = "user_place" => {
+  def initialize 
+    @blacklist = []
+  end
+  # recommendations = "basis(current_user_place)" => {
   #   "other_user_list" => [other_user_places],
   #   "another_user_list" => [another_user_places]
   # }
@@ -36,6 +39,10 @@ class User < ActiveRecord::Base
     return @recommendations
   end
 
+  def add_to_blacklist(place)
+    @blacklist << place
+  end
+  
   def self.get_users(current_user)
     all_users = User.all
     @@other_users = all_users.delete_if {|user| user.id == current_user.id}

@@ -151,14 +151,6 @@ nav a, nav a:visited {
   display: inline-block;
 }
 
-// .sidebar {
-//   position: absolute;
-//   // float: left;
-//   // display: inline-block;
-//   top: 80px;
-//   z-index: 1;
-
-// }
 
 .sidenav { // holds all lists
   padding: 10px 0px 10px 10px;
@@ -169,7 +161,7 @@ nav a, nav a:visited {
   width: 300px;
   float: left;
   display: inline-block;
-  z-index: 1;
+  z-index: 2;
   height: 800px;
   // margin-bottom: 100px;
 }
@@ -222,7 +214,7 @@ nav a, nav a:visited {
 }
 
 ul.filters {
-  padding: 80px 0px 0px 0px;
+  // padding: 80px 0px 0px 0px;
   margin-left: 0px;
   margin-bottom: 0px;
 }
@@ -239,6 +231,11 @@ ul.places li {
   position: absolute;
   right: 13px;
   top: 13px; 
+}
+
+.stickynav {
+  z-index: 1;
+  background: none;
 }
 
 // ICONS
@@ -310,6 +307,7 @@ img.thumb {
   overflow: auto;
   overflow-y: hidden;
   white-space:nowrap;
+  margin-bottom: 80px;
 }
 li.rec-container {
   list-style: none;
@@ -384,7 +382,7 @@ img.rec {
   margin: 0 auto;
 }
 
-#add_to_list { // modal
+.reveal-modal { // modal
   margin-top: 100px;
   padding: 50px;
   text-align: center;
@@ -424,7 +422,7 @@ h4 {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
-  z-index: 1;
+  z-index: 10;
 }
 #splash-cover {
   background-color: rgba(0,0,0,0.5);

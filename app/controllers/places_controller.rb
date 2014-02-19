@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_filter :get_list, except: [:list_all]
+  before_filter :get_list, except: [:list_all, :add_rec]
 
 
   def get_list
@@ -38,7 +38,7 @@ class PlacesController < ApplicationController
   # GET /lists/:list_id/places/new
   # GET /lists/:list_id/places/new.json
   def new
-    
+    debugger
     @place = @list.places.build
     @list = List.find(params[:list_id])
     @places = @list.places
@@ -75,6 +75,24 @@ class PlacesController < ApplicationController
       end
     end
   end
+
+  def add_rec
+    @list = List.find(params[:list])
+    @place = Place.find(params[:place])
+    @new_place = Place.create(@place.attributes)
+    @list.places << @new_place
+    @list.save
+    respond_to do |format|
+      if @new_place.save
+        format.html { redirect_to '/' } # it's rendering the sign in page, how to let user session persist?
+        format.json { render json: [@list,@place], status: :created, location: [@list,@place] }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @place.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
   # PUT /lists/:list_id/places/1
   # PUT /lists/:list_id/places/1.json
