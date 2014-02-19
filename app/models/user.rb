@@ -12,9 +12,6 @@ class User < ActiveRecord::Base
   has_many :lists
   has_many :places, :through => :lists
 
-  def initialize 
-    @blacklist = []
-  end
   # recommendations = "basis(current_user_place)" => {
   #   "other_user_list" => [other_user_places],
   #   "another_user_list" => [another_user_places]

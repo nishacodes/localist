@@ -38,7 +38,6 @@ class PlacesController < ApplicationController
   # GET /lists/:list_id/places/new
   # GET /lists/:list_id/places/new.json
   def new
-    debugger
     @place = @list.places.build
     @list = List.find(params[:list_id])
     @places = @list.places

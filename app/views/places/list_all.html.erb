@@ -1,7 +1,0 @@
-<h1><%= "All places for User #{current_user.id}" %></h1>
-
-<% @places.each do |placearray| %>
-  <% placearray.each do |place| %>
-    <li> <%= place.name %> </li>
-  <% end %>
-<% end %>
