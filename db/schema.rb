@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140216163557) do
+ActiveRecord::Schema.define(:version => 20140220134843) do
+
+  create_table "blacklists", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "place"
+    t.string   "subtype"
+    t.integer  "user_id"
+  end
 
   create_table "list_places", :force => true do |t|
     t.integer  "list_id"

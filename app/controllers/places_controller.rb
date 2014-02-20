@@ -1,6 +1,5 @@
 class PlacesController < ApplicationController
-  before_filter :get_list, except: [:list_all, :add_rec]
-
+  before_filter :get_list, except: [:list_all, :add_rec, :blacklist]
 
   def get_list
     @list = List.find(params[:list_id])
@@ -75,24 +74,6 @@ class PlacesController < ApplicationController
     end
   end
 
-  def add_rec
-    @list = List.find(params[:list])
-    @place = Place.find(params[:place])
-    @new_place = Place.create(@place.attributes)
-    @list.places << @new_place
-    @list.save
-    respond_to do |format|
-      if @new_place.save
-        format.html { redirect_to '/' } # it's rendering the sign in page, how to let user session persist?
-        format.json { render json: [@list,@place], status: :created, location: [@list,@place] }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @place.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-
   # PUT /lists/:list_id/places/1
   # PUT /lists/:list_id/places/1.json
   def update
@@ -121,4 +102,28 @@ class PlacesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def add_rec
+    @list = List.find(params[:list])
+    @place = Place.find(params[:place])
+    @new_place = Place.create(@place.attributes)
+    @list.places << @new_place
+    @list.save
+    respond_to do |format|
+      if @new_place.save
+        format.html { redirect_to '/' } # it's rendering the sign in page, how to let user session persist?
+        format.json { render json: [@list,@place], status: :created, location: [@list,@place] }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @place.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # add a place to a user's blacklist to not recommend again
+  def blacklist
+    Blacklist.create(params[:blacklist])
+    redirect_to '/' 
+  end
+
 end

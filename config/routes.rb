@@ -7,6 +7,7 @@ Myfavplaces::Application.routes.draw do
   root :to => "lists#index"
 
   post '/addplace' => "places#add_rec"
+  post '/blacklist' => "places#blacklist"
 
   # get 'places' => "places#list_all"
 
