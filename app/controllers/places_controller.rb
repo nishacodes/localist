@@ -1,5 +1,6 @@
 class PlacesController < ApplicationController
   before_filter :get_list, except: [:list_all, :add_rec, :blacklist]
+  skip_before_filter  :verify_authenticity_token
 
   def get_list
     @list = List.find(params[:list_id])
