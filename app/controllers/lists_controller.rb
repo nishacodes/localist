@@ -7,6 +7,7 @@ class ListsController < ApplicationController
     if user_signed_in?
       User.get_users(current_user)
       @recommendations = current_user.recommend
+      @blacklist = current_user.blacklists.map {|b| b.place}
       @lists = List.where(user_id: current_user.id)
       @places = @lists.map {|list| list.places}
       gon.lists = List.where(user_id: current_user.id)

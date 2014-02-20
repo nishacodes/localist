@@ -1,75 +1,75 @@
 <h3 class="inline-block"> Recommendations </h3> <p class="tiny"> Hide</p>
 <div class="recommendations">  
-  <% @recommendations.each do |basis, lists_hash|  %>
-    <% lists_hash.each do |list, recs| %>
-        <ul>
-          <% recs.each do |place| %>
+  <ul>
+    <% @recommendations.each do |basis, lists_hash|  %>
+      <% lists_hash.each do |list, recs| %>
+        <% recs.each do |place| %>
+  
           <!-- move some logic to the model -->
           <!-- add a link to the place to show it on the map? -->
-          <%# debugger %>
-          <%# if @blacklist.include?(place.placeid) %>
-            <%# next %>
-          <%# else %>
-            <li class="rec-container">
-              <div class="square-container">
-                <% if place.photos.length > 0 %>
-                  <img src=<%= place.photos[0].url %> class="rec">
-                <% end %>
-                <div class="hover-actions">
-                  <div class="white icon" data-reveal-id="remove_<%= place.id %>" data-place="<%= place.id %> "> x </div>
-                  <div class="button-group">
-                    <a href="#" class="button tiny outline-button block"> View details </a>
-                    <a href="#" class="button tiny outline-button block" data-reveal-id="add_<%= place.id %>" data-place="<%= place.id %> " > Add to list </a>
-                  </div>
+          
+          <% if @blacklist.include?(place.placeid) %>
+            <% next %>
+          <% else %>
+            
+          <li class="rec-container">
+            <div class="square-container">
+              <% if place.photos.length > 0 %>
+                <img src=<%= place.photos[0].url %> class="rec">
+              <% end %>
+              <div class="hover-actions">
+                <div class="white icon" data-reveal-id="remove_<%= place.id %>" data-place="<%= place.id %> "> x </div>
+                <div class="button-group">
+                  <a href="#" class="button tiny outline-button block"> View details </a>
+                  <a href="#" class="button tiny outline-button block" data-reveal-id="add_<%= place.id %>" data-place="<%= place.id %> " > Add to list </a>
                 </div>
               </div>
-              <p class="listing-title center"><%= place.name %> </p>
-              <p class="listing-detail center">(based on <%= basis %>)</p>
-            </li> 
-          <%# end %>
-            <!-- THIS MODAL SHOWS WHEN U CLICK ADD TO LIST -->
-            <div id="add_<%= place.id %>" class="reveal-modal tiny" data-reveal>
-              <form action="/addplace" method="post" class="new_place" id="new_place">
-                <h3>Add '<%= place.name %>' to:</h3>
+            </div>
+            <p class="listing-title center"><%= place.name %> </p>
+            <p class="listing-detail center">(based on <%= basis %>)</p>
+          </li> 
+        <% end %>
+          <!-- THIS MODAL SHOWS WHEN U CLICK ADD TO LIST -->
+          <div id="add_<%= place.id %>" class="reveal-modal tiny" data-reveal>
+            <form action="/addplace" method="post" class="new_place" id="new_place">
+              <h3>Add '<%= place.name %>' to:</h3>
+              <div class="row">
+                <div class="large-12 columns">
+                    <input type="hidden" name="place" value="<%= place.id %>">
+                    <select name="list">
+                      <% @lists.each do |list| %>
+                        <option value="<%=list.id %>" name="list"> <%= list.name %></option>
+                      <% end %>
+                    </select>
+                    <div class=actions>
+                      <button type="submit" name="commit" id="place-submit" value="Add Place">Add</button>
+                    </div>
+                </div>
+              </div>
+            </form>
+            <a class="close-reveal-modal">&#215;</a>
+          </div> 
+
+          <!-- THIS MODAL SHOWS WHEN U CLICK THE 'X' -->
+          <div id="remove_<%= place.id %>" class="reveal-modal tiny" data-reveal>
+            <form action="/blacklist" method="post" >
+                <h3>What should I do with <%=place.name%>? </h3>
                 <div class="row">
                   <div class="large-12 columns">
-                      <input type="hidden" name="place" value="<%= place.id %>">
-                      <select name="list">
-                        <% @lists.each do |list| %>
-                          <option value="<%=list.id %>" name="list"> <%= list.name %></option>
-                        <% end %>
-                      </select>
+                      <input type="hidden" name="blacklist[place]" value="<%= place.placeid %>">
+                      <input type="hidden" name="blacklist[user_id]" value="<%= current_user.id %>">
                       <div class=actions>
-                        <button type="submit" name="commit" id="place-submit" value="Add Place">Add</button>
+                        <button type="submit" name="blacklist[subtype]" value="black">Don't recommend it again</button>
+                        <button type="submit" name="blacklist[subtype]" value="gray">I'm not interested right now</button>
                       </div>
                   </div>
                 </div>
               </form>
-              <a class="close-reveal-modal">&#215;</a>
-            </div> 
-
-            <!-- THIS MODAL SHOWS WHEN U CLICK THE 'X' -->
-            <div id="remove_<%= place.id %>" class="reveal-modal tiny" data-reveal>
-              <form action="/blacklist" method="post" >
-                  <h3>What should I do with <%=place.name%>? </h3>
-                  <div class="row">
-                    <div class="large-12 columns">
-                        <input type="hidden" name="blacklist[place]" value="<%= place.placeid %>">
-                        <input type="hidden" name="blacklist[user_id]" value="<%= current_user.id %>">
-                        <div class=actions>
-                          <button type="submit" name="blacklist[subtype]" value="black">Don't recommend it again</button>
-                          <button type="submit" name="blacklist[subtype]" value="gray">I'm not interested right now</button>
-                        </div>
-                    </div>
-                  </div>
-                </form>
-              <a class="close-reveal-modal">&#215;</a>
-            </div> 
-
-
-          <% end %>  
-        </ul>
+            <a class="close-reveal-modal">&#215;</a>
+          </div> 
+      <% end %>  
     <% end %>
   <% end %>
+  </ul>
 </div>  
 
