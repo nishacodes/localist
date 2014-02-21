@@ -101,7 +101,7 @@ function initialize() {
       permanentMarkers[i].setMap(null);
     }
   }
-  // console.log($("#tooltip_"+markers[0][3]));
+  
   // Place markers on map
   function placeMarkers(){
     var infowindow = new google.maps.InfoWindow(), i;
@@ -216,6 +216,12 @@ $("li.place a").on('mouseover', function(){
   // need to show the infowindow on the map for the marker at these coordinates
 })
 
+// Toggle recommendations
+$('#hiderecs').on('click', function(){
+  console.log("hi")
+})
+
+
 // Toggle sidenav
 $("#view").on('click', function(){
   if ($(this).hasClass('hide')) {
@@ -228,12 +234,19 @@ $("#view").on('click', function(){
 })
 
 // Toggle lists
-$(".list-title").on('click', function(){
-  if ($(this).hasClass('hide')) {
-    // display the li
-    $(this).removeClass('hide');
-  } else { 
-    // hide the li
-    $(this).addClass('hide');
-  }
+$(".list-title").on('click', function(e){
+  e.preventDefault();
+  $(this).next().find('li').slideToggle();
 })
+
+// Show tooltip on sidenav hovers 
+$('li.place').on("mouseover", function(){
+  var place_id = ($(this).find('a')[0].id);
+  var infowindow_id = place_id.replace("place","tooltip");
+  // $("#"+infowindow_id).parent().parent();
+  console.log($("#"+infowindow_id));
+
+
+})
+
+

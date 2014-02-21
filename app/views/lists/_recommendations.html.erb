@@ -1,34 +1,30 @@
-<h3 class="inline-block"> Recommendations </h3> <p class="tiny"> Hide</p>
+<h3 class="inline-block"> Recommendations </h3> <p class="tiny" id="hiderecs"> Hide</p>
 <div class="recommendations">  
   <ul>
     <% @recommendations.each do |basis, lists_hash|  %>
       <% lists_hash.each do |list, recs| %>
-        <% recs.each do |place| %>
-  
-          <!-- move some logic to the model -->
-          <!-- add a link to the place to show it on the map? -->
-          
+        <% recs.each do |place| %>        
           <% if @blacklist.include?(place.placeid) %>
             <% next %>
           <% else %>
-            
-          <li class="rec-container">
-            <div class="square-container">
-              <% if place.photos.length > 0 %>
-                <img src=<%= place.photos[0].url %> class="rec">
-              <% end %>
-              <div class="hover-actions">
-                <div class="white icon" data-reveal-id="remove_<%= place.id %>" data-place="<%= place.id %> "> x </div>
-                <div class="button-group">
-                  <a href="#" class="button tiny outline-button block"> View details </a>
-                  <a href="#" class="button tiny outline-button block" data-reveal-id="add_<%= place.id %>" data-place="<%= place.id %> " > Add to list </a>
+            <li class="rec-container">
+              <div class="square-container">
+                <% if place.photos.length > 0 %>
+                  <img src=<%= place.photos[0].url %> class="rec">
+                <% end %>
+                <div class="hover-actions">
+                  <div class="white icon" data-reveal-id="remove_<%= place.id %>" data-place="<%= place.id %> "> x </div>
+                  <div class="button-group">
+                    <a href="#" class="button tiny outline-button block"> View details </a>
+                    <a href="#" class="button tiny outline-button block" data-reveal-id="add_<%= place.id %>" data-place="<%= place.id %> " > Add to list </a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <p class="listing-title center"><%= place.name %> </p>
-            <p class="listing-detail center">(based on <%= basis %>)</p>
-          </li> 
-        <% end %>
+              <p class="rec-title center"><%= place.name %> </p>
+              <p class="rec-detail center">(based on <%= basis %>)</p>
+            </li> 
+          <% end %>
+
           <!-- THIS MODAL SHOWS WHEN U CLICK ADD TO LIST -->
           <div id="add_<%= place.id %>" class="reveal-modal tiny" data-reveal>
             <form action="/addplace" method="post" class="new_place" id="new_place">
@@ -67,6 +63,7 @@
               </form>
             <a class="close-reveal-modal">&#215;</a>
           </div> 
+
       <% end %>  
     <% end %>
   <% end %>

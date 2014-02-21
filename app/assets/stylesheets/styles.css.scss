@@ -1,6 +1,6 @@
-$darkTeal: #518A9C;
-$lightTeal: #9DE0F5;
-$lightTealHover: #95DAF0;
+$darkTeal: #598996;
+$lightTeal: #639BAB;
+$lightTealHover: #70AABA;
 $grayButton: #DEDEDE;
 $grayButtonHover: #E3E3E3;
 $lightGray: #FAF9F7;
@@ -167,6 +167,7 @@ nav a, nav a:visited {
 }
 
 // SLIDING SIDEBAR
+
 .listcontainer {
   width: 280px;
   position: relative;
@@ -174,6 +175,7 @@ nav a, nav a:visited {
   left: 0;
   top: 0;
   z-index: 100;
+  background-color: white;
 
 }
 
@@ -281,16 +283,22 @@ img.thumb {
   background-color: white;
   overflow: auto;
 }
+.listview {
+  background-color: white;
+}
 
-.listing-title {
+.listing-title, .rec-title {
   font-family: $titleFont;
   font-size: 14pt;
   margin: 0;
 }
 
-.listing-detail {
+.listing-detail, .rec-detail {
   font-family: $mainFont;
-  
+}
+
+.rec-detail {
+  font-size: 10pt;  
 }
 
 .gm-style .gm-style-iw div {  // default selector for text in infowindow

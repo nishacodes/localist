@@ -1,13 +1,13 @@
 
 <div class="listcontainer" id="list_container_<%= list.id %>">
-  <p class="list-title">
+  <div class="list-title">
 
-    <%= link_to list.name, 'new_list_place_path(:list_id => list.id)', :class =>'list_name', id: "list_#{list.id}" %>   
+    <%= link_to list.name, "#panel#{list.id}", :class =>'list_name', id: "list_#{list.id}" %>   
     <%= render 'buttons', :list => list %>
 
-  </p>
+  </div>
   <div class="placecontainer">
-    <ul class="places">
+    <ul class="places" id="panel<%= list.id%>">
       <% list.places.each do |place|  %>
         <li class="place"> 
           <%= link_to place.name, list_place_path(:list_id => list.id, :id => place.id),  data: {url: "(#{place.lat},#{place.long})"}, id: "place_#{place.id}" %>
