@@ -1,6 +1,11 @@
-<h3 class="inline-block"> Recommendations </h3> <p class="tiny" id="hiderecs">Hide</p>
+<h3 class="inline-block"> Recommendations for you </h3> <p class="tiny" id="hiderecs">Hide</p>
 <div class="recommendations">  
+  <% if @recommendations.length == 0 %>
+      <div class="alert-message"> No recommendations yet. <br>Add some more places, and check back later!</div>
+    <% else %> 
   <ul>
+    
+
     <% @recommendations.each do |basis, lists_hash|  %>
       <% lists_hash.each do |list, recs| %>
         <% recs.each do |place| %>        
@@ -67,6 +72,8 @@
       <% end %>  
     <% end %>
   <% end %>
+  
   </ul>
+  <% end %>
 </div>  
 

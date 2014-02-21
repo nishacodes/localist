@@ -4,17 +4,22 @@
 
     <%= link_to list.name, "#panel#{list.id}", :class =>'list_name', id: "list_#{list.id}" %>   
     <%= render 'buttons', :list => list %>
-
   </div>
   <div class="placecontainer">
     <ul class="places" id="panel<%= list.id%>">
-      <% list.places.each do |place|  %>
+      <% if list.places.length == 0 %> 
+        <li class="place"> 
+          <%= link_to 'Click to add a place', new_list_place_path(:list_id => list.id), id: 'new_placelink' %>
+          
+        </li>  
+      <% else %> 
+        <% list.places.each do |place|  %>
         <li class="place"> 
           <%= link_to place.name, list_place_path(:list_id => list.id, :id => place.id),  data: {url: "(#{place.lat},#{place.long})"}, id: "place_#{place.id}" %>
           <!-- DELETE -->
           <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe,  list_place_path(:list_id => list.id, :id => place.id), method: :delete, :class => 'pull-right', id: "delete_place_#{place.id}", remote: true  %>
         </li>
-        
+      
         <!-- AJAX for block -->
           <script type="text/javascript">
             // DELETE PLACE
@@ -47,8 +52,8 @@
               }
             });
           </script>
-
-      <% end %>  
+          <% end %> 
+        <% end %>  
     </ul>
   </div>
 </div>

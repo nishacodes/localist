@@ -47,10 +47,9 @@ ul {
 
 li { 
   padding: 5px 15px;
-  &.place {
-    border-bottom: 1px solid #eee;
-    
-  }
+  // &.place {
+  //   border-bottom: 1px solid #eee;
+  // }
 }
 
 a {
@@ -83,6 +82,8 @@ h3 {
   letter-spacing: 1px;
   text-transform: uppercase;
   padding-left: 15px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
 }
 
 a, a:visited {
@@ -105,6 +106,11 @@ button.command {
   text-transform: uppercase;
   cursor: pointer;
   border-radius: 0;
+  outline: none;
+}
+
+.margin-top {
+  margin-top: 10px;
 }
 
 .tiny {
@@ -117,6 +123,16 @@ button.command {
 }
 #view {
   width: 40px;
+}
+
+.alert-message {
+  font-size: 1.7em;
+  font-family: $mainFont;
+  font-weight: 100;
+  letter-spacing: 1px;
+  margin-top: 115px;
+  text-align: center;
+  line-height: 1.5;
 }
 
 // SCAFFOLDING
