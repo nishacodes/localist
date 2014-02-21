@@ -115,6 +115,9 @@ button.command {
   padding: 2px 5px;
   margin-bottom: 0px;
 }
+#view {
+  width: 40px;
+}
 
 // SCAFFOLDING
 
@@ -174,7 +177,7 @@ nav a, nav a:visited {
   // height: 100%;
   left: 0;
   top: 0;
-  z-index: 100;
+  // z-index: 100;
   background-color: white;
 
 }
@@ -394,6 +397,10 @@ img.rec {
   margin-top: 100px;
   padding: 50px;
   text-align: center;
+}
+
+#place-submit-button {
+
 }
 
 // SPLASH PAGE

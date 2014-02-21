@@ -39,6 +39,7 @@ var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions)
 var markers = [];
 var permanentMarkers = [];
 
+
 // MAIN FUNCTION
 function initialize() {
 
@@ -216,11 +217,6 @@ $("li.place a").on('mouseover', function(){
   // need to show the infowindow on the map for the marker at these coordinates
 })
 
-// Toggle recommendations
-$('#hiderecs').on('click', function(){
-  console.log("hi")
-})
-
 
 // Toggle sidenav
 $("#view").on('click', function(){
@@ -230,13 +226,18 @@ $("#view").on('click', function(){
   } else { 
     $('.sidenav').animate({width:'0px', padding:'0px'},500);
     $(this).addClass('hide');
+  };
+  if ($(this).html() == "Hide") {
+    $(this).html("Show")
+  } else {
+    $(this).html("Hide")
   }
 })
 
 // Toggle lists
-$(".list-title").on('click', function(e){
+$(".list_name").on('click', function(e){
   e.preventDefault();
-  $(this).next().find('li').slideToggle();
+  $(this).parent().next().find('li').slideToggle();
 })
 
 // Show tooltip on sidenav hovers 
@@ -244,9 +245,17 @@ $('li.place').on("mouseover", function(){
   var place_id = ($(this).find('a')[0].id);
   var infowindow_id = place_id.replace("place","tooltip");
   // $("#"+infowindow_id).parent().parent();
-  console.log($("#"+infowindow_id));
+  // console.log($("#"+infowindow_id));
+})
 
-
+// Toggle Recommendations
+$('#hiderecs').on('click', function(){
+  $('.recommendations').slideToggle();
+  if ($(this).html() == "Hide") {
+    $(this).html("Show")
+  } else {
+    $(this).html("Hide")
+  }
 })
 
 
