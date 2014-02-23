@@ -33,11 +33,8 @@
       <% list.places.each do |place| %>
         <div id="tooltip_<%= place.id %>" class="infowindow">
           <div class="pull-left"> 
-            <p class="listing-title"><%= place.name %> &nbsp (
-              <% place.price_level.to_i.times do |i| %>
-                <%= "<i class='fa fa-usd inline'></i>".html_safe %>
-              <% end %>
-              )
+            <p class="listing-title"><%= place.name %> 
+              <span><%= "("+ ("$"* place.price_level.to_i) + ")" %> </span>
             </p>
             <div class="listing-detail">
               <p> <%= place.rating %> stars</p>
@@ -62,8 +59,9 @@
 <!-- MAP -->
 
   <div id="map-canvas" ></div>
-
-<%= javascript_include_tag "places" %>
+  <input id="pac-input" type="text">
+  <button type="submit" name="commit" id="place-submit-button" value="Add Place">Add Place</button>
+<%= javascript_include_tag "map" %>
 
 <% else %>
   <%= render 'welcome' %>

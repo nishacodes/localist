@@ -1,4 +1,5 @@
-$darkTeal: #518A9C;
+$lightTeal: #3DC4D9;
+$mediumTeal: #1999B3;
 
 html, body, #map-canvas {
   height: 100%;
@@ -43,7 +44,7 @@ html, body, #map-canvas {
 
 #type-selector {
   color: #fff;
-  background-color: $darkTeal;
+  background-color: $lightTeal;
   padding: 5px 11px 0px 11px;
   display: none; // EDITED
 }
@@ -65,17 +66,17 @@ html, body, #map-canvas {
   width: 80px;
   height: 40px;
   margin: 22px 16px 0px 16px;
-  background-color: $darkTeal;
-  border: none;
+  background-color: $lightTeal;
+  border-color: $mediumTeal;
   color: white;
   font-family: Roboto;
   font-size: 15px;
   font-weight: 300;
   cursor: pointer;
   border-radius: 0;
-  &:hover {
-    background-color: rgba(81,138,156,0.8);
-  }
+  // &:hover {
+  //   background-color: rgba(81,138,156,0.8);
+  // }
 }
 
 

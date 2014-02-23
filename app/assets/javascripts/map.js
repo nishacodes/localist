@@ -31,17 +31,72 @@ var styles = [
 
 var myLatlng = new google.maps.LatLng(40.757975,-73.9752290);
 var mapOptions = {
-  zoom: 13  ,
+  zoom: 13,
   center: myLatlng
 }
 
 var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 var markers = [];
 var permanentMarkers = [];
-
+var infoWindowNew = new google.maps.InfoWindow();
 
 // MAIN FUNCTION
 function initialize() {
+
+  //I ADDED THIS STUFF -- IT GETS A REFERENCE TO THE MARKER
+  var input = document.getElementById('pac-input');
+  var markerNew = new google.maps.Marker({
+    map: map
+  });
+  // this pushes the marker to the top left position on the map
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  // this makes the input box into a new autocomplete thing
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  // this fixes the autocomplete to the bounds of the map so the top results are in your area
+  autocomplete.bindTo('bounds', map);
+
+  // this event listener i took from him. it puts down a marker when you change the place, meaning that you type in something and hit enter
+  // NOTE: I also had to put in a new info window up above just to make it work; you can do whatever you want but you need to create a new info window to display the places stuff
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    infoWindowNew.close();
+    markerNew.setVisible(false);
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+      return;
+    }
+
+    // If the place has a geometry, then present it on a map.
+    if (place.geometry.viewport) {
+      map.fitBounds(place.geometry.viewport);
+    } else {
+      map.setCenter(place.geometry.location);
+      map.setZoom(17);  // Why 17? Because it looks good.
+    }
+    markerNew.setIcon(/** @type {google.maps.Icon} */({
+      url: place.icon,
+      size: new google.maps.Size(71, 71),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(35, 35)
+    }));
+    markerNew.setPosition(place.geometry.location);
+    markerNew.setVisible(true);
+
+    var address = '';
+    if (place.address_components) {
+      address = [
+        (place.address_components[0] && place.address_components[0].short_name || ''),
+        (place.address_components[1] && place.address_components[1].short_name || ''),
+        (place.address_components[2] && place.address_components[2].short_name || '')
+      ].join(' ');
+    }
+
+    infoWindowNew.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+    infoWindowNew.open(map, markerNew);
+  });
+
+  // THIS IS THE END OF THE STUFF I ADDED.
 
   // Incorporate styles
   map.setOptions({styles: styles}); 
@@ -105,7 +160,7 @@ function initialize() {
   
   // Place markers on map
   function placeMarkers(){
-    var infowindow = new google.maps.InfoWindow(), i;
+    var i;
     
     for (i = 0; i < markers.length; i++) {  
         var marker = new google.maps.Marker({
@@ -217,6 +272,11 @@ $("li.place a").on('mouseover', function(){
   // need to show the infowindow on the map for the marker at these coordinates
 })
 
+// Toggle recommendations
+$('#hiderecs').on('click', function(){
+  console.log("hi")
+})
+
 
 // Toggle sidenav
 $("#view").on('click', function(){
@@ -226,18 +286,13 @@ $("#view").on('click', function(){
   } else { 
     $('.sidenav').animate({width:'0px', padding:'0px'},500);
     $(this).addClass('hide');
-  };
-  if ($(this).html() == "Hide") {
-    $(this).html("Show")
-  } else {
-    $(this).html("Hide")
   }
 })
 
 // Toggle lists
-$(".list_name").on('click', function(e){
+$(".list-title").on('click', function(e){
   e.preventDefault();
-  $(this).parent().next().find('li').slideToggle();
+  $(this).next().find('li').slideToggle();
 })
 
 // Show tooltip on sidenav hovers 
@@ -245,17 +300,7 @@ $('li.place').on("mouseover", function(){
   var place_id = ($(this).find('a')[0].id);
   var infowindow_id = place_id.replace("place","tooltip");
   // $("#"+infowindow_id).parent().parent();
-  // console.log($("#"+infowindow_id));
+  console.log($("#"+infowindow_id));
+
+
 })
-
-// Toggle Recommendations
-$('#hiderecs').on('click', function(){
-  $('.recommendations').slideToggle();
-  if ($(this).html() == "Hide") {
-    $(this).html("Show")
-  } else {
-    $(this).html("Hide")
-  }
-})
-
-
