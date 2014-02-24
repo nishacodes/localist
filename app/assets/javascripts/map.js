@@ -50,64 +50,104 @@ function initialize() {
   // Incorporate styles
   map.setOptions({styles: styles}); 
   addSelected();
-  // autoComplete();
+
+  // when you click +place, call the autocomplete function and pass in the list id
+  $('.new_placelink').on('click', function(e){
+    e.preventDefault();
+    var array = $(this)[0].id.split("_");
+    var list_id = array[array.length-1];
+    // autoComplete(list_id);
+  })
 
 
-  // * WRAP INTO A FUNCTION THAT GETS CALLED WHEN A USER WANTS TO ADD A NEW PLACE
+  // NEED TO FIGURE OUT HOW TO INCORPORATE THE PLACES#NEW FORM AND TO SUBMIT IT WITHIN LISTS#INDEX, PASSING IN THE LIST ID ALSO
+  // NEED TO WRITE IN PLACEHOLDER 'ADD PLACE TO LIST_NAME' AND MAKE IT OBVIOUS WHAT HAPPENS WHEN U CLICK ADD
+
   // AUTOCOMPLETE
   // ---------------------
-  // A reference to the marker created by the search
-  var input = document.getElementById('input');
-  var markerNew = new google.maps.Marker({
-    map: map
-  });
+  function autoComplete(){
   
-  // Pushes the field to the top left position on the map
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    // A reference to the marker created by the search
+    var input = document.getElementById('input');
+    var markerNew = new google.maps.Marker({
+      map: map
+    });
+    
+    // Pushes the field to the top left position on the map
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-  // Makes the input box into an autocomplete field
-  var autocomplete = new google.maps.places.Autocomplete(input);
-  // Fixes the autocomplete to the bounds of the map so the top results are in your area
-  autocomplete.bindTo('bounds', map);
+    // Makes the input box into an autocomplete field
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    // Fixes the autocomplete to the bounds of the map so the top results are in your area
+    autocomplete.bindTo('bounds', map);
 
-  // This event listener remove the old marker and infowindow when you change the place searched
-  google.maps.event.addListener(autocomplete, 'place_changed', function() {
-    infowindow.close();
-    markerNew.setVisible(false);
-    var place = autocomplete.getPlace();
-    if (!place.geometry) {
-      return;
-    }
-    // If the place has a geometry, then present it on a map.
-    if (place.geometry.viewport) {
-      map.fitBounds(place.geometry.viewport);
-    } else {
-      map.setCenter(place.geometry.location);
-      map.setZoom(17);  // Why 17? Because it looks good.
-    }
-    markerNew.setIcon(/** @type {google.maps.Icon} */({
-      url: place.icon,
-      size: new google.maps.Size(71, 71),
-      origin: new google.maps.Point(0, 0),
-      anchor: new google.maps.Point(17, 34),
-      scaledSize: new google.maps.Size(35, 35)
-    }));
-    markerNew.setPosition(place.geometry.location);
-    markerNew.setVisible(true);
+    // This event listener remove the old marker and infowindow when you change the place searched
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      infowindow.close();
+      markerNew.setVisible(false);
+      var place = autocomplete.getPlace();
+      if (!place.geometry) {
+        return;
+      }
+      // If the place has a geometry, then present it on a map.
+      if (place.geometry.viewport) {
+        map.fitBounds(place.geometry.viewport);
+      } else {
+        map.setCenter(place.geometry.location);
+        map.setZoom(17);  // Why 17? Because it looks good.
+      }
+      markerNew.setIcon(/** @type {google.maps.Icon} */({
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(35, 35)
+      }));
+      markerNew.setPosition(place.geometry.location);
+      markerNew.setVisible(true);
 
-    var address = '';
-    if (place.address_components) {
-      address = [
-        (place.address_components[0] && place.address_components[0].short_name || ''),
-        (place.address_components[1] && place.address_components[1].short_name || ''),
-        (place.address_components[2] && place.address_components[2].short_name || '')
-      ].join(' ');
-    }
+      var address = '';
+      if (place.address_components) {
+        address = [
+          (place.address_components[0] && place.address_components[0].short_name || ''),
+          (place.address_components[1] && place.address_components[1].short_name || ''),
+          (place.address_components[2] && place.address_components[2].short_name || '')
+        ].join(' ');
+      }
 
-    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-    infowindow.open(map, markerNew);
-  });
+      infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+      infowindow.open(map, markerNew);
 
+
+      // STORE PHOTO URLS IN AN ARRAY
+      var photos_array = place.photos
+      var photos = []
+      for (i=0; i < photos_array.length; i++){
+        var url = photos_array[i].getUrl({ 'maxWidth': 800, 'maxHeight': 800 });
+        photos.push(url);
+      }
+
+      // POPULATE HIDDEN FORM FIELDS
+      $("#placeid").val(place.id);
+      $("#name").val(place.name);
+      $("#latitude").val(place.geometry.location.d);
+      $("#longitude").val(place.geometry.location.e);
+      $("#phone").val(place.formatted_phone_number);
+      $("#address").val(place.formatted_address);
+      // $("#city").val(place.address_components[5].short_name); // inaccurate
+      // $("#state").val(place.address_components[7].short_name); // inaccurate
+      // $("#postal").val(place.address_components[6].short_name); // inaccurate
+      // $("#country").val(place.address_components[6].short_name); // inaccurate
+      $("#website").val(place.website);
+      $("#rating").val(place.rating);
+      $("#rating_url").val(place.url);
+      $("#price_level").val(place.price_level);
+      $("#photos").val(photos);
+  
+    });
+
+    
+  }
 
   // FILTER CONTROLS
   // ---------------------
@@ -291,8 +331,3 @@ $('#hiderecs').on('click', function(){
 })
 
 
-$('.new_placelink').on('click', function(e){
-  e.preventDefault();
-  alert("hi");
-
-})

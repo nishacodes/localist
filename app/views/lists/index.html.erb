@@ -60,8 +60,10 @@
 <!-- MAP -->
 
   <div id="map-canvas" ></div>
-  <input id="input" type="text">
+  <div class="hidden">
+  <input id="input" type="text" >
   <button type="submit" name="commit" id="place-submit-button" value="Add Place">Add Place</button>
+  </div>
 <%= javascript_include_tag "map" %>
 
 <% else %>
