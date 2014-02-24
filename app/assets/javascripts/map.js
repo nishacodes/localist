@@ -28,6 +28,8 @@ var styles = [
   }
 ];
 
+
+
 var myLatlng = new google.maps.LatLng(40.757975,-73.9752290);
 var mapOptions = {
   zoom: 13,
@@ -50,6 +52,8 @@ function initialize() {
   addSelected();
   // autoComplete();
 
+
+  // * WRAP INTO A FUNCTION THAT GETS CALLED WHEN A USER WANTS TO ADD A NEW PLACE
   // AUTOCOMPLETE
   // ---------------------
   // A reference to the marker created by the search
@@ -105,7 +109,7 @@ function initialize() {
   });
 
 
-  // LIST FILTER CONTROLS
+  // FILTER CONTROLS
   // ---------------------
   // Toggle 'all' to control other selectors
   $("#filters li").first().on('click',function(){
@@ -162,10 +166,12 @@ function initialize() {
     }
   }
   
+  // PLACES MARKERS IN THE MARKERS ARRAY 
+  // ---------------------
   // Place markers on map
   function placeMarkers(){
     var i;
-    
+ 
     for (i = 0; i < markers.length; i++) {  
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(markers[i][1], markers[i][2]), // lat/long coordinates
@@ -176,27 +182,47 @@ function initialize() {
         permanentMarkers.push(marker); // keep track of google objects
 
         google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+            
+          var tooltip = $("#tooltip_"+markers[i][3]).clone()[0];
+
+          var infobox = new InfoBox({
+            content: document.getElementById("infobox"),
+            disableAutoPan: false,
+            maxWidth: 150,
+            opacity: 0.7,
+            pixelOffset: new google.maps.Size(-142, -22),
+            alignBottom: true,
+            zIndex: null,
+            boxStyle: {
+              background: "white",
+              width: "280px"
+            },
+            closeBoxMargin: "0px",
+            closeBoxURL: "",
+            infoBoxClearance: new google.maps.Size(1, 1)
+          });
+
             return function() {
                 // infowindow.setContent(markers[i][0], markers[i][1]); // default infowindow
-                infowindow.setContent($("#tooltip_"+markers[i][3]).clone()[0]); // set info window to div
-                infowindow.open(map, marker);
+                // infowindow.setContent(tooltip); // set info window to div
+                // infowindow.open(map, marker);
+                infobox.open(map, marker);
+                infobox.setContent(tooltip);
             }
         })(marker, i));
+
+        // ADD A MOUSEOUT FUNCTION TO REMOVE INFOWINDOW AND A CLICK FUNCTION TO MAKE IT STICK.
     }
   }
 }
 
+// JQUERY EFFECTS SIDENAV
+// ---------------------
 // Hover effects
 $("li.place a").on('mouseover', function(){
   var coordinates = $(this).data('url');
   // need to show the infowindow on the map for the marker at these coordinates
 })
-
-// Toggle recommendations
-$('#hiderecs').on('click', function(){
-  console.log("hi")
-})
-
 
 // Toggle sidenav
 $("#view").on('click', function(){
@@ -206,21 +232,41 @@ $("#view").on('click', function(){
   } else { 
     $('.sidenav').animate({width:'0px', padding:'0px'},500);
     $(this).addClass('hide');
+  };
+  if ($(this).html() == "Hide") {
+    $(this).html("Show")
+  } else {
+    $(this).html("Hide")
   }
 })
 
 // Toggle lists
-$(".list-title").on('click', function(e){
+$(".list_name").on('click', function(e){
   e.preventDefault();
-  $(this).next().find('li').slideToggle();
+  $(this).parent().next().find('li').slideToggle();
 })
 
 // Show tooltip on sidenav hovers 
 $('li.place').on("mouseover", function(){
   var place_id = ($(this).find('a')[0].id);
   var infowindow_id = place_id.replace("place","tooltip");
-  // $("#"+infowindow_id).parent().parent();
-  console.log($("#"+infowindow_id));
+})
 
+// JQUERY EFFECTS RECOMMENDATIONS
+// ------------------------------
+// Toggle recommendations
+$('#hiderecs').on('click', function(){
+  $('.recommendations').slideToggle();
+  if ($(this).html() == "Hide") {
+    $(this).html("Show")
+  } else {
+    $(this).html("Hide")
+  }
+})
+
+
+$('.new_placelink').on('click', function(e){
+  e.preventDefault();
+  alert("hi");
 
 })

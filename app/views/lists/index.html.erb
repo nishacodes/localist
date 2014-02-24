@@ -32,24 +32,25 @@
     <% @lists.each do |list| %>
       <% list.places.each do |place| %>
         <div id="tooltip_<%= place.id %>" class="infowindow">
-          <div class="pull-left"> 
-            <p class="listing-title"><%= place.name %> 
-              <span><%= "("+ ("$"* place.price_level.to_i) + ")" %> </span>
+          <!-- <div class="pull-left">  -->
+            <p class="listing-title-map"><%= place.name %> <br>
+             <span class="small"> <%= ("$"* place.price_level.to_i) %> | <%= ("\u2605"* place.rating.to_i) %> | <%= link_to 'Website', place.website %> </span>
             </p>
-            <div class="listing-detail">
-              <p> <%= place.rating %> stars</p>
-              <p> <%= place.address %> </p>
-              <p><i class="fa fa-phone"></i> &nbsp <%= place.phone %> </p>
-              <a href=<%= place.website%> target="_blank"><p> <i class="fa fa-external-link"></i> <%= place.website %> </p></a>
-            </div>
-          </div>
-          <div class="pull-right">
             <% if place.photos.length > 0 %>
               <div class="thumb-container">
                 <img src=<%= place.photos[0].url %> class="thumb">
               </div>
             <% end %>
-          </div>
+            <div class="listing-detail">
+              <!-- <p> <%#= place.rating %> stars</p> -->
+             <!--  <p class="tiny"> <%#= place.address %> </p>
+              <p class="tiny"><i class="fa fa-phone"></i> &nbsp <%#= place.phone %> </p>
+              <a href=<%#= place.website%> target="_blank"><p class="tiny"> <i class="fa fa-external-link"></i> <%#= place.website %> </p></a> -->
+            </div>
+          <!-- </div> -->
+          <!-- <div class="pull-right"> -->
+            
+          <!-- </div> -->
 
         </div>
       <% end %>
@@ -60,7 +61,7 @@
 
   <div id="map-canvas" ></div>
   <input id="input" type="text">
-  <!-- <button type="submit" name="commit" id="place-submit-button" value="Add Place">Add Place</button> -->
+  <button type="submit" name="commit" id="place-submit-button" value="Add Place">Add Place</button>
 <%= javascript_include_tag "map" %>
 
 <% else %>
