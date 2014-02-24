@@ -1,5 +1,7 @@
 <% if user_signed_in? %>
+
   <div class="container">
+    
     <%= render 'recommendations' %>
   
     <!-- STICKY NAV OF FILTERS -->
@@ -60,10 +62,10 @@
 <!-- MAP -->
 
   <div id="map-canvas" ></div>
-  <div class="hidden">
-  <input id="input" type="text" >
-  <button type="submit" name="commit" id="place-submit-button" value="Add Place">Add Place</button>
-  </div>
+
+   <div id="hidden-form">
+    <input id="input" type="text">
+  </div> 
 <%= javascript_include_tag "map" %>
 
 <% else %>

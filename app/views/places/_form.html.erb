@@ -13,7 +13,8 @@
 
   <div class="field">
     <!-- INPUT FIELD -->
-    <%= f.text_field :name, :class=>"controls", :type=>"text", :id=>"pac-input", :placeholder=>"Enter a location" %>
+    <%#= f.text_field :name, :class=>"controls", :type=>"text", :id=>"input", :placeholder=>"Add place to '#{@list.name}'" %>
+    <!-- <input id="input" type="text" > -->
     
     <!-- GOOGLE INFO FIELDS--> 
     <%= f.hidden_field :placeid, id:"placeid" %>
@@ -42,6 +43,6 @@
 <% end %>
 
 <!-- GOOGLE MAP -->
-<div id="map-canvas"></div>
+<!-- <div id="map-canvas"></div> -->
 
-<%= javascript_include_tag "maps" %>
+<%#= javascript_include_tag "maps" %>

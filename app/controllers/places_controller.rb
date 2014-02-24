@@ -43,7 +43,7 @@ class PlacesController < ApplicationController
     @places = @list.places
     
     respond_to do |format|
-      format.js
+      # format.js
       format.html # new.html.erb
       format.json { render json: @place }
     end

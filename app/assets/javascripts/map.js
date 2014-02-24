@@ -44,7 +44,7 @@ var infowindow = new google.maps.InfoWindow();
 // MAIN FUNCTION
 // ---------------------
 function initialize() {
-
+  // autoComplete();
   // MAP SETUP
   // ---------------------
   // Incorporate styles
@@ -54,14 +54,17 @@ function initialize() {
   // when you click +place, call the autocomplete function and pass in the list id
   $('.new_placelink').on('click', function(e){
     e.preventDefault();
-    var array = $(this)[0].id.split("_");
+    var array = $(this)[0].id.split("_"); // this is a little hacky, but gets the list id from the string
     var list_id = array[array.length-1];
-    // autoComplete(list_id);
+    $.get("/lists/" + list_id + "/places/new", function(data) { 
+      $("#hidden-form").html(data);
+    });
+    autoComplete();
   })
 
-
-  // NEED TO FIGURE OUT HOW TO INCORPORATE THE PLACES#NEW FORM AND TO SUBMIT IT WITHIN LISTS#INDEX, PASSING IN THE LIST ID ALSO
-  // NEED TO WRITE IN PLACEHOLDER 'ADD PLACE TO LIST_NAME' AND MAKE IT OBVIOUS WHAT HAPPENS WHEN U CLICK ADD
+  // THE DATA IS NOT COMING IN THE RIGHT FORMAT AND THE HIDDEN FIELDS ARE NOT BEING POPULATED, BUT OTHERWISE THE FIELD WORKS
+  // SUBMIT THE FORM VIA AJAX
+  // NEED TO MAKE IT OBVIOUS WHAT HAPPENS WHEN U CLICK ADD
 
   // AUTOCOMPLETE
   // ---------------------
@@ -86,6 +89,7 @@ function initialize() {
       infowindow.close();
       markerNew.setVisible(false);
       var place = autocomplete.getPlace();
+
       if (!place.geometry) {
         return;
       }
