@@ -23,7 +23,7 @@
   <div class="listview">
     <div class="sidenav">
       <p>
-        <button class="command  margin-top"><%= link_to '+ Create New List',new_list_path, id: 'new_link', remote: true  %> </button>
+        <%= link_to 'Create New List',new_list_path, id: 'new_link', remote: true, class: "button button-special"  %> 
       </p>
       <%= render @lists %>
     </div>
