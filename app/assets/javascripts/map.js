@@ -180,41 +180,67 @@ function initialize() {
         });
 
         permanentMarkers.push(marker); // keep track of google objects
+ 
+        // CREATE INFOBOX (PLUGIN)
+        var infobox = new InfoBox({
+          content: document.getElementById("infobox"),
+          disableAutoPan: false,
+          maxWidth: 150,
+          opacity: 0.7,
+          pixelOffset: new google.maps.Size(-142, -22),
+          alignBottom: true,
+          zIndex: null,
+          boxStyle: {
+            background: "white",
+            width: "280px"
+          },
+          closeBoxMargin: "0px",
+          closeBoxURL: "",
+          infoBoxClearance: new google.maps.Size(1, 1)
+        });
 
-        google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
-            
+        // SHOW INFOBOX ON MOUSEOVER  
+        google.maps.event.addListener(marker, 'mouseover', (function(marker, i) { 
           var tooltip = $("#tooltip_"+markers[i][3]).clone()[0];
-
-          var infobox = new InfoBox({
-            content: document.getElementById("infobox"),
-            disableAutoPan: false,
-            maxWidth: 150,
-            opacity: 0.7,
-            pixelOffset: new google.maps.Size(-142, -22),
-            alignBottom: true,
-            zIndex: null,
-            boxStyle: {
-              background: "white",
-              width: "280px"
-            },
-            closeBoxMargin: "0px",
-            closeBoxURL: "",
-            infoBoxClearance: new google.maps.Size(1, 1)
-          });
-
-            return function() {
-                // infowindow.setContent(markers[i][0], markers[i][1]); // default infowindow
-                // infowindow.setContent(tooltip); // set info window to div
-                // infowindow.open(map, marker);
-                infobox.open(map, marker);
-                infobox.setContent(tooltip);
+          return function() {
+            if(tooltip!=infobox.getContent()){
+              infobox.open(map, marker); // display infobox instead of infowindow
+              infobox.setContent(tooltip);          
             }
+          }
         })(marker, i));
+
+        google.maps.event.addListener(marker, 'click', function() {
+          //when the infowindow is open, close it an clear the contents
+          var tooltip = $("#tooltip_"+markers[i][3]).clone()[0];
+          
+          return function() {
+            if(tooltip==infobox.getContent()){
+              infobox.close(map,marker);
+              infowindow.setContent('');
+            } else { //otherwise trigger mouseover to open the infowindow
+              google.maps.event.trigger(marker, 'mouseover');
+            }
+          }
+        });
+
+        //clear the contents of the infwindow on closeclick
+        google.maps.event.addListener(infobox, 'click', function() {
+            console.log(infobox);
+              infobox.setContent('');
+        });
+   
+        // // HIDE INFOBOX ON MOUSEOUT
+        // google.maps.event.addListener(marker, 'mouseout', function() {
+        //   infobox.close();
+        // });
 
         // ADD A MOUSEOUT FUNCTION TO REMOVE INFOWINDOW AND A CLICK FUNCTION TO MAKE IT STICK.
     }
   }
 }
+
+
 
 // JQUERY EFFECTS SIDENAV
 // ---------------------
