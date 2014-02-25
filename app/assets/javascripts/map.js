@@ -56,10 +56,12 @@ function initialize() {
     e.preventDefault();
     var array = $(this)[0].id.split("_"); // this is a little hacky, but gets the list id from the string
     var list_id = array[array.length-1];
+    $("#hidden-form").html(""); // this clears the div before adding more; a bit slow
     $.get("/lists/" + list_id + "/places/new", function(data) { 
       $("#hidden-form").html(data);
+      autoComplete();
     });
-    autoComplete();
+    
   })
 
   // NEED TO MAKE IT OBVIOUS WHAT HAPPENS WHEN U CLICK ADD
@@ -70,12 +72,14 @@ function initialize() {
   
     // A reference to the marker created by the search
     var input = document.getElementById('input');
+    var submit = document.getElementById('place-submit-button');
     var markerNew = new google.maps.Marker({
       map: map
     });
     
     // Pushes the field to the top left position on the map
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(submit);
 
     // Makes the input box into an autocomplete field
     var autocomplete = new google.maps.places.Autocomplete(input);

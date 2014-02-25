@@ -21,6 +21,7 @@
   
   <!-- SIDENAV -->
   <div class="listview">
+    <div id="hidden-form"></div>
     <div class="sidenav">
       <p>
         <%= link_to 'Create New List',new_list_path, id: 'new_link', remote: true, class: "button button-special"  %> 
@@ -60,7 +61,7 @@
   </div>
 
   
-  <div id="hidden-form"></div>
+
   <div id="map-canvas" ></div>
     
 <%= javascript_include_tag "map" %>
