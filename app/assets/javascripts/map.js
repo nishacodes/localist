@@ -29,7 +29,6 @@ var styles = [
 ];
 
 
-
 var myLatlng = new google.maps.LatLng(40.757975,-73.9752290);
 var mapOptions = {
   zoom: 13,
@@ -68,7 +67,7 @@ function initialize() {
 
   // AUTOCOMPLETE
   // ---------------------
-  function autoComplete(){
+  function autoComplete(input){
   
     // A reference to the marker created by the search
     var input = document.getElementById('input');
@@ -139,16 +138,16 @@ function initialize() {
       $("#longitude").val(place.geometry.location.e);
       $("#phone").val(place.formatted_phone_number);
       $("#address").val(place.formatted_address);
-      // $("#city").val(place.address_components[5].short_name); // inaccurate
-      // $("#state").val(place.address_components[7].short_name); // inaccurate
-      // $("#postal").val(place.address_components[6].short_name); // inaccurate
-      // $("#country").val(place.address_components[6].short_name); // inaccurate
       $("#website").val(place.website);
       $("#rating").val(place.rating);
       $("#rating_url").val(place.url);
       $("#price_level").val(place.price_level);
       $("#photos").val(photos);
-  
+      // $("#city").val(place.address_components[5].short_name); // inaccurate
+      // $("#state").val(place.address_components[7].short_name); // inaccurate
+      // $("#postal").val(place.address_components[6].short_name); // inaccurate
+      // $("#country").val(place.address_components[6].short_name); // inaccurate
+
     });
 
     
@@ -303,6 +302,7 @@ $("#view").on('click', function(){
   } else { 
     $('.sidenav').animate({width:'0px', padding:'0px'},500);
     $(this).addClass('hide');
+    map.setOptions({styles: styles}); 
   };
   if ($(this).html() == "Hide") {
     $(this).html("Show")
