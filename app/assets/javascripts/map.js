@@ -44,7 +44,7 @@ var infowindow = new google.maps.InfoWindow();
 // MAIN FUNCTION
 // ---------------------
 function initialize() {
-  // autoComplete();
+  
   // MAP SETUP
   // ---------------------
   // Incorporate styles
