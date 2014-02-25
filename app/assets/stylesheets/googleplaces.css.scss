@@ -93,7 +93,7 @@ html, body, #map-canvas {
 #hidden-form {
   position: absolute;
   margin-top: 30px;
-  margin-left: 400px;
+  margin-left: 500px;
   height: 50px;
   width: 60%;
 }
@@ -101,21 +101,25 @@ html, body, #map-canvas {
 #input {
   background-color: white;
   padding: 0 11px 0 13px;
-  width: 75%; // EDITED
+  width: 70%; // EDITED
   font-family: Roboto;
   font-size: 15px;
   font-weight: 300;
   text-overflow: ellipsis;
-  height: 40px;
+  height: 42px;
   position: relative;
   display: inline-block;
   z-index: 500;
   margin-top: 15px;
+  margin-left: 50px;
+  border: 4px solid $lightTeal;
 }
 
 #place-submit-button {
-  margin-left: 650px;
+  margin-left: 75%;
   padding: 10px 30px;
   position: relative;
   z-index: 600;
+  height: 42px;
+  margin-top:6px;
 }
