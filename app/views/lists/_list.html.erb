@@ -9,9 +9,8 @@
     <ul class="places" id="panel<%= list.id%>">
       <% if list.places.length == 0 %> 
         <li class="place"> 
-          <%= link_to 'Click to add a place', new_list_place_path(:list_id => list.id), id: 'new_placefor_#{list.id}', class: "new_placelink", :remote => true %>
-          
-        </li>  
+          <%= link_to 'Click to add a place', "new_list_place_path(:list_id => list.id)", id: "new_placefor_#{list.id}", :class => "new_placelink" %>
+        </li>   
       <% else %> 
         <% list.places.each do |place|  %>
         <li class="place"> 

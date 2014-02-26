@@ -460,7 +460,6 @@ img.rec {
 }
 
 
-
 button {
   margin: 5px;
 }
@@ -480,6 +479,10 @@ h2#tagline {
   text-align: center;
   font-family: $mainFont;
   font-weight: 100;
+}
+
+ul#taglines { // set height so it doesnt collapse during animation
+  height: 60px;
 }
 
 h4 {

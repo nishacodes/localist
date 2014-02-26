@@ -51,8 +51,11 @@ function initialize() {
   addSelected();
 
   // when you click place, call the autocomplete function and pass in the list id
-  $('.new_placelink').on('click', function(e){
-    e.preventDefault();
+  $('.place, .list-title').on('click', '.new_placelink', function(e){ 
+    
+    // *** this should incorporate newly appended items but not working
+    
+    e.preventDefault(); 
     var array = $(this)[0].id.split("_"); // this is a little hacky, but gets the list id from the string
     var list_id = array[array.length-1];
     $("#hidden-form").html(""); // this clears the div before adding more; a bit slow
@@ -63,7 +66,7 @@ function initialize() {
     
   })
 
-  // NEED TO MAKE IT OBVIOUS WHAT HAPPENS WHEN U CLICK ADD
+  // *** NEED TO MAKE IT OBVIOUS WHAT HAPPENS WHEN U CLICK ADD
 
   // AUTOCOMPLETE
   // ---------------------
