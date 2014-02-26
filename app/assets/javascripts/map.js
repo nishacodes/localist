@@ -50,7 +50,7 @@ function initialize() {
   map.setOptions({styles: styles}); 
   addSelected();
 
-  // when you click +place, call the autocomplete function and pass in the list id
+  // when you click place, call the autocomplete function and pass in the list id
   $('.new_placelink').on('click', function(e){
     e.preventDefault();
     var array = $(this)[0].id.split("_"); // this is a little hacky, but gets the list id from the string
@@ -68,7 +68,9 @@ function initialize() {
   // AUTOCOMPLETE
   // ---------------------
   function autoComplete(input){
-  
+    // clears the previous input field
+    map.controls[google.maps.ControlPosition.TOP_LEFT].clear();
+
     // A reference to the marker created by the search
     var input = document.getElementById('input');
     var markerNew = new google.maps.Marker({
