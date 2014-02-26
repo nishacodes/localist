@@ -1,6 +1,6 @@
 $lightTeal: #9BD9E0;
-$mediumTeal: #6DB8C9;
-$darkTeal: #6DB8C9;
+$medTeal: #6DB8C9;
+$darkTeal: #57AABD;
 $grayButton: #DEDEDE;
 $grayButtonHover: #E3E3E3;
 $lightGray: #FAF9F7;
@@ -226,9 +226,9 @@ nav a, nav a:visited {
    background-color: $grayButtonHover; 
   }
   &.selected{
-    background-color: $lightTeal;
+    background-color: $medTeal;
     &:hover {
-    background-color: $mediumTeal;
+    background-color: $lightTeal;
     }
   }
 }
@@ -263,7 +263,7 @@ i {
   padding: 2px;
   font-weight: 100;
   &:hover {
-    color: $mediumTeal;
+    color: $lightTeal;
   }
 }
 
@@ -447,7 +447,7 @@ img.rec {
   padding: 10px;
   width: 100%;
   margin-top: 10px;
-  background-color: $lightTeal;
+  background-color: $medTeal;
   text-transform: uppercase;
   &:hover {
     background-color: $darkTeal;
