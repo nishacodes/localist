@@ -9,7 +9,7 @@ $(document).ready(function(){
 var styles = [
   {
     stylers: [
-      { hue: "#2397BA" },
+      { hue: "#B0DAE6" },
       { saturation: -20 }
     ]
   },{

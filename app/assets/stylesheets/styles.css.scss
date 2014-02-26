@@ -1,6 +1,6 @@
-$lightTeal: #3DC4D9;
-$mediumTeal: #1999B3;
-$darkTeal: #136C87;
+$lightTeal: #9BD9E0;
+$mediumTeal: #6DB8C9;
+$darkTeal: #6DB8C9;
 $grayButton: #DEDEDE;
 $grayButtonHover: #E3E3E3;
 $lightGray: #FAF9F7;
@@ -443,9 +443,15 @@ img.rec {
 
 .button-special {
   height: 40px;
+  font-family: $mainFont;
   padding: 10px;
   width: 100%;
   margin-top: 10px;
+  background-color: $lightTeal;
+  text-transform: uppercase;
+  &:hover {
+    background-color: $darkTeal;
+  }
 }
 
 .block {
