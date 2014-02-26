@@ -287,7 +287,6 @@ function initialize() {
 }
 
 
-
 // JQUERY EFFECTS SIDENAV
 // ---------------------
 // Hover effects
@@ -324,6 +323,4 @@ $('li.place').on("mouseover", function(){
   var place_id = ($(this).find('a')[0].id);
   var infowindow_id = place_id.replace("place","tooltip");
 })
-
-
 
