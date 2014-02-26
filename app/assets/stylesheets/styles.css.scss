@@ -457,8 +457,12 @@ img.rec {
   margin-top: 100px;
   padding: 50px;
   text-align: center;
+  z-index: 650;
 }
 
+.reveal-modal-bg { // modal background
+  z-index: 625;
+}
 
 button {
   margin: 5px;
