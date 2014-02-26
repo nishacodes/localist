@@ -325,16 +325,5 @@ $('li.place').on("mouseover", function(){
   var infowindow_id = place_id.replace("place","tooltip");
 })
 
-// JQUERY EFFECTS RECOMMENDATIONS
-// ------------------------------
-// Toggle recommendations
-$('#hiderecs').on('click', function(){
-  $('.recommendations').slideToggle();
-  if ($(this).html() == "Hide") {
-    $(this).html("Show")
-  } else {
-    $(this).html("Hide")
-  }
-})
 
 
