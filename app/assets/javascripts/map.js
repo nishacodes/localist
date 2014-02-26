@@ -51,10 +51,7 @@ function initialize() {
   addSelected();
 
   // when you click place, call the autocomplete function and pass in the list id
-  $('.place, .list-title').on('click', '.new_placelink', function(e){ 
-    
-    // *** this should incorporate newly appended items but not working
-    
+  $('.sidenav').on('click','.new_placelink',function(e){ 
     e.preventDefault(); 
     var array = $(this)[0].id.split("_"); // this is a little hacky, but gets the list id from the string
     var list_id = array[array.length-1];
