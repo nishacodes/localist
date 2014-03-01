@@ -23,10 +23,12 @@
   <div class="listview">
     <div id="hidden-form"></div>
     <div class="sidenav">
-      <p>
+      <!-- <p> -->
         <%= link_to 'Create New List',new_list_path, id: 'new_link', remote: true, class: "button button-special"  %> 
-      </p>
-      <%= render @lists %>
+      <!-- </p> -->
+      <div class="lists">
+        <%= render @lists %>
+      </div>
     </div>
   </div>
 

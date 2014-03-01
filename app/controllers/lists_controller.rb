@@ -8,7 +8,7 @@ class ListsController < ApplicationController
       User.get_users(current_user)
       @recommendations = current_user.recommend
       @blacklist = current_user.blacklists.map {|b| b.place}
-      @lists = List.where(user_id: current_user.id)
+      @lists = List.where(user_id: current_user.id).reverse
       @places = @lists.map {|list| list.places}
       gon.lists = List.where(user_id: current_user.id)
       gon.places_hash= {}
@@ -96,6 +96,7 @@ class ListsController < ApplicationController
     @list_id = params[:id]
     @list = List.find(params[:id])
     @list.destroy
+    @list.places.each {|place| place.destroy }
     respond_to do |format|
       # format.js
       format.html { redirect_to lists_url }
