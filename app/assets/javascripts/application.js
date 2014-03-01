@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require foundation.min.js
 //= require interaction.js
+//= require jquery.imgscrubber.js
 
 
