@@ -91,7 +91,7 @@ function initialize() {
       infowindow.close();
       markerNew.setVisible(false);
       var place = autocomplete.getPlace();
-
+      console.log(place);
       if (!place.geometry) {
         return;
       }
@@ -126,6 +126,7 @@ function initialize() {
 
 
       // STORE PHOTO URLS IN AN ARRAY
+      
       var photos_array = place.photos
       var photos = []
       for (i=0; i < photos_array.length; i++){
@@ -247,7 +248,9 @@ function initialize() {
 
         // SHOW INFOBOX ON MOUSEOVER  
         google.maps.event.addListener(marker, 'mouseover', (function(marker, i) { 
-          var tooltip = $("#tooltip_"+markers[i][3]).clone()[0];
+          
+          var tooltip = null; // so only one shows at a time
+          tooltip = $("#tooltip_"+markers[i][3]).clone()[0];
           return function() {
             if(tooltip!=infobox.getContent()){
               infobox.open(map, marker); // display infobox instead of infowindow
@@ -256,8 +259,10 @@ function initialize() {
           }
         })(marker, i));
 
+
         google.maps.event.addListener(marker, 'click', function() {
           //when the infowindow is open, close it an clear the contents
+          
           var tooltip = $("#tooltip_"+markers[i][3]).clone()[0];
           
           return function() {
@@ -272,7 +277,7 @@ function initialize() {
 
         //clear the contents of the infwindow on closeclick
         google.maps.event.addListener(infobox, 'click', function() {
-            console.log(infobox);
+            
               infobox.setContent('');
         });
    
