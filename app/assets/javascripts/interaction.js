@@ -18,4 +18,11 @@ $(document).ready(function(){
       $(this).html("Hide")
     }
   })
-})
+
+  // IMAGE SCROLL FUNCTION
+  $('a.show_place').on('click', function (){ 
+      $(document).imgScrubber({
+          delegate: "div.img"
+      });
+    })
+  })

@@ -18,7 +18,7 @@
                 <div class="hover-actions">
                   <div class="white icon" data-reveal-id="remove_<%= place.id %>" data-place="<%= place.id %> "> x </div>
                   <div class="button-group">
-                    <a href="#" class="button tiny outline-button block"> View details </a>
+                    <a href="#" class="button tiny outline-button block show_place" data-reveal-id="show_<%= place.id %>" data-place="<%= place.id %> "> View details </a>
                     <a href="#" class="button tiny outline-button block" data-reveal-id="add_<%= place.id %>" data-place="<%= place.id %> " > Add to list </a>
                   </div>
                 </div>
@@ -27,6 +27,31 @@
               <p class="rec-detail center">(based on <%= basis %>)</p>
             </li> 
           <% end %>
+
+          
+          <!-- THIS MODAL SHOWS WHEN U CLICK 'SHOW DETAILS' -->
+          <div id="show_<%= place.id %>" class="reveal-modal medium" data-reveal>
+            <h3><%= place.name %></h3>
+            <div class="row">
+              <div class="large-12 columns">
+                <% if place.photos.length > 0 %> <% photos = place.photos.map {|photo| photo.url } %>
+                  <div class="largephoto-container img scrubber">
+                    <img src=<%= place.photos[0].url %> class="large">
+                    <div class="photoarray" data-photos= "<%=photos %>">  </div>
+                    <div class="details">
+                      <div class="wrap">
+                      <!-- name of the place -->
+                      <a class="artist" href="#"></a> 
+                      <%= "#{place.photos.length} photos" %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <a class="close-reveal-modal">&#215;</a>
+          </div> 
+
 
           <!-- THIS MODAL SHOWS WHEN U CLICK ADD TO LIST -->
           <div id="add_<%= place.id %>" class="reveal-modal tiny" data-reveal>

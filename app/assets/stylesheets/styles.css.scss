@@ -459,8 +459,15 @@ img.rec {
   margin: 0 auto;
 }
 
-.reveal-modal { // modal
+div.tiny{ // modal
   margin-top: 100px;
+  padding: 50px;
+  text-align: center;
+  z-index: 650;
+}
+
+div.medium{ // modal
+  margin-top: 50px;
   padding: 50px;
   text-align: center;
   z-index: 650;
@@ -473,6 +480,30 @@ img.rec {
 button {
   margin: 5px;
 }
+
+// SHOW PLACE MODAL STYLES
+
+.largephoto-container {
+  position:relative;
+  width: 100%;
+  max-height: 525px;
+  overflow: hidden;  
+  position: relative;
+}
+
+img.large {
+  position:relative;
+  width: 100%;
+  // max-height: 600px;
+    margin: auto;
+
+}
+
+.photoarray {
+  visibility: hidden;
+  position: absolute;
+}
+
 // SPLASH PAGE
 
 h1#main {
@@ -573,3 +604,39 @@ h4 {
     color: black;
   }
 }   
+
+
+// IMAGE SCROLL EFFECT
+
+div.img {
+    // float: left;
+    // position: relative;
+    // margin: 5px;
+}
+div.img .details {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    overflow: hidden;
+    color: #FFF;
+    font-family: $mainFont;
+    text-transform: uppercase;
+}
+div.img .details .wrap {
+    margin: 5px;
+    position: relative;
+    z-index: 2;
+} 
+// div.img .details a {
+//     color: #FFF;
+// }
+.scrubber .loading-bar {
+    background: $darkTeal;
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}

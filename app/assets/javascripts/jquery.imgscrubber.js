@@ -1,23 +1,24 @@
 jQuery.fn.imgScrubber = function(options) {
     options = jQuery.extend({
-        scrubWait: 2000,
+        scrubWait: 0, // how long it takes the loadbar to finish
         resultSelector: "img",
         imgSelector: "img",
         detailsSelector: ".details",
         loadingClass: "loading-bar"
     }, options);
 
+    
+    var img = null; // clears the array each time this function is called
+
     jQuery(this).on({
         mouseenter: function(e) {
-            alert();
             var data = jQuery(this).data();
-
             if (data.waiting || data.loading || data.img) {
                 return;
             }
-
-            var url = jQuery(this).attr("data-url") ||
-                jQuery(this).parents("a").first().attr("href");
+            
+            var array = jQuery(this).find(".photoarray").data("photos");
+            
 
             var $loading = jQuery("<div>")
                 .addClass(options.loadingClass)
@@ -30,27 +31,23 @@ jQuery.fn.imgScrubber = function(options) {
 
                 $loading.animate({ width: "100%" }, options.scrubWait / 2);
 
-                jQuery.get(url, function(html) {
-                    var img = [];
+                img = array;
 
-                    jQuery(html).find(options.resultSelector).each(function() {
-                        img.push(this.src);
+                data.img = img; // array of all the images
+                data.loading = false;
+                console.log(img);
+                $loading
+                    .stop()
+                    .animate({ width: "100%" }, 300)
+                    .animate({ opacity: 0 }, 300, function() {
+                        $(this).remove();
                     });
-                    // console.log(img);
-                    data.img = img; // array of all the images
-                    data.loading = false;
-                    
-                    $loading
-                        .stop()
-                        .animate({ width: "100%" }, 300)
-                        .animate({ opacity: 0 }, 300, function() {
-                            $(this).remove();
-                        });
-                });
+            
             }, options.scrubWait);
         },
 
         mouseleave: function(e) {
+            
             var waiting = jQuery(this).data("waiting");
 
             if (waiting) {
@@ -61,11 +58,10 @@ jQuery.fn.imgScrubber = function(options) {
         },
 
         mousemove: function(e) {
-            var img = jQuery(this).data("img");
-
             if (img) {
                 var pos = Math.round((e.offsetX / this.offsetWidth) * 
                     img.length);
+
                 jQuery(this).find(options.imgSelector).attr("src", img[pos]);
             }
         }
