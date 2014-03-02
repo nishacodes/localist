@@ -1,7 +1,7 @@
-<h3 class="inline-block" id="intro2"> Recommendations for you </h3> <p class="tiny" id="hiderecs">Hide</p>
-<div class="recommendations" >  
+<h3 class="inline-block" > Recommendations for you </h3> <p class="tiny" id="hiderecs">Hide</p>
+<div class="recommendations" id="intro1" >  
   <% if @recommendations.length == 0 %>
-      <div class="alert-message" > No recommendations yet. <br>Add some more places, and check back later!</div>
+      <div class="alert-message"> No recommendations yet. <br>Add some more places, and check back later!</div>
     <% else %> 
   <ul>
     <% @recommendations.each do |basis, lists_hash|  %>

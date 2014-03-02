@@ -477,6 +477,13 @@ div.medium{ // modal
   z-index: 625;
 }
 
+.joyride-content-wrapper, .joyride-tip-guide {
+  z-index: 650;
+}
+.joyride-modal-bg {
+  z-index: 625;
+}
+
 button {
   margin: 5px;
 }

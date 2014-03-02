@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 
-  <div class="container">
+  <div class="container" >
     
     <%= render 'recommendations' %>
   
@@ -8,7 +8,7 @@
     <!-- <div data-magellan-expedition="fixed" class="stickynav"> -->
         <div id="filters">
           <h3 class="inline-block"> LISTS </h3>  <p class="tiny selected margin-after" id="view">Hide</p>
-            <ul class="filters inline-block">
+            <ul class="filters inline-block" id="intro4">
               
               <li class="selected">All</li>
                 <% @lists.each do |list| %>
@@ -26,7 +26,7 @@
       <!-- <p> -->
         <%= link_to 'Create New List',new_list_path, id: 'new_link', remote: true, class: "button button-special"  %> 
       <!-- </p> -->
-      <div class="lists" id="intro3">
+      <div class="lists" id="intro2">
         <%= render @lists %>
       </div>
     </div>
@@ -53,6 +53,7 @@
               <a href=<%#= place.website%> target="_blank"><p class="tiny"> <i class="fa fa-external-link"></i> <%#= place.website %> </p></a> -->
             </div>
         </div>
+        
         <!-- SHOW PLACE MODAL -->
         <div id="show_<%= place.id %>" class="reveal-modal medium" data-reveal>
           <h3><%= place.name %></h3>
