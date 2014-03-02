@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  cattr_accessor :recommendations
+  cattr_accessor :recommendations, :joyride
   cattr_accessor :other_users
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -35,7 +35,11 @@ class User < ActiveRecord::Base
     end
     return @recommendations
   end
-  
+
+  def joyride
+    self.places.count == 0
+  end
+
   def self.get_users(current_user)
     all_users = User.all
     @@other_users = all_users.delete_if {|user| user.id == current_user.id}

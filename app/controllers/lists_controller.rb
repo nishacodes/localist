@@ -6,6 +6,7 @@ class ListsController < ApplicationController
   def index
     if user_signed_in?
       User.get_users(current_user)
+      @joyride = current_user.joyride
       @recommendations = current_user.recommend
       @blacklist = current_user.blacklists.map {|b| b.place}
       @lists = List.where(user_id: current_user.id).reverse
