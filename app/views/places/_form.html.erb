@@ -8,14 +8,14 @@
         <li><%= msg %></li>
       <% end %>
       </ul>
+      
     </div>
   <% end %>
 
   <div class="field">
     <!-- INPUT FIELD -->
     <%= f.text_field :name, :class=>"controls", :type=>"text", :id=>"input", :placeholder=>"Add place to '#{@list.name}'" %>
-    
-    
+     
     <!-- GOOGLE INFO FIELDS--> 
     <%= f.hidden_field :placeid, id:"placeid" %>
     <%= f.hidden_field :name, id:"name" %>
@@ -33,11 +33,28 @@
     <%= f.hidden_field :price_level, id:"price_level" %> 
     <%= f.hidden_field :photos, id:"photos" %> 
 
-
-
   </div>
   <div class="actions" id="addplace-container">
     <button type="submit" name="commit" id="place-submit-button-map" value="Add Place">ADD</button>
     <%#= f.submit "Add Place", :class=>"pac-container", :id=>"place-submit"%>
   </div>
 <% end %>
+
+<!-- AJAX -->
+<script type="text/javascript">
+  $('form').submit(function() {  
+      var valuesToSubmit = $(this).serialize();
+      $.ajax({
+          url: $(this).attr('action'), //sumbits it to the given url of the form
+          data: valuesToSubmit,
+          type: "POST",
+          dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+      }).success(function(json){
+        var list_id = json[0].id;
+        var place_id = json[1].id;
+        var place_name = json[1].name;
+        $("#panel" + list_id).append("<li class='place'> <a href='#' data-reveal-id='show_"+ place_id +"'  class='show_place' data-place='"+place_id+"'>"+  place_name + "</a></li>");
+      });
+      return false; // prevents normal behaviour
+  });
+</script>
