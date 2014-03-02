@@ -21,8 +21,10 @@ $(document).ready(function(){
 
   // IMAGE SCROLL FUNCTION
   $('a.show_place').on('click', function (){ 
-      $(document).imgScrubber({
-          delegate: "div.img"
-      });
-    })
+    $(document).imgScrubber({
+        delegate: "div.img"
+    });
   })
+
+  $(document).foundation('joyride', 'start');
+})
