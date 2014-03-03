@@ -14,13 +14,11 @@
       <% else %> 
         <% list.places.each do |place|  %>
         <li class="place" > 
-          <%#= link_to place.name, list_place_path(:list_id => list.id, :id => place.id),  data: {url: "(#{place.lat},#{place.long})"}, id: "place_#{place.id}" %>
           <a href="/places/<%= place.id %>/modal" data-reveal-id="show_<%= place.id %>" data-reveal-ajax="true" class="show_place" data-place="<%= place.id %> "> <%= place.name %> </a>
           <!-- DELETE -->
           <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe,  list_place_path(:list_id => list.id, :id => place.id), method: :delete, :class => 'pull-right', id: "delete_place_#{place.id}", remote: true  %>
         </li>
       
-
         <!-- AJAX for block -->
           <script type="text/javascript">
             // DELETE PLACE

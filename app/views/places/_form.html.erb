@@ -54,7 +54,7 @@
         var place_id = json[1].id;
         var place_name = json[1].name;
         // append li
-        $("#panel" + list_id).append("<li class='place'> <a href='#' data-reveal-id='show_"+ place_id +"'  class='show_place' data-place='"+ place_id +"'>"+  place_name + "</a></li>");
+        $("#panel" + list_id).append("<li class='place'> <a href='/places/"+ place_id +"/modal' data-reveal-id='show_"+ place_id +"' data-reveal-ajax='true' class='show_place' data-place='"+ place_id +"'>"+  place_name + "</a></li>");
       });
       return false; // prevents normal behaviour
   });
