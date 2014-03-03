@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_filter :get_list, except: [:list_all, :add_rec, :blacklist]
+  before_filter :get_list, except: [:list_all, :add_rec, :blacklist, :modal]
   skip_before_filter  :verify_authenticity_token
 
   def get_list
@@ -35,6 +35,13 @@ class PlacesController < ApplicationController
     end
   end
 
+  def modal
+    @place = Place.find(params[:id])
+    respond_to do |format|
+      format.html { render layout: false}
+    end
+
+  end
   # GET /lists/:list_id/places/new
   # GET /lists/:list_id/places/new.json
   def new
@@ -57,7 +64,6 @@ class PlacesController < ApplicationController
   # POST /lists/:list_id/places
   # POST /lists/:list_id/places.json
   def create
-    debugger
     @place = @list.places.new(params[:place].except(:photos))
     @list.save
     @place.save # need to save before adding photos

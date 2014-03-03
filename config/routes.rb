@@ -4,6 +4,7 @@ Myfavplaces::Application.routes.draw do
     resources :places
   end
 
+  get '/places/:id/modal' => "places#modal"
   root :to => "lists#index"
 
   post '/addplace' => "places#add_rec"

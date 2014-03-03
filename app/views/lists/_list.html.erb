@@ -15,31 +15,11 @@
         <% list.places.each do |place|  %>
         <li class="place" > 
           <%#= link_to place.name, list_place_path(:list_id => list.id, :id => place.id),  data: {url: "(#{place.lat},#{place.long})"}, id: "place_#{place.id}" %>
-          <a href="#" data-reveal-id="show_<%= place.id %>" class="show_place" data-place="<%= place.id %> "> <%= place.name %> </a>
+          <a href="/places/<%= place.id %>/modal" data-reveal-id="show_<%= place.id %>" data-reveal-ajax="true" class="show_place" data-place="<%= place.id %> "> <%= place.name %> </a>
           <!-- DELETE -->
           <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe,  list_place_path(:list_id => list.id, :id => place.id), method: :delete, :class => 'pull-right', id: "delete_place_#{place.id}", remote: true  %>
         </li>
       
-        <!-- THIS MODAL SHOWS WHEN U CLICK ON A PLACE -->
-          <div id="show_<%= place.id %>" class="reveal-modal medium" data-reveal>
-            <h3><%= place.name %></h3>
-            <div class="row">
-              <div class="large-12 columns">
-                <% if place.photos.length > 0 %> <% photos = place.photos.map {|photo| photo.url } %>
-                  <div class="largephoto-container img scrubber">
-                    <img src=<%= place.photos[0].url %> class="large">
-                    <div class="photoarray" data-photos= "<%=photos %>">  </div>
-                    <div class="details">
-                      <div class="wrap">
-                        <%= "#{place.photos.length} photos" %>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-            <a class="close-reveal-modal">&#215;</a>
-          </div> 
 
         <!-- AJAX for block -->
           <script type="text/javascript">
