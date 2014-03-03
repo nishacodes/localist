@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
         list.places.each do |place|
           if user_places.include?(place.placeid)
             # does not include the place the recommendation was based on 
-            rec_places = list.places.tap { |array| array.delete_if{|p| user_places.include?(p.placeid)}}
+            rec_places = list.places.tap { |array| array.delete_if{|p| user_places.include?(p.placeid)}} 
             @recommendations[place.name] = {list.name => rec_places }
           end
         end

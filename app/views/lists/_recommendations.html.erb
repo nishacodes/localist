@@ -6,14 +6,17 @@
   <ul>
     <% @recommendations.each do |basis, lists_hash|  %>
       <% lists_hash.each do |list, recs| %>
-        <% recs.shuffle.each do |place| %>        
+        <!-- random sampling of 5 recs per place  -->       
+        <% recs.shuffle.sample(5).each do |place| %> 
           <% if @blacklist.include?(place.placeid) %>
             <% next %>
           <% else %>
             <li class="rec-container">
               <div class="square-container">
                 <% if place.photos.length > 0 %>
-                  <img src=<%= place.photos[0].url %> class="rec">
+                  <img src=<%= place.photos[0].url %> class="rec"> 
+                <% else %>
+                  <%= image_tag "/images/placeholder.png", class: "rec" %>
                 <% end %>
                 <div class="hover-actions">
                   <div class="white icon" data-reveal-id="remove_<%= place.id %>" data-place="<%= place.id %> "> x </div>
