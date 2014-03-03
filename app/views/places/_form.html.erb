@@ -48,14 +48,18 @@
           url: $(this).attr('action'), //sumbits it to the given url of the form
           data: valuesToSubmit,
           type: "POST",
-          dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
-      }).success(function(json){
+          dataType: "JSON", // you want a difference between normal and ajax-calls, and json is standard
+      success: function(json){
         var list_id = json[0].id;
         var place_id = json[1].id;
         var place_name = json[1].name;
         // append li
         $("#panel" + list_id).append("<li class='place'> <a href='/places/"+ place_id +"/modal' data-reveal-id='show_"+ place_id +"' data-reveal-ajax='true' class='show_place' data-place='"+ place_id +"'>"+  place_name + "</a></li>");
-      });
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        alert("Oops, I couldn't find that place! Please try again.");
+      }
+    });
       return false; // prevents normal behaviour
   });
 </script>
