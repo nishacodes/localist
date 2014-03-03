@@ -52,6 +52,7 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.0.2)
+    geocoder (1.1.9)
     gon (5.0.1)
       actionpack (>= 2.3.0)
       json
@@ -126,6 +127,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
   devise (= 3.0)
+  geocoder
   gon
   jquery-rails
   newrelic_rpm
