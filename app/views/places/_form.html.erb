@@ -53,8 +53,12 @@
         var list_id = json[0].id;
         var place_id = json[1].id;
         var place_name = json[1].name;
-        $("#panel" + list_id).append("<li class='place'> <a href='#' data-reveal-id='show_"+ place_id +"'  class='show_place' data-place='"+place_id+"'>"+  place_name + "</a></li>");
+        // append li
+        $("#panel" + list_id).append("<li class='place'> <a href='#' data-reveal-id='show_"+ place_id +"'  class='show_place' data-place='"+ place_id +"'>"+  place_name + "</a></li>");
       });
       return false; // prevents normal behaviour
   });
 </script>
+
+
+       

@@ -57,6 +57,7 @@ class PlacesController < ApplicationController
   # POST /lists/:list_id/places
   # POST /lists/:list_id/places.json
   def create
+    debugger
     @place = @list.places.new(params[:place].except(:photos))
     @list.save
     @place.save # need to save before adding photos

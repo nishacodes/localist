@@ -63,8 +63,6 @@ function initialize() {
     
   })
 
-  // *** NEED TO MAKE IT OBVIOUS WHAT HAPPENS WHEN U CLICK ADD
-
   // AUTOCOMPLETE
   // ---------------------
   function autoComplete(input){
@@ -126,14 +124,17 @@ function initialize() {
 
 
       // STORE PHOTO URLS IN AN ARRAY
-      
       var photos_array = place.photos
-      var photos = []
-      for (i=0; i < photos_array.length; i++){
-        var url = photos_array[i].getUrl({ 'maxWidth': 800, 'maxHeight': 800 });
-        photos.push(url);
+      if (place.photos) {
+        var photos = []  
+        for (var i=0; i < photos_array.length; i++){
+          var url = photos_array[i].getUrl({ 'maxWidth': 800, 'maxHeight': 800 });
+          photos.push(url);
+        }      
+      } else {
+        var photos = []  
       }
-
+      
       // POPULATE HIDDEN FORM FIELDS
       $("#placeid").val(place.id);
       $("#name").val(place.name);
@@ -150,10 +151,8 @@ function initialize() {
       // $("#state").val(place.address_components[7].short_name); // inaccurate
       // $("#postal").val(place.address_components[6].short_name); // inaccurate
       // $("#country").val(place.address_components[6].short_name); // inaccurate
-
     });
-
-    
+   
   }
 
   // FILTER CONTROLS
@@ -223,7 +222,7 @@ function initialize() {
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(markers[i][1], markers[i][2]), // lat/long coordinates
             map: map,
-            icon: "dot.png"
+            icon: "images/dot.png"
         });
 
         permanentMarkers.push(marker); // keep track of google objects
