@@ -1,6 +1,6 @@
 <div class="container">
 
-  <h2 class="subheading"> Recommendation Settings</h2>
+  <h2 class="subheading"> Recommendation Preferences</h2><br>
 
 <!--
   <h3 class="inline-block hideblock">Preferences</h3> <p class="tiny" >Hide</p>
@@ -8,9 +8,33 @@
   </div> 
 -->
 
-  <h3 class="inline-block">Blacklist</h3> 
+  <!-- <h3 class="inline-block">Recommendations</h3>  -->
   <!-- <p class="tiny hideblock" >Hide</p> -->
   <div class="preferences">  
+      <div id="filters">
+        <h3 class="inline-block"> Price Level: </h3>  
+          <ul class="filters inline-block" >
+            <li class="selected">All</li>
+            <li class="selected">$</li>
+            <li class="selected">$$</li>
+            <li class="selected">$$$</li>
+            <li class="selected">$$$$</li>
+            <li class="selected">$$$$$</li>
+          </ul>
+        <br><br>
+        <h3 class="inline-block"> Rating: </h3>  
+          <ul class="filters inline-block" style="margin-left: 50px;" >
+            
+            <li class="selected">All</li>
+            <li class="selected">&#x2605;</li>
+            <li class="selected">&#x2605;&#x2605;</li>
+            <li class="selected">&#x2605;&#x2605;&#x2605;</li>
+            <li class="selected">&#x2605;&#x2605;&#x2605;&#x2605;</li>
+            <li class="selected">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</li>
+          </ul>
+      </div> 
+      <br><br>
+      <div>
       <ul class="pricing-table columns large-6">
         <li class="heading bullet-item">Never recommend</li>
         <% if @blacklist.length == 0 %>
@@ -79,8 +103,12 @@
         <% end %>
         <% end %>
       </ul>
+      </div>
+      <a href="/" class="button save">Save </a>  
+      <a href="/" class="pull-left back">Back </a>  
   </div>
-  <a href="/" class="button"> Back </a>
+        
+      
 </div>
 
 <!-- STILL NEED TO ADD JQUERY SCROLL FUNCTION TO THIS MODAL, NOT BEING SELECTED -->

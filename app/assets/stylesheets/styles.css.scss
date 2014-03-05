@@ -669,14 +669,14 @@ div.img .details .wrap {
 // Preferences
 .pricing-table {
   border: none;
-  
+  margin-bottom: 75px;
 }
 
 .pricing-table li {
   border: none;
   border-bottom: 1px solid #eee;
   &:hover {
-    background-color: $lightTeal;
+    background-color: $lightGray;
   }
 }
 
@@ -691,7 +691,7 @@ li.heading {
 }
 .preferences {
   width: 100%;
-  min-height: 325px;
+  min-height: 400px;
   position: relative;
   background-color: white;
   overflow: auto;
@@ -716,5 +716,20 @@ li.heading {
 }
 
 .filters_tip {
-  margin-left: 400px;
+  margin-left: 420px;
+}
+
+.save {
+  position: absolute;
+  bottom: 0;
+  left: 45%;
+  font-family: $mainFont;
+  text-transform: uppercase;
+}
+
+.back {
+  font-family: $titleFont;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
 }
