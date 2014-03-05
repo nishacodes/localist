@@ -324,6 +324,15 @@ $(".list_name").on('click', function(e){
   $(this).parent().next().find('li').slideToggle();
 })
 
+// Toggle all lists
+$(".toggle_lists").on('click', function(e){
+  e.preventDefault();
+  $(this).toggleClass("collapse");
+  // $(this).next().find('.placecontainer').slideToggle();
+  $(this).next().find('li.place').slideToggle();
+})
+
+
 // Show tooltip on sidenav hovers 
 $('li.place').on("mouseover", function(){
   var place_id = ($(this).find('a')[0].id);

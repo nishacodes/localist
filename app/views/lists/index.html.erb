@@ -22,11 +22,14 @@
   <!-- SIDENAV -->
   <div class="listview">
     <div id="hidden-form"></div>
+    
     <div class="sidenav" >
       <!-- <p> -->
         <%= link_to 'Create New List',new_list_path, id: 'new_link', remote: true, class: "button button-special"  %> 
       <!-- </p> -->
+      <!-- <p class="tiny toggle_lists collapse">Collapse All</p>   -->
       <div class="lists" id="intro2">
+
         <%= render @lists %>
       </div>
     </div>
