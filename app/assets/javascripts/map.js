@@ -122,7 +122,7 @@ function initialize() {
       infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
       infowindow.open(map, markerNew);
 
-
+      console.log(place);
       // STORE PHOTO URLS IN AN ARRAY
       var photos_array = place.photos
       if (place.photos) {

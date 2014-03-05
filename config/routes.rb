@@ -11,6 +11,7 @@ Myfavplaces::Application.routes.draw do
 
   post '/addplace' => "places#add_rec"
   post '/blacklist' => "places#blacklist"
+  delete '/blacklist/:placeid' => "places#remove_from_blacklist"
 
   # get 'places' => "places#list_all"
 

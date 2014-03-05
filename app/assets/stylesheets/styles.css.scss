@@ -689,3 +689,14 @@ li.heading {
     background: none;
   }
 }
+.preferences {
+  width: 100%;
+  min-height: 325px;
+  position: relative;
+  background-color: white;
+  overflow: auto;
+  white-space:nowrap;
+  margin-bottom: 80px;
+  padding: 20px;
+  box-sizing: border-box;
+}

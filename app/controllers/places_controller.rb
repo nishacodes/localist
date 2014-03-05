@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_filter :get_list, except: [:list_all, :add_rec, :blacklist, :modal]
+  before_filter :get_list, except: [:list_all, :add_rec, :blacklist, :modal, :remove_from_blacklist]
   skip_before_filter  :verify_authenticity_token
 
   def get_list
@@ -132,6 +132,12 @@ class PlacesController < ApplicationController
   def blacklist
     Blacklist.create(params[:blacklist])
     redirect_to '/' 
+  end
+
+  def remove_from_blacklist
+    blacklist = Blacklist.find_by_place_and_user_id(params[:placeid],current_user.id)
+    blacklist.destroy
+    render nothing: true
   end
 
 end
