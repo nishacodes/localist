@@ -247,9 +247,11 @@ function initialize() {
 
         // SHOW INFOBOX ON MOUSEOVER  
         google.maps.event.addListener(marker, 'mouseover', (function(marker, i) { 
-          
+          console.log(tooltip);
           var tooltip = null; // so only one shows at a time
+          console.log(tooltip);
           tooltip = $("#tooltip_"+markers[i][3]).clone()[0];
+          console.log(tooltip);
           return function() {
             if(tooltip!=infobox.getContent()){
               infobox.open(map, marker); // display infobox instead of infowindow
