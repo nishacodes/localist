@@ -110,4 +110,13 @@ class ListsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def preferences
+    # @recommendations = current_user.recommend
+    @blacklist = current_user.blacklists.where("subtype = 'black'")
+    @blacklist = @blacklist.map {|b|  Place.find_by_placeid(b.place) }
+    @graylist = current_user.blacklists.where("subtype = 'gray'")
+    @graylist = @graylist.map {|b|  Place.find_by_placeid(b.place) }
+    
+  end
 end

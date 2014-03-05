@@ -19,6 +19,17 @@ $(document).ready(function(){
     }
   })
 
+  // Toggle preference sections
+  $('.hideblock').on('click', function(){
+    console.log($(this).next());
+    $(this).next().slideToggle();
+    if ($(this).html() == "Hide") {
+      $(this).html("Show")
+    } else {
+      $(this).html("Hide")
+    }
+  })
+
   // IMAGE SCROLL FUNCTION
   $('a.show_place').on('click', function (){ 
     $(document).imgScrubber({

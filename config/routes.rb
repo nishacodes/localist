@@ -4,6 +4,8 @@ Myfavplaces::Application.routes.draw do
     resources :places
   end
 
+  get '/preferences' => "lists#preferences"
+
   get '/places/:id/modal' => "places#modal"
   root :to => "lists#index"
 

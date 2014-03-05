@@ -64,6 +64,15 @@ h1 {
   }
 }
 
+h2 {
+  font-family: $mainFont;
+  font-weight: 200;
+  font-size: 2em;
+  text-transform: uppercase;
+  padding: 0px 10px;
+  text-align: center; 
+}
+
 h3 {
   font-family: $titleFont;
   font-size: 1.4em;
@@ -425,6 +434,15 @@ img.rec {
   cursor: pointer;
 }
 
+.icon-inline { // x box to disregard recommendation
+  font-family: 'Jura', sans-serif;
+  font-size: 30px;
+  position: relative;
+  margin-top: -10px;
+  float: right;
+  cursor: pointer;
+}
+
 .button-group {
   position: absolute;
   width: 100%;
@@ -646,4 +664,28 @@ div.img .details .wrap {
     height: 100%;
     position: absolute;
     z-index: 1;
+}
+
+// Preferences
+.pricing-table {
+  border: none;
+  
+}
+
+.pricing-table li {
+  border: none;
+  border-bottom: 1px solid #eee;
+  &:hover {
+    background-color: $lightTeal;
+  }
+}
+
+li.heading {
+  background-color: white;
+  font-family: $titleFont;
+  text-transform: uppercase;
+  font-size: 16pt;
+  &:hover {
+    background: none;
+  }
 }

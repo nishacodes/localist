@@ -1,0 +1,28 @@
+<div class="container">
+
+  <h2> Recommendation Preferences</h2>
+
+  <h3 class="inline-block hideblock">Preferences</h3> <p class="tiny" >Hide</p>
+  <div class="recommendations">  
+
+  </div>
+
+  <h3 class="inline-block hideblock">Blacklist</h3> <p class="tiny" >Hide</p>
+  <div class="recommendations">  
+    <!-- <div class="row"> -->
+      <ul class="pricing-table columns large-6">
+        <li class="heading bullet-item">Never recommend</li>
+        <% @blacklist.each do |place| %>
+          <li class="bullet-item"> <%= place.name %> <div class="icon-inline inline-block" data-reveal-id="remove_234" data-place="234 "> x </div></li>
+        <% end %>
+      </ul>
+
+      <ul class="pricing-table columns large-6">
+        <li class="heading bullet-item">Not interested right now</li>
+        <% @graylist.each do |place| %>
+          <li class="bullet-item"> <%= place.name %> <div class="icon-inline inline-block" data-reveal-id="remove_234" data-place="234 "> x </div></li>
+        <% end %>
+      </ul>
+    <!-- </div> -->
+  </div>
+</div>
