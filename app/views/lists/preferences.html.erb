@@ -13,17 +13,16 @@
   <div class="preferences">  
       <div id="filters">
         <h3 class="inline-block"> Price Level: </h3>  
-          <ul class="filters inline-block" >
+          <ul class="filters price inline-block" >
             <li class="selected">All</li>
             <li class="selected">$</li>
             <li class="selected">$$</li>
             <li class="selected">$$$</li>
             <li class="selected">$$$$</li>
-            <li class="selected">$$$$$</li>
           </ul>
         <br><br>
         <h3 class="inline-block"> Rating: </h3>  
-          <ul class="filters inline-block" style="margin-left: 50px;" >
+          <ul class="filters rating inline-block" style="margin-left: 50px;" >
             
             <li class="selected">All</li>
             <li class="selected">&#x2605;</li>
@@ -124,5 +123,30 @@
         $(this).html("Hide")
       }
     })
+
+    // Toggle 'all' to control other selectors
+    $(".price li").first().on('click',function(){
+      $(this).toggleClass("");
+      if($(this).hasClass("selected")){
+        $(this).nextAll().removeClass("selected");
+      } else {
+        $(this).nextAll().addClass("selected");
+      }
+    })
+
+    $(".rating li").first().on('click',function(){
+      $(this).toggleClass("");
+      if($(this).hasClass("selected")){
+        $(this).nextAll().removeClass("selected");
+      } else {
+        $(this).nextAll().addClass("selected");
+      }
+    })
+
+    // Toggle 'selected' class for each filter
+    $(".price li, .rating li").on('click',function(){
+      $(this).toggleClass("selected");
+    })
+
   })
 </script>
