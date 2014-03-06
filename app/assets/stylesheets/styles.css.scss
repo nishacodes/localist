@@ -64,6 +64,15 @@ h1 {
   }
 }
 
+h2.subheading {
+  font-family: $mainFont;
+  font-weight: 200;
+  font-size: 2em;
+  text-transform: uppercase;
+  padding: 0px 10px;
+  text-align: center; 
+}
+
 h3 {
   font-family: $titleFont;
   font-size: 1.4em;
@@ -425,6 +434,15 @@ img.rec {
   cursor: pointer;
 }
 
+.icon-inline { // x box to disregard recommendation
+  font-family: 'Jura', sans-serif;
+  font-size: 30px;
+  position: relative;
+  margin-top: -10px;
+  float: right;
+  cursor: pointer;
+}
+
 .button-group {
   position: absolute;
   width: 100%;
@@ -646,4 +664,72 @@ div.img .details .wrap {
     height: 100%;
     position: absolute;
     z-index: 1;
+}
+
+// Preferences
+.pricing-table {
+  border: none;
+  margin-bottom: 75px;
+}
+
+.pricing-table li {
+  border: none;
+  border-bottom: 1px solid #eee;
+  &:hover {
+    background-color: $lightGray;
+  }
+}
+
+li.heading {
+  background-color: white;
+  font-family: $titleFont;
+  text-transform: uppercase;
+  font-size: 16pt;
+  &:hover {
+    background: none;
+  }
+}
+.preferences {
+  width: 100%;
+  min-height: 400px;
+  position: relative;
+  background-color: white;
+  overflow: auto;
+  white-space:nowrap;
+  margin-bottom: 80px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.toggle_lists {
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
+
+.recommendation_tip {
+  width: 400px;
+}
+
+.addplaces_tip {
+  margin-left: 185px;
+  margin-top: 30px;
+}
+
+.filters_tip {
+  margin-left: 420px;
+}
+
+.save {
+  position: absolute;
+  bottom: 0;
+  left: 45%;
+  font-family: $mainFont;
+  text-transform: uppercase;
+}
+
+.back {
+  font-family: $titleFont;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
 }

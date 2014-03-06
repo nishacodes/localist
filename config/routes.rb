@@ -4,11 +4,14 @@ Myfavplaces::Application.routes.draw do
     resources :places
   end
 
+  get '/preferences' => "lists#preferences"
+
   get '/places/:id/modal' => "places#modal"
   root :to => "lists#index"
 
   post '/addplace' => "places#add_rec"
   post '/blacklist' => "places#blacklist"
+  delete '/blacklist/:placeid' => "places#remove_from_blacklist"
 
   # get 'places' => "places#list_all"
 

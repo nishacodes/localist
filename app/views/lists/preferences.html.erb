@@ -1,0 +1,152 @@
+<div class="container">
+
+  <h2 class="subheading"> Recommendation Preferences</h2><br>
+
+<!--
+  <h3 class="inline-block hideblock">Preferences</h3> <p class="tiny" >Hide</p>
+  <div class="recommendations">  
+  </div> 
+-->
+
+  <!-- <h3 class="inline-block">Recommendations</h3>  -->
+  <!-- <p class="tiny hideblock" >Hide</p> -->
+  <div class="preferences">  
+      <div id="filters">
+        <h3 class="inline-block"> Price Level: </h3>  
+          <ul class="filters price inline-block" >
+            <li class="selected">All</li>
+            <li class="selected">$</li>
+            <li class="selected">$$</li>
+            <li class="selected">$$$</li>
+            <li class="selected">$$$$</li>
+          </ul>
+        <br><br>
+        <h3 class="inline-block"> Rating: </h3>  
+          <ul class="filters rating inline-block" style="margin-left: 50px;" >
+            
+            <li class="selected">All</li>
+            <li class="selected">&#x2605;</li>
+            <li class="selected">&#x2605;&#x2605;</li>
+            <li class="selected">&#x2605;&#x2605;&#x2605;</li>
+            <li class="selected">&#x2605;&#x2605;&#x2605;&#x2605;</li>
+            <li class="selected">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</li>
+          </ul>
+      </div> 
+      <br><br>
+      <div>
+      <ul class="pricing-table columns large-6">
+        <li class="heading bullet-item">Never recommend</li>
+        <% if @blacklist.length == 0 %>
+            <br> <p class="center">You don't have any places. </p>
+        <% else %>
+        <% @blacklist.each do |place| %>
+          <li class="bullet-item"> 
+            <a href="/places/<%= place.id %>/modal" data-reveal-id="show_<%= place.id %>" data-reveal-ajax="true" data-place="<%= place.id %> "> <%= place.name %></a> 
+            <div class="icon-inline inline-block" id= "delete_blacklist_<%=place.placeid%>" > x </div>
+          </li>
+          <div id="show_<%= place.id %>" class="reveal-modal medium" data-reveal></div>
+        
+           <!-- AJAX -->
+          <script type="text/javascript">
+            $('#delete_blacklist_<%=place.placeid%>').on('click', function(e) {
+              e.preventDefault();
+              var answer = confirm ("Are you sure you want to remove this place from your blacklist?");
+              var that = $(this);
+              if (answer) {
+                $.ajax({
+                  type: "delete", // method
+                  url: "/blacklist/<%= place.placeid %>",
+                  dataType: "html",
+                  data: {"_method":"delete"}
+                }).success(function(){
+                    that.parent().fadeOut(500);
+                })
+              }
+            });
+          </script>
+        <% end %>
+        <% end %>
+      </ul>
+
+      <ul class="pricing-table columns large-6">
+        <li class="heading bullet-item">Not interested right now</li>
+        <% if @graylist.length == 0 %>
+            <br> <p class="center">You don't have any places. </p>
+        <% else %>
+        <% @graylist.each do |place| %>
+          <li class="bullet-item"> 
+            <a href="/places/<%= place.id %>/modal" data-reveal-id="show_<%= place.id %>" data-reveal-ajax="true" data-place="<%= place.id %> "> <%= place.name %></a> 
+            <div class="icon-inline inline-block" id= "delete_blacklist_<%=place.placeid%>" > x </div>
+          </li>
+          <div id="show_<%= place.id %>" class="reveal-modal medium" data-reveal></div>
+        
+           <!-- AJAX -->
+          <script type="text/javascript">
+            $('#delete_blacklist_<%=place.placeid%>').on('click', function(e) {
+              e.preventDefault();
+              var answer = confirm ("Are you sure you want to remove this place from your blacklist?");
+              var that = $(this);
+              if (answer) {
+                $.ajax({
+                  type: "delete", // method
+                  url: "/blacklist/<%= place.placeid %>",
+                  dataType: "html",
+                  data: {"_method":"delete"}
+                }).success(function(){
+                    that.parent().fadeOut(500);
+                })
+              }
+            });
+          </script>
+
+        <% end %>
+        <% end %>
+      </ul>
+      </div>
+      <a href="/" class="button save">Save </a>  
+      <a href="/" class="pull-left back">Back </a>  
+  </div>
+        
+      
+</div>
+
+<!-- STILL NEED TO ADD JQUERY SCROLL FUNCTION TO THIS MODAL, NOT BEING SELECTED -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    
+    // Toggle preference sections
+    $('.hideblock').on('click', function(){
+      if ($(this).html() == "Hide") {
+        $(this).html("Show")
+        $(this).next().slideToggle();
+      } else {
+        $(this).html("Hide")
+      }
+    })
+
+    // Toggle 'all' to control other selectors
+    $(".price li").first().on('click',function(){
+      $(this).toggleClass("");
+      if($(this).hasClass("selected")){
+        $(this).nextAll().removeClass("selected");
+      } else {
+        $(this).nextAll().addClass("selected");
+      }
+    })
+
+    $(".rating li").first().on('click',function(){
+      $(this).toggleClass("");
+      if($(this).hasClass("selected")){
+        $(this).nextAll().removeClass("selected");
+      } else {
+        $(this).nextAll().addClass("selected");
+      }
+    })
+
+    // Toggle 'selected' class for each filter
+    $(".price li, .rating li").on('click',function(){
+      $(this).toggleClass("selected");
+    })
+
+  })
+</script>

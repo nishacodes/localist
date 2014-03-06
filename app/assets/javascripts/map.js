@@ -122,7 +122,7 @@ function initialize() {
       infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
       infowindow.open(map, markerNew);
 
-
+      console.log(place);
       // STORE PHOTO URLS IN AN ARRAY
       var photos_array = place.photos
       if (place.photos) {
@@ -249,43 +249,22 @@ function initialize() {
         google.maps.event.addListener(marker, 'mouseover', (function(marker, i) { 
           
           var tooltip = null; // so only one shows at a time
+          infobox.close();
           tooltip = $("#tooltip_"+markers[i][3]).clone()[0];
+          
           return function() {
             if(tooltip!=infobox.getContent()){
+
               infobox.open(map, marker); // display infobox instead of infowindow
               infobox.setContent(tooltip);          
             }
           }
         })(marker, i));
 
-
-        google.maps.event.addListener(marker, 'click', function() {
-          //when the infowindow is open, close it an clear the contents
-          
-          var tooltip = $("#tooltip_"+markers[i][3]).clone()[0];
-          
-          return function() {
-            if(tooltip==infobox.getContent()){
-              infobox.close(map,marker);
-              infowindow.setContent('');
-            } else { //otherwise trigger mouseover to open the infowindow
-              google.maps.event.trigger(marker, 'mouseover');
-            }
-          }
+        // REMOVE INFOBOX ON MOUSEOUT
+        google.maps.event.addListener(marker, 'mouseout', function() {
+          // infobox.close();
         });
-
-        //clear the contents of the infwindow on closeclick
-        google.maps.event.addListener(infobox, 'click', function() {
-            
-              infobox.setContent('');
-        });
-   
-        // // HIDE INFOBOX ON MOUSEOUT
-        // google.maps.event.addListener(marker, 'mouseout', function() {
-        //   infobox.close();
-        // });
-
-        // ADD A MOUSEOUT FUNCTION TO REMOVE INFOWINDOW AND A CLICK FUNCTION TO MAKE IT STICK.
     }
   }
 }
@@ -321,6 +300,15 @@ $(".list_name").on('click', function(e){
   e.preventDefault();
   $(this).parent().next().find('li').slideToggle();
 })
+
+// Toggle all lists
+$(".toggle_lists").on('click', function(e){
+  e.preventDefault();
+  $(this).toggleClass("collapse");
+  // $(this).next().find('.placecontainer').slideToggle();
+  $(this).next().find('li.place').slideToggle();
+})
+
 
 // Show tooltip on sidenav hovers 
 $('li.place').on("mouseover", function(){
