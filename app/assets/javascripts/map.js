@@ -247,47 +247,24 @@ function initialize() {
 
         // SHOW INFOBOX ON MOUSEOVER  
         google.maps.event.addListener(marker, 'mouseover', (function(marker, i) { 
-          console.log(tooltip);
+          
           var tooltip = null; // so only one shows at a time
-          console.log(tooltip);
+          infobox.close();
           tooltip = $("#tooltip_"+markers[i][3]).clone()[0];
-          console.log(tooltip);
+          
           return function() {
             if(tooltip!=infobox.getContent()){
+
               infobox.open(map, marker); // display infobox instead of infowindow
               infobox.setContent(tooltip);          
             }
           }
         })(marker, i));
 
-
-        google.maps.event.addListener(marker, 'click', function() {
-          //when the infowindow is open, close it an clear the contents
-          
-          var tooltip = $("#tooltip_"+markers[i][3]).clone()[0];
-          
-          return function() {
-            if(tooltip==infobox.getContent()){
-              infobox.close(map,marker);
-              infowindow.setContent('');
-            } else { //otherwise trigger mouseover to open the infowindow
-              google.maps.event.trigger(marker, 'mouseover');
-            }
-          }
+        // REMOVE INFOBOX ON MOUSEOUT
+        google.maps.event.addListener(marker, 'mouseout', function() {
+          // infobox.close();
         });
-
-        //clear the contents of the infwindow on closeclick
-        google.maps.event.addListener(infobox, 'click', function() {
-            
-              infobox.setContent('');
-        });
-   
-        // // HIDE INFOBOX ON MOUSEOUT
-        // google.maps.event.addListener(marker, 'mouseout', function() {
-        //   infobox.close();
-        // });
-
-        // ADD A MOUSEOUT FUNCTION TO REMOVE INFOWINDOW AND A CLICK FUNCTION TO MAKE IT STICK.
     }
   }
 }
