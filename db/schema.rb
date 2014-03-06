@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140220134843) do
+ActiveRecord::Schema.define(:version => 20140306050503) do
 
   create_table "blacklists", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -74,6 +74,10 @@ ActiveRecord::Schema.define(:version => 20140220134843) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "city"
+    t.string   "state"
+    t.decimal  "lat"
+    t.decimal  "long"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

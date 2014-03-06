@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  # attr_accessible :title, :body
 
   has_many :lists
   has_many :places, :through => :lists

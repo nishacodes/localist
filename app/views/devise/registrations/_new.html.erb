@@ -8,6 +8,17 @@
       <%= f.email_field :email, :autofocus => true, :placeholder=>"Email address" %>
     </div>
   </div>
+
+      <div class="row">
+    <div class="large-8 columns">
+      <%= f.text_field :city, :placeholder=>"What's your city?" %>
+
+    </div>
+     <div class="large-4 columns">
+      <%= f.text_field :state, :placeholder=>"State" %>
+
+    </div>
+  </div>
   <div class="row">
     <div class="large-12 columns">
       <%= f.password_field :password, :placeholder=>"Password" %>  
@@ -19,6 +30,8 @@
       <p class="small left white"> Already a member? <%= link_to 'Sign in.', "#", :id=>"signin" %> </p>
     </div>
   </div>
+
+
   <div><%= f.submit "Sign up", :class=>"button outline-button" %></div>
 <% end %>
 

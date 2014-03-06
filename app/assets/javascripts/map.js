@@ -29,7 +29,9 @@ var styles = [
 ];
 
 
-var myLatlng = new google.maps.LatLng(40.757975,-73.9752290);
+var myLat = gon.lat;
+var myLong = gon.long;
+var myLatlng = new google.maps.LatLng( myLong,myLat );
 var mapOptions = {
   zoom: 13,
   center: myLatlng

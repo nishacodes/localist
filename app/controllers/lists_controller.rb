@@ -5,6 +5,10 @@ class ListsController < ApplicationController
   # GET /lists.json
   def index
     if user_signed_in?
+      coordinates = Geocoder.coordinates("#{current_user.city}, #{current_user.state}") || [40.739453,-73.973613]
+      current_user.lat = coordinates[0]
+      current_user.long = coordinates[1]
+      current_user.save
       User.get_users(current_user)
       @joyride = current_user.joyride
       @recommendations = current_user.recommend
@@ -17,8 +21,10 @@ class ListsController < ApplicationController
         @lists = List.where(user_id: current_user.id).reverse
       end
       @places = @lists.map {|list| list.places}
+      gon.long = current_user.lat.to_f 
+      gon.lat = current_user.long.to_f
       gon.lists = List.where(user_id: current_user.id)
-      gon.places_hash= {}
+      gon.places_hash = {}
       gon.lists.each do |list|
         gon.places_hash[list.name] = list.places
       end
