@@ -11,9 +11,9 @@ class ListsController < ApplicationController
       @blacklist = current_user.blacklists.map {|b| b.place}
       @lists = List.where(user_id: current_user.id).reverse
       if @lists.length == 0
-        List.create(name: "Bar scene", user_id: current_user.id)
         List.create(name: "Casual bites", user_id: current_user.id)
         List.create(name: "Brunch favs", user_id: current_user.id)
+        List.create(name: "Bar scene", user_id: current_user.id)
         @lists = List.where(user_id: current_user.id).reverse
       end
       @places = @lists.map {|list| list.places}

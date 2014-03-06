@@ -1,5 +1,7 @@
 <!-- THIS MODAL SHOWS WHEN U CLICK ON A PLACE -->
-<h3><%= @place.name %></h3>
+<h3><%= @place.name %> 
+<br>
+<span class="small"> <%= ("$"* @place.price_level.to_i) %> | <%= ("\u2605"* @place.rating.to_i) %> | <%= link_to 'Website', @place.website %> </span></h3>
 <div class="row">
   <div class="large-12 columns">
     <% if @place.photos.length > 0 %> <% photos = @place.photos.map {|photo| photo.url } %>
