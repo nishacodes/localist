@@ -1,3 +1,9 @@
+/*
+ * jQuery Image Scrubber
+ * From Ukiyo-e.org by John Resig <jeresig@gmail.com>
+ * MIT licensed.
+ */
+
 jQuery.fn.imgScrubber = function(options) {
     options = jQuery.extend({
         scrubWait: 0, // how long it takes the loadbar to finish
