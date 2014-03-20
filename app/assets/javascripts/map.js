@@ -189,7 +189,7 @@ function initialize() {
         }
       }  
     })
-
+    console.log(gon.places_hash);
     // Create markers for all places in selected_lists
     for (i=0; i < selected_lists.length; i++){
       for (x=0; x < selected_lists[i].length; x++){
@@ -197,7 +197,14 @@ function initialize() {
         var lat = selected_lists[i][x].lat;      // index 1
         var long = selected_lists[i][x].long;    // index 2
         var id = selected_lists[i][x].id;        // index 3
-        var marker = [name,lat,long, id];
+        
+        // Google Maps changed data structure of lat/long. All places created before 3/19
+        // need to be treated in reverse in order to be displayed on map.
+        if (selected_lists[i][x].created_at < "2014-03-19"){ 
+          var marker = [name,long,lat, id];  
+        } else {
+          var marker = [name,lat,long, id];  
+        }
         markers.push(marker);
         placeMarkers();
         
