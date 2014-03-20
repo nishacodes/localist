@@ -138,8 +138,8 @@ function initialize() {
       // POPULATE HIDDEN FORM FIELDS
       $("#placeid").val(place.id);
       $("#name").val(place.name);
-      $("#latitude").val(place.geometry.location.A);
-      $("#longitude").val(place.geometry.location.k);
+      $("#latitude").val(place.geometry.location.A); // these are reversed now
+      $("#longitude").val(place.geometry.location.k); // these are reversed now
       $("#phone").val(place.formatted_phone_number);
       $("#address").val(place.formatted_address);
       $("#website").val(place.website);
@@ -197,14 +197,7 @@ function initialize() {
         var lat = selected_lists[i][x].lat;      // index 1
         var long = selected_lists[i][x].long;    // index 2
         var id = selected_lists[i][x].id;        // index 3
-        
-        // Google Maps changed data structure of lat/long. All places created before 3/19
-        // need to be treated in reverse in order to be displayed on map.
-        if (selected_lists[i][x].created_at < "2014-03-19"){ 
-          var marker = [name,long,lat, id];  
-        } else {
-          var marker = [name,lat,long, id];  
-        }
+        var marker = [name,lat,long, id];  
         markers.push(marker);
         placeMarkers();
         
