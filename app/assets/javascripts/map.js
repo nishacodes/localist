@@ -91,7 +91,6 @@ function initialize() {
       infowindow.close();
       markerNew.setVisible(false);
       var place = autocomplete.getPlace();
-      console.log(place);
       if (!place.geometry) {
         return;
       }
@@ -124,7 +123,6 @@ function initialize() {
       infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
       infowindow.open(map, markerNew);
 
-      console.log(place);
       // STORE PHOTO URLS IN AN ARRAY
       var photos_array = place.photos
       if (place.photos) {
@@ -136,12 +134,12 @@ function initialize() {
       } else {
         var photos = []  
       }
-      
+
       // POPULATE HIDDEN FORM FIELDS
       $("#placeid").val(place.id);
       $("#name").val(place.name);
-      $("#latitude").val(place.geometry.location.d);
-      $("#longitude").val(place.geometry.location.e);
+      $("#latitude").val(place.geometry.location.A);
+      $("#longitude").val(place.geometry.location.k);
       $("#phone").val(place.formatted_phone_number);
       $("#address").val(place.formatted_address);
       $("#website").val(place.website);
