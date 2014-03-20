@@ -204,7 +204,7 @@ function initialize() {
       }
     }
   }
-
+  
   // clears array of permanentMarkers
   function clearMarkers(){
     for (var i=0; i<permanentMarkers.length; i++){
@@ -220,7 +220,7 @@ function initialize() {
  
     for (i = 0; i < markers.length; i++) {  
         var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(markers[i][1], markers[i][2]), // lat/long coordinates
+            position: new google.maps.LatLng(markers[i][2], markers[i][1]), // lat/long coordinates
             map: map,
             icon: "images/dot.png"
         });
