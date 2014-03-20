@@ -91,7 +91,6 @@ function initialize() {
       infowindow.close();
       markerNew.setVisible(false);
       var place = autocomplete.getPlace();
-      console.log(place);
       if (!place.geometry) {
         return;
       }
@@ -124,7 +123,7 @@ function initialize() {
       infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
       infowindow.open(map, markerNew);
 
-      console.log(place);
+      
       // STORE PHOTO URLS IN AN ARRAY
       var photos_array = place.photos
       if (place.photos) {
@@ -140,8 +139,8 @@ function initialize() {
       // POPULATE HIDDEN FORM FIELDS
       $("#placeid").val(place.id);
       $("#name").val(place.name);
-      $("#latitude").val(place.geometry.location.d);
-      $("#longitude").val(place.geometry.location.e);
+      $("#latitude").val(place.geometry.location.A);
+      $("#longitude").val(place.geometry.location.k);
       $("#phone").val(place.formatted_phone_number);
       $("#address").val(place.formatted_address);
       $("#website").val(place.website);
@@ -206,7 +205,7 @@ function initialize() {
       }
     }
   }
-
+  
   // clears array of permanentMarkers
   function clearMarkers(){
     for (var i=0; i<permanentMarkers.length; i++){
@@ -222,7 +221,7 @@ function initialize() {
  
     for (i = 0; i < markers.length; i++) {  
         var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(markers[i][1], markers[i][2]), // lat/long coordinates
+            position: new google.maps.LatLng(markers[i][2], markers[i][1]), // lat/long coordinates
             map: map,
             icon: "images/dot.png"
         });
