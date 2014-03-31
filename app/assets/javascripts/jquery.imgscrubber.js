@@ -6,7 +6,7 @@
 
 jQuery.fn.imgScrubber = function(options) {
     options = jQuery.extend({
-        scrubWait: 0, // how long it takes the loadbar to finish
+        scrubWait: 500, // how long it takes the loadbar to finish
         resultSelector: "img",
         imgSelector: "img",
         detailsSelector: ".details",
@@ -14,7 +14,7 @@ jQuery.fn.imgScrubber = function(options) {
     }, options);
 
     
-    var img = null; // clears the array each time this function is called
+    // var img = null; // clears the array each time this function is called
 
     jQuery(this).on({
         mouseenter: function(e) {
@@ -39,9 +39,9 @@ jQuery.fn.imgScrubber = function(options) {
 
                 img = array;
 
-                data.img = img; // array of all the images
+                // data.img = img; // array of all the images
                 data.loading = false;
-                console.log(img);
+                // console.log(img);
                 $loading
                     .stop()
                     .animate({ width: "100%" }, 300)
@@ -55,6 +55,8 @@ jQuery.fn.imgScrubber = function(options) {
         mouseleave: function(e) {
             
             var waiting = jQuery(this).data("waiting");
+
+            img = null; // clears the array
 
             if (waiting) {
                 clearTimeout(waiting);
