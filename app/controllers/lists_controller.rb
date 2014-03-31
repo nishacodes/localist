@@ -5,25 +5,29 @@ class ListsController < ApplicationController
   # GET /lists.json
   def index
     if user_signed_in?
-      coordinates = Geocoder.coordinates("#{current_user.city}, #{current_user.state}") || [40.739453,-73.973613]
-      current_user.lat = coordinates[0]
-      current_user.long = coordinates[1]
-      current_user.save
+      # current_user.get_coordinates
+      # coordinates = Geocoder.coordinates("#{current_user.city}, #{current_user.state}") || [40.739453,-73.973613]
+      # current_user.lat = coordinates[0]
+      # current_user.long = coordinates[1]
+      # current_user.save
       User.get_users(current_user)
       @joyride = current_user.joyride
       @recommendations = current_user.recommend
+      #  LEFT OFF HERE, CURRENTMAP IS NOT PERSISTING
+      @current_map = current_user.currentmap
       @blacklist = current_user.blacklists.map {|b| b.place}
-      @lists = List.where(user_id: current_user.id).reverse
+      @lists = @current_map.lists.reverse
       if @lists.length == 0
-        List.create(name: "Casual bites", user_id: current_user.id)
-        List.create(name: "Brunch favs", user_id: current_user.id)
-        List.create(name: "Bar scene", user_id: current_user.id)
-        @lists = List.where(user_id: current_user.id).reverse
+        List.create(name: "Casual bites", map_id: @current_map.id)
+        List.create(name: "Brunch favs", map_id: @current_map.id)
+        List.create(name: "Bar scene", map_id: @current_map.id)
+        @lists = @current_map.lists.reverse
       end
+      debugger
       @places = @lists.map {|list| list.places}
       gon.long = current_user.lat.to_f 
       gon.lat = current_user.long.to_f
-      gon.lists = List.where(user_id: current_user.id)
+      gon.lists = current_user.lists
       gon.places_hash = {}
       gon.lists.each do |list|
         gon.places_hash[list.name] = list.places
@@ -71,7 +75,7 @@ class ListsController < ApplicationController
     @list = List.new(params[:list])
 
     if user_signed_in? 
-      @list.user_id = current_user.id
+      @list.map_id = current_user.default_map
     end
 
     respond_to do |format|

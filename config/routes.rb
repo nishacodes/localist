@@ -1,4 +1,7 @@
 Myfavplaces::Application.routes.draw do
+  resources :maps
+
+
   devise_for :users
   resources :lists do
     resources :places

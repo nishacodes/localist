@@ -1,15 +1,20 @@
 class User < ActiveRecord::Base
   cattr_accessor :recommendations, :joyride
   cattr_accessor :other_users
+  attr_accessor :currentmap
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :lists
+  after_create :get_coordinates, :create_map, :assign_default_map
+
+  has_many :maps
+  has_many :lists, :through => :maps
   has_many :places, :through => :lists
   has_many :blacklists
+  
 
   # recommendations = "basis(current_user_place)" => {
   #   "other_user_list" => [other_user_places],
@@ -43,4 +48,31 @@ class User < ActiveRecord::Base
     all_users = User.all
     @@other_users = all_users.delete_if {|user| user.id == current_user.id}
   end
+
+  def get_coordinates
+    coordinates = Geocoder.coordinates("#{self.city}, #{self.state}") || [40.739453,-73.973613]
+    self.lat = coordinates[0]
+    self.long = coordinates[1]
+    self.save
+  end
+
+  def create_map
+    Map.create(city: self.city, state: self.state, lat: self.lat, long: self.long, user_id: self.id)
+  end
+
+  def assign_default_map
+    self.default_map = self.maps.first.id
+    self.save
+    @currentmap = Map.find(self.default_map)
+    debugger
+    puts "hi"
+    #  LEFT OFF HERE, CURRENTMAP IS NOT PERSISTING
+  end
+  
+  def assign_lists_to_map
+    map = Map.find(self.default_map)
+    map.lists = self.lists
+    map.save
+  end
+
 end

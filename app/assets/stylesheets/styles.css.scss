@@ -253,12 +253,40 @@ ul.places li {
   list-style: none;
 }
 
-.nav li {
-  list-style: none;
-  padding: 3px 8px 3px 8px;
+ul.nav {
   position: absolute;
   right: 13px;
   top: 13px; 
+}
+
+.nav li {
+  list-style: none;
+  display: inline-block;
+  padding: 3px 10px 3px 10px;
+  margin: 0px 5px 0px 5px;
+  font-size: 10pt;
+  & i {
+    font-size: 10pt;
+  }
+
+}
+
+// Dropdown styles
+.f-dropdown{
+  margin-left: 10px;
+  margin-top: 7px;
+  li a{
+    color: black;  
+    font-size: 8pt;
+  }
+}
+
+#drop1 {
+  width: 150px;
+}
+
+#drop2 {
+  margin-left: 8px;
 }
 
 .stickynav {

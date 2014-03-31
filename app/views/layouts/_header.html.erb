@@ -2,15 +2,20 @@
   <div class="center">
     <h1 class="logo" ><%= link_to "The Localist", :root %> </h1>
     <ul class="nav">
-    <% if user_signed_in? %>
-      <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
-    <% else %>
-      <li><%= link_to 'Sign in', new_user_session_path %></li>  
-    <% end %>
+      <% if user_signed_in? %>
+        <li> <!-- <i class="fa fa-map-marker"></i> --> <%= "#{current_user.city}, #{current_user.state}" %> &nbsp;  <i class="fa fa-caret-down dropdown" href="#" data-dropdown="drop1" ></i> </li>
+        <!-- <a href="#" data-dropdown="drop1" class="button dropdown">Dropdown Button</a><br> -->
+          <ul id="drop1" data-dropdown-content class="f-dropdown">
+            <li><a href="#">Add another city</a></li>
+          </ul>
+        <li><i class="fa fa-bars" href="#" data-dropdown="drop2"></i></li>
+          <ul id="drop2" data-dropdown-content class="f-dropdown">
+            <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+          </ul>
+          
+      <% else %>
+        <li><%= link_to 'Sign in', new_user_session_path %></li>  
+      <% end %>
     </ul>
-  </div>
-
-  <div class="pull-right">
-    
   </div>
 </nav>
