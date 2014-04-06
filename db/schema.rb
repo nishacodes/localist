@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140306050503) do
+ActiveRecord::Schema.define(:version => 20140406040527) do
 
   create_table "blacklists", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(:version => 20140306050503) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "map_id"
+  end
+
+  create_table "maps", :force => true do |t|
+    t.string   "city"
+    t.string   "state"
+    t.decimal  "lat"
+    t.decimal  "long"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "photos", :force => true do |t|
@@ -48,7 +59,6 @@ ActiveRecord::Schema.define(:version => 20140306050503) do
     t.datetime "updated_at",  :null => false
     t.string   "address"
     t.decimal  "lat"
-    t.decimal  "long"
     t.string   "city"
     t.string   "state"
     t.string   "postal"
@@ -59,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20140306050503) do
     t.decimal  "rating"
     t.string   "rating_url"
     t.integer  "price_level"
+    t.decimal  "long"
   end
 
   create_table "users", :force => true do |t|
@@ -78,6 +89,13 @@ ActiveRecord::Schema.define(:version => 20140306050503) do
     t.string   "state"
     t.decimal  "lat"
     t.decimal  "long"
+    t.integer  "default_map"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

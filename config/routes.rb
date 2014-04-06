@@ -1,5 +1,9 @@
 Myfavplaces::Application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  # match 'auth/:provider/callback', to: 'sessions#create'
+  # match 'auth/failure', to: redirect('/')
+  # match 'signout', to: 'sessions#destroy', as: 'signout'
+
   resources :lists do
     resources :places
   end

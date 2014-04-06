@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :lists
@@ -43,4 +43,42 @@ class User < ActiveRecord::Base
     all_users = User.all
     @@other_users = all_users.delete_if {|user| user.id == current_user.id}
   end
+
+  def self.from_omniauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_create.tap do |user|
+      # debugger
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.firstname = auth.info.first_name
+      user.lastname = auth.info.last_name
+      # user.email = auth.info.email
+      if auth.info.location?
+        user.city = auth.info.location.split(",").first
+        user.state = auth.info.location.split(",").last.strip
+      end
+      user.oauth_token = auth.credentials.token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+    end
+  end
+
+  def self.new_with_session(params, session)
+    if session["devise.user_attributes"]
+      new(session["devise.user_attributes"], without_protection: true) do |user|
+        # debugger
+        user.attributes = params
+        user.valid?
+      end
+    else
+      super
+    end
+  end
+
+  def email_required?
+    super && provider.blank?
+  end
+
+  def password_required?
+    super && provider.blank?
+  end
+
 end
