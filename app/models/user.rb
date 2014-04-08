@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  cattr_accessor :recommendations, :joyride
+  cattr_accessor :recommendations, :joyride, :facebook
   cattr_accessor :other_users
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -81,4 +81,11 @@ class User < ActiveRecord::Base
     super && provider.blank?
   end
 
+  def facebook
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
+  end
+
+  def get_friends
+    facebook.get_connection("me", "friends")
+  end
 end
