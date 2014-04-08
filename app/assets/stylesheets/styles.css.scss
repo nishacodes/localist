@@ -253,12 +253,16 @@ ul.places li {
   list-style: none;
 }
 
-.nav li {
-  list-style: none;
-  padding: 3px 8px 3px 8px;
+.nav {
   position: absolute;
   right: 13px;
-  top: 13px; 
+  top: 13px;
+}
+
+.nav li {
+  display: inline-block;
+  list-style: none;
+  padding: 0px 8px 3px 8px;
 }
 
 .stickynav {

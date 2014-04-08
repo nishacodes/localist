@@ -1,21 +1,18 @@
 Myfavplaces::Application.routes.draw do
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
-  # match 'auth/:provider/callback', to: 'sessions#create'
-  # match 'auth/failure', to: redirect('/')
-  # match 'signout', to: 'sessions#destroy', as: 'signout'
-
+  root :to => "lists#index"
+  
   resources :lists do
     resources :places
   end
 
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  
   get '/preferences' => "lists#preferences"
-
   get '/places/:id/modal' => "places#modal"
-  root :to => "lists#index"
-
   post '/addplace' => "places#add_rec"
   post '/blacklist' => "places#blacklist"
   delete '/blacklist/:placeid' => "places#remove_from_blacklist"
+  get '/discover' => "pages#discover"
 
   # get 'places' => "places#list_all"
 
