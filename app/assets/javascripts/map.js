@@ -135,11 +135,16 @@ function initialize() {
         var photos = []  
       }
 
+      
+      // The keys for lat/lng in Google API changes often, but they usually remain in the same order?
+      var latKey = Object.keys(place.geometry.location)[1];
+      var lngKey = Object.keys(place.geometry.location)[0];
+      
       // POPULATE HIDDEN FORM FIELDS
       $("#placeid").val(place.id);
       $("#name").val(place.name);
-      $("#latitude").val(place.geometry.location.A); // these are reversed now
-      $("#longitude").val(place.geometry.location.k); // these are reversed now
+      $("#latitude").val(place.geometry.location[latKey]); // these are reversed now
+      $("#longitude").val(place.geometry.location[lngKey]); // these are reversed now
       $("#phone").val(place.formatted_phone_number);
       $("#address").val(place.formatted_address);
       $("#website").val(place.website);
